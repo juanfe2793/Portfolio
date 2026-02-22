@@ -1,71 +1,106 @@
-# Curriculum Vitae
+# :material-file-document: Curriculum Vitae
+
+<div class="grid" markdown>
+
+<div markdown>
 
 ## **Juan Felipe Gómez Manzanares**
 **Staff Software Engineer | Platform Infrastructure & SRE**
 
 Expert in scaling cloud-native infrastructure, high-throughput API gateways, and resilient platform services.
 
+</div>
+
+<div markdown align="right">
+
+[:fontawesome-brands-linkedin: LinkedIn](https://linkedin.com/in/juangomez27)
+[:fontawesome-brands-github: GitHub](https://github.com/juanfe2793)
+[:fontawesome-solid-envelope: Email](mailto:juangomeztic27@gmail.com)
+
+</div>
+
+</div>
+
 ---
 
-## **Professional Experience**
+## 💼 Professional Experience
 
-### **Twilio** | *Staff Software Engineer (L4)*
-**June 2023 – Present**
-*   **API Gateway & Cloud Native Domains:** Led the design and implementation of Domain Gateway Infrastructure using **Kong**. Developed standardized Terraform modules, achieving **3.39M aggregate RPS** during stress testing.
-*   **DNS Infrastructure Modernization:** Designed and implemented a centralized, agnostic DNS boundary (`twilioinfra.com`) for the One Twilio Kubernetes (OTK) platform, supporting multi-region deployments.
-*   **Public Ingress Capability:** Owned the design of public ingress for the Kubernetes Platform, enabling secure service exposure in less than 90s.
-*   **Observability & Tooling:** Implemented Kong observability via OpenTelemetry (Otel) sidecars. Created `appconn-ondemand-tests` using **k6** and **Helm** for automated performance testing.
-*   **Operational Excellence:** Reduced incident volume and on-call noise, achieving an **MTTA of <4 minutes**.
+### **Twilio**
 
-### **Twilio** | *Sr Software Engineer - Kubernetes Platform (L3)*
-**November 2021 – June 2023**
-*   **Observability:** Implemented initial monitoring and alerting for Twilio Kubernetes Services using **Datadog**.
-*   **GitOps:** Operated **Argo CD** for automated rollouts of Kubernetes services.
-*   **Fleet Management:** Managed more than **50 Kubernetes clusters** across multiple regions using Terraform.
+**Staff Software Engineer (L4)** | *June 2023 – Present*
 
-### **Adyton PBC** | *Site Reliability Engineer / DevOps*
-**June 2020 – November 2021**
-*   Implemented robust IaC infrastructure on AWS (including **GovCloud**) for mission-critical DoD services using **Terraform** and **Saltstack**.
-*   Managed self-provisioned EKS clusters and implemented monitoring via **ELK Stack**.
-*   Built CI/CD systems from scratch using **Bazel**, GitLab Pipelines, Argo CD, and Jenkins.
+!!! success "Key Achievements"
+    -   **API Gateway:** Led the design of Domain Gateway Infrastructure using **Kong**, achieving **3.39M aggregate RPS**.
+    -   **DNS Modernization:** Designed centralized, agnostic DNS boundary (`twilioinfra.com`) for multi-region support.
+    -   **Operational Excellence:** Reduced incident volume and achieved **MTTA of <4 minutes**.
 
-### **Universidad Icesi** | *Professor*
-**August 2016 – December 2020**
-*   Taught courses in **Operating Systems**, **Computer Networks II**, and **Infrastructure Automation**.
-*   Developed Cloud Computing labs using AWS CloudFormation and Server Migration Service.
+*   **Public Ingress:** Designed secure public ingress for Kubernetes Platform (<90s provisioning).
+*   **Observability:** Implemented Kong observability via **OpenTelemetry**.
+*   **Testing:** Created `appconn-ondemand-tests` using **k6** and **Helm**.
 
-### **Universidad Icesi** | *Research Assistant*
-**January 2018 – December 2019**
-*   Developed an operational model for agile provisioning of IT services.
+**Sr Software Engineer - Kubernetes Platform (L3)** | *November 2021 – June 2023*
+
+*   **Observability:** Implemented monitoring/alerting using **Datadog**.
+*   **GitOps:** Operated **Argo CD** for automated rollouts.
+*   **Fleet Management:** Managed **50+ Kubernetes clusters** via Terraform.
+
+---
+
+### **Adyton PBC**
+**Site Reliability Engineer / DevOps** | *June 2020 – November 2021*
+
+*   Implemented IaC on **AWS (GovCloud)** for DoD services using **Terraform** and **SaltStack**.
+*   Managed EKS clusters and **ELK Stack** monitoring.
+*   Built CI/CD systems using **Bazel**, GitLab Pipelines, Argo CD, and Jenkins.
+
+---
+
+### **Universidad Icesi**
+**Professor** | *August 2016 – December 2020*
+
+*   Taught **Operating Systems**, **Computer Networks II**, and **Infrastructure Automation**.
+*   Developed Cloud Computing labs using AWS.
+
+**Research Assistant** | *January 2018 – December 2019*
+
 *   Published research on **Software Defined Networks (SDN)** in IEEEXplore.
 
-### **IPINNOVATECH** | *Cloud and DevOps Engineer*
-**January 2020 – February 2020**
-*   Implemented centralized management with **AWS SSM** and monitoring with **CloudWatch**.
+---
 
-### **Global Networks Solutions** | *Network Engineer*
-**December 2014 – December 2016**
-*   Designed network infrastructure for government ministries and a seaport with 127 Cisco devices.
+### **IPINNOVATECH**
+**Cloud and DevOps Engineer** | *January 2020 – February 2020*
+
+*   Implemented centralized management with **AWS SSM** and **CloudWatch**.
 
 ---
 
-## **Technical Skills**
+### **Global Networks Solutions**
+**Network Engineer** | *December 2014 – December 2016*
 
-*   **API Management:** Kong API Gateway, Envoy, gRPC, TLS.
-*   **Infrastructure:** AWS (Expert), Kubernetes (EKS), Terraform, Saltstack, Argo CD, Helm, Bazel.
-*   **Observability:** Datadog, OpenTelemetry, ELK Stack, Prometheus, Grafana, k6.
-*   **Networking:** SDN, Service Mesh, DNS Modernization, Zero-Trust.
-*   **Languages:** Python, Go, Java, Bash.
+*   Designed network infrastructure for government ministries (127 Cisco devices).
 
 ---
 
-## **Education**
+## 🛠️ Technical Skills
+
+| Domain | Technologies |
+| :--- | :--- |
+| **API Management** | Kong API Gateway, Envoy, gRPC, TLS |
+| **Infrastructure** | AWS (Expert), Kubernetes (EKS), Terraform, SaltStack, Argo CD, Helm, Bazel |
+| **Observability** | Datadog, OpenTelemetry, ELK Stack, Prometheus, Grafana, k6 |
+| **Networking** | SDN, Service Mesh, DNS Modernization, Zero-Trust |
+| **Languages** | Python, Go, Java, Bash |
+
+---
+
+## 🎓 Education
 
 *   **Master in Informatics and Telecommunications** | Universidad ICESI (2018 – 2020)
 *   **Professional in Telematics Engineering** | Universidad ICESI (2010 – 2016)
 
 ---
 
-## **Certifications & Publications**
+## 📜 Certifications & Publications
+
 *   **Certification:** LFS 265 - Software Defined Networking Fundamentals.
 *   **Publication:** "Performance of QoS policies in Software-Defined Networks" (IEEEXplore).
