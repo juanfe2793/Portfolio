@@ -30,10 +30,12 @@ jobs:
           python-version: '3.11'
           
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          pip install uv
+          uv sync --frozen
         
       - name: Build site
-        run: mkdocs build
+        run: uv run mkdocs build
         
       - name: Setup Pages
         uses: actions/configure-pages@v5

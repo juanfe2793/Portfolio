@@ -4,11 +4,14 @@ FROM python:3.11-slim
 # Set the working directory in the container
 WORKDIR /app
 
+# Install uv
+RUN pip install uv
+
+# Copy the project configuration files
+COPY pyproject.toml uv.lock ./
+
 # Install dependencies
-# We install mkdocs-material and the exclude plugin directly
-RUN pip install --no-cache-dir \
-    mkdocs-material \
-    mkdocs-exclude
+RUN uv sync --frozen
 
 # Copy the current directory contents into the container at /app
 COPY . /app
@@ -18,4 +21,4 @@ EXPOSE 8000
 
 # Command to serve the site
 # Using 0.0.0.0 to allow access from outside the container
-CMD ["mkdocs", "serve", "--dev-addr", "0.0.0.0:8000"]
+CMD ["uv", "run", "mkdocs", "serve", "--dev-addr", "0.0.0.0:8000"]
