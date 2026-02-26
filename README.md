@@ -24,19 +24,16 @@ The rendered version of this portfolio is available at:
 
 This guide explains how to build and preview the portfolio locally before pushing changes.
 
-### 🐍 Using Python & MkDocs
+### 🐍 Using Python & MkDocs (via uv)
 1.  **Prerequisites:**
-    ```bash
-    python -m venv venv
-    source venv/bin/activate  # On macOS/Linux
-    ```
+    Install [uv](https://docs.astral.sh/uv/getting-started/installation/).
 2.  **Install Dependencies:**
     ```bash
-    pip install mkdocs-material mkdocs-exclude
+    uv sync
     ```
 3.  **Run Development Server:**
     ```bash
-    mkdocs serve
+    uv run mkdocs serve
     ```
     Access at [http://localhost:8000](http://localhost:8000).
 
