@@ -33,7 +33,7 @@ This guide explains how to build and preview the portfolio locally before pushin
     ```
 3.  **Run Development Server:**
     ```bash
-    uv run mkdocs serve
+    NO_MKDOCS_2_WARNING=1 uv run mkdocs serve
     ```
     Access at [http://localhost:8000](http://localhost:8000).
 

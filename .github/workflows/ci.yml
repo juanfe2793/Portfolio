@@ -35,6 +35,8 @@ jobs:
           uv sync --frozen
         
       - name: Build site
+        env:
+          NO_MKDOCS_2_WARNING: 1
         run: uv run mkdocs build
         
       - name: Setup Pages
