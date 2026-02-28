@@ -4,6 +4,9 @@ FROM python:3.11-slim
 # Set the working directory in the container
 WORKDIR /app
 
+# Suppress MkDocs 2.0 warning
+ENV NO_MKDOCS_2_WARNING=1
+
 # Install uv
 RUN pip install uv
 
