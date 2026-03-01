@@ -53,14 +53,60 @@ hide:
 
 ## 🚀 Key Technologies
 
+### Infrastructure
+
 <div class="grid cards" markdown>
 
--   :fontawesome-brands-aws: **AWS**
--   :fontawesome-solid-cubes: **Kubernetes**
--   :fontawesome-solid-server: **Terraform**
--   :fontawesome-brands-python: **Python**
--   :fontawesome-brands-golang: **Go**
--   :fontawesome-solid-chart-line: **Datadog**
+-   :fontawesome-brands-aws: **[AWS](https://aws.amazon.com/)**
+-   :fontawesome-solid-cubes: **[Kubernetes](https://kubernetes.io/)**
+
+</div>
+
+### Service Communication
+
+<div class="grid cards" markdown>
+
+-   :simple-kong: **[Kong Gateway](https://konghq.com/)**
+-   :simple-istio: **[Istio](https://istio.io/)**
+-   :simple-envoyproxy: **[Envoy](https://www.envoyproxy.io/)**
+
+</div>
+
+### Public Ingress Gateway
+
+<div class="grid cards" markdown>
+
+-   :material-dns: **[External-DNS](https://kubernetes-sigs.github.io/external-dns/)**
+-   :fontawesome-solid-route: **[Route53](https://aws.amazon.com/route53/)**
+-   :fontawesome-solid-network-wired: **[LB Controller](https://kubernetes-sigs.github.io/aws-load-balancer-controller/)**
+
+</div>
+
+### Code
+
+<div class="grid cards" markdown>
+
+-   :simple-terraform: **[Terraform](https://www.terraform.io/)**
+-   :fontawesome-brands-golang: **[Go](https://go.dev/)**
+-   :fontawesome-brands-python: **[Python](https://www.python.org/)**
+
+</div>
+
+### Observability
+
+<div class="grid cards" markdown>
+
+-   :simple-datadog: **[Datadog](https://www.datadoghq.com/)**
+-   :simple-grafana: **[Grafana](https://grafana.com/)**
+-   :simple-prometheus: **[Prometheus](https://prometheus.io/)**
+
+</div>
+
+### Testing
+
+<div class="grid cards" markdown>
+
+-   :simple-k6: **[K6](https://k6.io/)**
 
 </div>
 
