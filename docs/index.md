@@ -77,7 +77,7 @@ hide:
 <div class="grid cards" markdown>
 
 -   :material-dns: **[External-DNS](https://kubernetes-sigs.github.io/external-dns/)**
--   :simple-amazonroute53: **[Route53](https://aws.amazon.com/route53/)**
+-   :fontawesome-solid-route: **[Route53](https://aws.amazon.com/route53/)**
 -   :fontawesome-solid-network-wired: **[LB Controller](https://kubernetes-sigs.github.io/aws-load-balancer-controller/)**
 
 </div>
