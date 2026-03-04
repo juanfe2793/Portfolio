@@ -37,7 +37,7 @@ Hello! I am a **Software Infrastructure Engineer** with over **10 years of exper
 
 Currently operating as a Staff Software Engineer at Twilio, I lead the design, implementation, and scaling of mission-critical cloud architectures. I focus on designing resilient, high-traffic architectures with an emphasis on **reliability engineering**, **operational excellence**, and **strategic infrastructure leadership**. My expertise lies in **API Gateways** (Kong), **Service Mesh** (Istio, Envoy), **Kubernetes** (EKS), and **AWS**.
 
-My work sits at the intersection of high availability, automated performance, and platform modernization. I am deeply passionate about maximizing product resilience and am actively exploring the **integration of AI developing new claude skills and plugins** into cloud infrastructure processes to drive the next generation of platform engineering.
+My work sits at the intersection of high availability, automated performance, and platform modernization. I am deeply passionate about maximizing product resilience and am actively exploring the **integration of AI** into cloud infrastructure processes—specifically by developing custom **Claude skills and plugins**—to drive the next generation of platform engineering.
 
 </div>
 
