@@ -53,3 +53,14 @@ This guide explains how to build and preview the portfolio locally before pushin
 ## 🚀 Deployment
 The site is automatically deployed to GitHub Pages via GitHub Actions when pushing to the `main` branch. 
 Check the **Actions** tab to monitor deployment status.
+
+---
+
+## 📄 License
+
+This project uses a **dual-license** model:
+
+| Scope | License | File |
+|:--|:--|:--|
+| **Code** (CSS, Python, YAML, Dockerfile, configs, scripts) | [MIT](LICENSE) | `LICENSE` |
+| **Content** (blog posts, guides, CV, articles in `docs/`) | [CC BY 4.0](LICENSE-CC-BY-4.0) | `LICENSE-CC-BY-4.0` |
