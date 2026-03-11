@@ -3,4 +3,3 @@ site/
 .venv/
 __pycache__/
 *.pyc
-yarn.lock
