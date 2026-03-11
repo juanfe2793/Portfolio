@@ -5,8 +5,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'Juan Felipe Gomez',
+  tagline: 'Staff Software Engineer',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -18,12 +18,12 @@ const config: Config = {
   url: 'https://juanfe2793.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/JuanPipe/',
+  baseUrl: '/Portfolio/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'juanfe2793', // Usually your GitHub org/user name.
-  projectName: 'JuanPipe', // Usually your repo name.
+  projectName: 'Portfolio', // Usually your repo name.
   deploymentBranch: 'gh-pages',
   trailingSlash: false,
 
@@ -57,14 +57,39 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'JuanPipe',
+      title: 'Juan Felipe Gomez',
       logo: {
-        alt: 'JuanPipe Logo',
+        alt: 'Juan Felipe Gomez Logo',
         src: 'img/logo.svg',
       },
       items: [
         {
-          href: 'https://github.com/juanfe2793/JuanPipe',
+          to: '/',
+          label: 'Home',
+          position: 'left',
+        },
+        {
+          to: '/projects',
+          label: 'Architecture Hub (Projects)',
+          position: 'left',
+        },
+        {
+          to: '/blog',
+          label: 'Engineering Blog',
+          position: 'left',
+        },
+        {
+          to: '/guides',
+          label: 'Digital Garden (Guides)',
+          position: 'left',
+        },
+        {
+          to: '/resume',
+          label: 'Resume',
+          position: 'left',
+        },
+        {
+          href: 'https://github.com/juanfe2793/Portfolio',
           label: 'GitHub',
           position: 'right',
         },
@@ -78,12 +103,12 @@ const config: Config = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/juanfe2793/JuanPipe',
+              href: 'https://github.com/juanfe2793/Portfolio',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} JuanPipe. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Juan Felipe Gomez. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,
