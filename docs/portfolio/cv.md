@@ -15,7 +15,7 @@ Expert in scaling cloud-native infrastructure, high-throughput API gateways, and
 
 [:fontawesome-brands-linkedin: LinkedIn](https://linkedin.com/in/juangomez27)
 [:fontawesome-brands-github: GitHub](https://github.com/juanfe2793)
-[:fontawesome-solid-envelope: Email](mailto:juangomeztic27@gmail.com)
+[:fontawesome-solid-envelope: Email](mailto:hello@felipegomez.me)
 
 </div>
 

@@ -73,7 +73,7 @@ extra:
     - icon: fontawesome/brands/linkedin
       link: https://linkedin.com/in/juangomez27
     - icon: fontawesome/solid/envelope
-      link: mailto:juangomeztic27@gmail.com
+      link: mailto:hello@felipegomez.me
 
 plugins:
   - search
