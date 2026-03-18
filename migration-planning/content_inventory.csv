@@ -1,0 +1,15 @@
+source_path,word_count,complex_syntax
+docs/index.md,820,none
+docs/guides/kubectl_commands.md,252,none
+docs/guides/helm_commands.md,80,none
+docs/guides/index.md,65,none
+docs/guides/bash_profile.md,174,none
+docs/guides/aws_cli_commands.md,28,none
+docs/guides/linux_commands.md,31,none
+docs/guides/docker_containerd_commands.md,82,none
+docs/guides/git_commands.md,40,none
+docs/guides/carvel_commands.md,91,none
+docs/guides/saltstack_commands.md,72,none
+docs/portfolio/cv.md,429,"admonitions, grid"
+docs/blog/index.md,2,none
+docs/blog/posts/welcome.md,105,none
