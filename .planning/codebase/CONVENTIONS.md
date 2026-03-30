@@ -2,236 +2,275 @@
 
 **Analysis Date:** 2026-03-29
 
-## Overview
+## Project Duality
 
-This codebase contains two parallel systems with distinct conventions:
+This codebase maintains two distinct technology stacks side-by-side:
 
-1. **Docusaurus v3 (TypeScript/React)** - Primary focus for new code in `v2/`
-2. **MkDocs (Python/Markdown)** - Legacy system in root directory (production)
+- **MkDocs (Python)** - Current production system in root directory
+- **Docusaurus v3 (TypeScript/React)** - Migration target in `v2/` directory
 
-Conventions below reflect the Docusaurus system as the primary development target.
+Conventions differ by stack. Follow the conventions of the directory you are working in.
 
-## Naming Patterns
+## TypeScript/React (Docusaurus, v2/ directory)
 
-### Files
+### Naming Patterns
 
-**TypeScript/TSX Files:**
-- Use lowercase with hyphens for multi-word names (kebab-case)
-- Example: `HomepageFeatures/index.tsx`, `styles.module.css`
-- Component entry points use `index.tsx` within component directories
+**Files:**
+- Component files: PascalCase with `.tsx` extension (e.g., `HomepageFeatures`)
+- Config files: lowercase with hyphens in names (e.g., `docusaurus.config.ts`, `tsconfig.json`)
+- CSS Modules: lowercase with `.module.css` suffix (e.g., `styles.module.css`, `index.module.css`)
+- Type definitions: Inline in component files; use `type` keyword for type aliases
 
-**CSS Modules:**
-- Use `.module.css` suffix for scoped styles
-- Example: `index.module.css`, `styles.module.css`
-- Located alongside component files in `v2/src/components/` subdirectories
+**Functions:**
+- React components: PascalCase (e.g., `HomepageHeader`, `Home`, `Feature`)
+- Utility/helper functions: camelCase
+- Event handlers: camelCase with prefix pattern (e.g., `handleClick`, though none observed in codebase)
 
-**Config Files:**
-- `docusaurus.config.ts` - Main Docusaurus configuration (Config type annotation)
-- `sidebars.ts` - Sidebar configuration with SidebarsConfig type
-- `tsconfig.json` - TypeScript configuration (extends @docusaurus/tsconfig)
+**Variables:**
+- React props and state: camelCase
+- Constants: camelCase (const-style, not SCREAMING_SNAKE_CASE)
+- Type names: PascalCase (e.g., `FeatureItem`, `ReactNode`)
 
-**Documentation:**
-- Markdown files use lowercase with hyphens
-- Example: `git_commands.md`, `docker_containerd_commands.md`
+**Types:**
+- Type aliases: PascalCase with `type` keyword
+- Props objects: Named with `Props` suffix (e.g., in destructuring, though explicit naming not enforced)
+- React type imports: Use `import type {...}` syntax
 
-### Functions and Components
+### Code Style
 
-**React Components:**
-- Use PascalCase for component function names
-- Example: `HomepageHeader()`, `Feature()`, `HomepageFeatures()`
-- Components return `ReactNode` type explicitly
-- Single export: `export default function ComponentName(): ReactNode`
-
-**Helper Functions:**
-- Use camelCase for utility/helper functions
-- Example: `process_files()` in Python; equivalent would be `processFiles()` in TypeScript
-
-**Type-based Naming:**
-- Use CONSTANT_CASE for constants
-- Example: `FeatureList: FeatureItem[]`
-
-### Variables and Constants
-
-**Component Props:**
-- Use camelCase for prop destructuring
-- Example: `{title, Svg, description}` in Feature component
-
-**Constants:**
-- Use CONSTANT_CASE when appropriate
-- Example: `const FeatureList: FeatureItem[] = [...]`
+**Formatting:**
+- No explicit formatter configured (no `.prettierrc` or `prettier.config.*`)
+- Code appears to follow common React/TypeScript defaults
+- Indentation: 2 spaces (observed in JSX and config files)
+- Line length: No enforced limit observed
 
 **Imports:**
-- Type imports use `type` keyword: `import type {ReactNode} from 'react'`
-- Component imports: `import clsx from 'clsx'`
-- Path aliases: `@site/`, `@theme/`, `@docusaurus/`
+- ES6 module syntax (`import`/`export`)
+- Type imports separated from value imports: `import type {...}` on separate line from `import {...}`
+- Third-party imports first, then relative imports
 
-### Types and Interfaces
+**Import Organization (observed pattern in v2/src/pages/index.tsx):**
 
-**Type Definitions:**
-- Use explicit type declarations for components: `function Home(): ReactNode`
-- Custom types defined inline for small structures: `type FeatureItem = { ... }`
-- Use satisfies keyword for type narrowing: `} satisfies Preset.Options`
+```typescript
+// 1. React and external libraries
+import type {ReactNode} from 'react';
+import clsx from 'clsx';
+import Link from '@docusaurus/Link';
 
-**Props Typing:**
-- Type component parameters: `function Feature({title, Svg, description}: FeatureItem)`
-- Use composition for complex props
+// 2. Docusaurus hooks and components
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import Layout from '@theme/Layout';
 
-## Code Style
+// 3. Site-specific components and modules
+import HomepageFeatures from '@site/src/components/HomepageFeatures';
+import Heading from '@theme/Heading';
 
-### Formatting
-
-**Tool:** No explicit formatter configured (Docusaurus uses defaults)
-
-**Key Style Guidelines:**
-- 2-space indentation (inferred from package.json and existing code)
-- JSX attributes: space before closing `>` (standard React)
-- Strings: single quotes preferred in JavaScript (shown in imports)
-- Trailing commas in multi-line structures: present (modern standard)
-
-### Linting
-
-**No ESLint/Prettier config found in `v2/` directory.**
-
-TypeScript is configured through:
-- `@docusaurus/tsconfig` (extends base Docusaurus TypeScript config)
-- `tsconfig.json` in `v2/` with `baseUrl: "."`
-- Type checking run via: `npm run typecheck` (calls `tsc`)
-
-**For new code:** Follow Docusaurus defaults and existing file conventions.
-
-## Import Organization
-
-**Order (observed):**
-
-1. React/type imports: `import type {ReactNode} from 'react'`
-2. Third-party utilities: `import clsx from 'clsx'`
-3. Docusaurus imports: `import Link from '@docusaurus/Link'`, `import useDocusaurusContext from '@docusaurus/useDocusaurusContext'`
-4. Custom components/layouts: `import Layout from '@theme/Layout'`, `import HomepageFeatures from '@site/src/components/HomepageFeatures'`
-5. Theme imports: `import Heading from '@theme/Heading'`
-6. Local styles: `import styles from './index.module.css'`
+// 4. Local styles
+import styles from './index.module.css';
+```
 
 **Path Aliases:**
-- `@site/` - Project root (resolves to `.` in tsconfig)
-- `@theme/` - Docusaurus theme components
-- `@docusaurus/` - Docusaurus core modules
+- `@site/*` maps to root of v2/ directory (defined in `v2/tsconfig.json`)
+- Use `@site/` prefix to import from project root
 
-## Error Handling
+### Component Design
 
-**No error handling patterns currently implemented.** Codebase contains only presentational components without async operations or error states.
+**React Components:**
+- Functional components with arrow function syntax or function declaration (both observed)
+- Props destructured in function parameters
+- Type annotations for props using `type` keyword
 
-**Future guidance:** When adding error handling:
-- Use TypeScript for type safety
-- Leverage React error boundaries if needed
-- Follow Docusaurus plugin patterns for runtime errors
+Example from `v2/src/components/HomepageFeatures/index.tsx`:
 
-## Logging
-
-**No logging framework configured.** Development uses Docusaurus dev server console output.
-
-**Python side:** Uses standard `print()` statements (see `generate_migration_data.py`)
-
-**Example (Python):**
-```python
-print(f"Error reading {filepath}: {e}")
-print("CSV files created successfully.")
-```
-
-## Comments
-
-**JSDoc/TSDoc:** Not used in current codebase.
-
-**Inline Comments:** Minimal. Configuration files use `//` comments explaining setup.
-
-Example from `docusaurus.config.ts`:
 ```typescript
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
-// Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
-```
+type FeatureItem = {
+  title: string;
+  Svg: React.ComponentType<React.ComponentProps<'svg'>>;
+  description: ReactNode;
+};
 
-**Guidelines (inferred from CLAUDE.md):**
-- Use comments sparingly; only comment complex code
-- Configuration files benefit from clarifying comments
-
-## Function Design
-
-**Size:** Small, focused functions. Example component at `v2/src/pages/index.tsx` is 45 lines including all logic.
-
-**Parameters:**
-- Type parameters explicitly: `function Feature({title, Svg, description}: FeatureItem)`
-- Destructure in function signature when possible
-- Use object types for multi-param functions
-
-**Return Values:**
-- Always explicitly type return: `(): ReactNode`
-- Return JSX from React components
-- Use composition: components render other components
-
-**Example pattern (v2/src/pages/index.tsx):**
-```typescript
-function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
+function Feature({title, Svg, description}: FeatureItem) {
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
+    <div className={clsx('col col--4')}>
       {/* JSX content */}
-    </header>
+    </div>
+  );
+}
+
+export default function HomepageFeatures(): ReactNode {
+  return (
+    <section className={styles.features}>
+      {/* JSX content */}
+    </section>
   );
 }
 ```
 
-## Module Design
+**Return Types:**
+- Components return `ReactNode` or no explicit return type
+- Default exports used for page components
+- Named exports used for utility components
 
-**Exports:**
-- Single default export per file (convention in both TypeScript and Python)
-- Example: `export default function Home(): ReactNode`
-- Config files: `export default config`
+### Styling
 
-**Barrel Files:**
-- Not used; component index.tsx files export component directly
+**CSS Modules:**
+- Styles imported with `import styles from './filename.module.css'`
+- Styles applied via `className={styles.className}` pattern
+- No CSS-in-JS libraries observed
 
-**File Organization:**
-- Components live in `v2/src/components/[ComponentName]/index.tsx`
-- Styles colocated: `v2/src/components/[ComponentName]/styles.module.css`
-- Pages in `v2/src/pages/`
-- Configuration at root level: `docusaurus.config.ts`, `sidebars.ts`
+**CSS Custom Properties:**
+- Infima framework variables used via CSS Custom Properties
+- Example: `--ifm-color-primary`, `--ifm-code-font-size`
+- Both light and dark mode support via `:root` and `[data-theme='dark']` selectors
 
-## Python Conventions (Legacy MkDocs)
+**Utility Classes:**
+- Docusaurus/Infima utility classes used directly (e.g., `col col--4`, `text--center`, `padding-horiz--md`)
+- Combine with clsx utility for conditional classnames
 
-**File naming:** Lowercase with underscores
-- Example: `generate_migration_data.py`
+### Comments
 
-**Function naming:** Lowercase with underscores
-- Example: `process_files(start_dir)`
+**When to Comment:**
+- Minimal commenting observed
+- Config files have structural comments for clarity
+- Complex logic receives explanatory comments
 
-**Style:** Standard Python conventions
-- Type hints not used in current codebase
-- CSV/file operations handled with stdlib
+Example from `v2/docusaurus.config.ts`:
 
-## Special Patterns
+```typescript
+// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
-### Docusaurus-Specific
+// Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
+future: {
+  v4: true,
+},
+```
 
-**Config pattern (docusaurus.config.ts):**
-- Defines `Config` type from `@docusaurus/types`
-- Uses `satisfies` keyword for preset options: `} satisfies Preset.Options`
-- Export default configuration object
+**JSDoc/TSDoc:**
+- Not extensively used in codebase
+- Config files may use inline comments for documentation
 
-**React hooks in Docusaurus:**
-- `useDocusaurusContext()` - Access site config in components
-- All custom imports from Docusaurus ecosystem
+### Error Handling
 
-**CSS styling:**
-- CSS Modules for component scoping: `import styles from './styles.module.css'`
-- Global styles in `v2/src/css/custom.css`
-- Class binding with `clsx()` utility
+**Approach:**
+- No explicit error handling patterns observed in v2/src code
+- Error handling deferred to framework level (Docusaurus)
 
-### HTML/JSX Patterns
+**Logging:**
+- No logging framework configured
+- `console.*` methods not observed in source (may be in framework)
 
-**Self-closing tags:** `<Svg className={styles.featureSvg} role="img" />`
+---
 
-**Attributes:**
-- Use camelCase: `className`, `onClick`, `onChange`
-- Role attributes for accessibility: `role="img"`
-- Standard JSX patterns
+## Python (MkDocs, root directory)
+
+### Naming Patterns
+
+**Files:**
+- snake_case filenames (e.g., `generate_migration_data.py`, `statistics.py`)
+- Single file utilities named descriptively
+
+**Functions:**
+- snake_case function names (e.g., `process_files`, `ttest_rel`)
+- Descriptive naming matching responsibility
+
+**Variables:**
+- snake_case for all variables and parameters
+- SCREAMING_SNAKE_CASE not observed
+
+### Code Style
+
+**Formatting:**
+- PEP 8 style followed
+- Indentation: 4 spaces
+- No `.flake8` or `pyproject.toml` linting configuration observed
+- No explicit formatter configured
+
+**Imports:**
+- Standard library imports first (e.g., `os`, `csv`, `re`)
+- Third-party imports second (e.g., `scipy.stats`)
+- Relative imports not observed in existing code
+
+Example from `generate_migration_data.py`:
+
+```python
+import os
+import csv
+import re
+```
+
+### Error Handling
+
+**Exception Handling:**
+- Try/except blocks used for file operations
+
+Example from `generate_migration_data.py`:
+
+```python
+try:
+    with open(filepath, 'r', encoding='utf-8') as f:
+        content = f.read()
+except Exception as e:
+    print(f"Error reading {filepath}: {e}")
+    continue
+```
+
+**Logging:**
+- `print()` used for output and error messages
+- No logging framework configured
+
+### Comments
+
+**When to Comment:**
+- Comments used to explain sections
+- String literals used to describe operations
+
+Example from `generate_migration_data.py`:
+
+```python
+# Asset tracking
+if not file.endswith('.md'):
+    assets.append(filepath)
+    continue
+
+# Read content
+try:
+    with open(filepath, 'r', encoding='utf-8') as f:
+```
+
+---
+
+## Shared Conventions
+
+### Markdown Content
+
+**Files:**
+- Located in `docs/` for MkDocs content
+- YAML frontmatter for metadata (if used)
+- Asset files in `docs/assets/` or alongside `.md` files
+
+**Link Format:**
+- MkDocs relative links to other markdown files
+- Will be migrated to Docusaurus format in `v2/docs/` and `v2/blog/`
+
+---
+
+## Summary for New Code
+
+**TypeScript/React (v2/):**
+- PascalCase for components, camelCase for utilities
+- Use `type` keyword for type definitions
+- Import types separately: `import type {...}`
+- Use CSS Modules with `import styles from './file.module.css'`
+- 2-space indentation
+- Keep components under 100 lines for readability
+- Use `@site/` path alias for project-root imports
+
+**Python (root):**
+- snake_case for everything (files, functions, variables)
+- PEP 8 style with 4-space indentation
+- Use try/except for file operations
+- Print to output, don't use logging framework yet
+- Comment complex sections
 
 ---
 

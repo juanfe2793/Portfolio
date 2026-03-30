@@ -2,398 +2,259 @@
 
 **Analysis Date:** 2026-03-29
 
-## Overview
+## Status: Minimal Testing Infrastructure
 
-**No testing framework is currently configured or in use.** The Docusaurus v3 project in `v2/` contains no test files, test configuration, or testing dependencies. The MkDocs system (root) similarly has no automated tests.
+**No dedicated test framework configured.** The codebase relies on build verification via CI/CD workflows rather than unit/integration tests.
 
-This document describes the baseline state and provides guidance for implementing tests going forward.
+---
 
-## Current State
+## Build Verification (De Facto Testing)
 
-**Test Framework:** Not detected
+### Test Framework
 
-**Test Files:** None found
-- No `.test.ts`, `.test.tsx`, `.spec.ts`, or `.spec.tsx` files in `v2/src/`
-- No test configuration file (`jest.config.js`, `vitest.config.ts`, etc.)
+**Framework:** None - Uses CI/CD build verification
 
-**Dependencies:** No testing library installed
-- `package.json` contains no dev dependencies for testing (Jest, Vitest, Testing Library, etc.)
+**Build Verification Approach:**
+- MkDocs build verification in `.github/workflows/test-ci.yml`
+- Docusaurus has no build test configured
+- Build failures block deployment
 
-**Build/Run Commands:** No test scripts configured
-- `v2/package.json` scripts: `start`, `build`, `typecheck`, `swizzle`, `deploy`, `clear`, `serve`, `write-translations`, `write-heading-ids`
-- No `test`, `test:watch`, or `coverage` commands
+**Commands:**
+```bash
+# MkDocs verification
+uv run mkdocs build              # Build static site; fails if errors detected
 
-## Code Structure for Testing
-
-### What Would Need Testing
-
-**Components in `v2/src/components/`:**
-- `HomepageFeatures/index.tsx` (71 lines)
-  - Renders feature list with map iteration
-  - Accepts FeatureItem type
-  - Composition: Feature component + data array
-
-- `HomepageFeatures/Feature()` (45 lines for full component)
-  - Renders individual feature card
-  - Props: `{title, Svg, description}`
-  - Uses CSS Module styling and clsx for class binding
-
-**Pages in `v2/src/pages/`:**
-- `Home()` - Homepage component (45 lines)
-  - Uses Docusaurus hooks: `useDocusaurusContext()`
-  - Composes Layout, HomepageHeader, HomepageFeatures
-  - Props destructuring: `{siteConfig}`
-
-- `HomepageHeader()` - Header section
-  - Renders hero section with site title/tagline
-  - Uses clsx for className composition
-
-### What Exists Without Tests
-
-**Type safety:**
-- TypeScript configuration present (`v2/tsconfig.json`)
-- Type annotations on components: `function Home(): ReactNode`
-- Type definitions: `type FeatureItem = { ... }`
-- These provide compile-time validation
-
-**Build validation:**
-- `npm run typecheck` (runs `tsc`) catches type errors
-- No runtime testing currently exists
-
-## Recommended Testing Strategy
-
-### Framework Choice
-
-**Recommended:** Vitest + React Testing Library
-
-**Why:**
-- Vitest: Modern, fast, ESM-native (matches TypeScript/React 19 stack)
-- React Testing Library: Encourages testing user behavior, not implementation details
-- Both have excellent Docusaurus ecosystem support
-- Lightweight dependencies suitable for documentation site
-
-### Test File Organization
-
-**Location:** Co-located with source files
-
-**Pattern:**
-```
-v2/src/components/HomepageFeatures/
-├── index.tsx
-├── index.test.tsx        # New
-├── styles.module.css
-└── ...
+# Docusaurus (manual)
+cd v2
+npm run build                    # Production build
+npm run typecheck                # TypeScript type checking with tsc
 ```
 
-**Naming:**
-- `[ComponentName].test.tsx` or `[ComponentName].spec.tsx`
-- Keep test files adjacent to components
+### Run Commands in CI
 
-### Test Structure
-
-**Recommended pattern for components:**
-
-```typescript
-import {render, screen} from '@testing-library/react';
-import {describe, it, expect} from 'vitest';
-import HomepageFeatures from './index';
-
-describe('HomepageFeatures', () => {
-  it('renders feature list with correct count', () => {
-    render(<HomepageFeatures />);
-    // Assert on rendered output
-  });
-
-  it('renders feature titles', () => {
-    render(<HomepageFeatures />);
-    expect(screen.getByText('Easy to Use')).toBeInTheDocument();
-  });
-});
+**MkDocs (test-ci.yml):**
+```bash
+pip install uv
+uv sync --frozen                 # Install frozen dependencies
+uv run mkdocs build              # Build and verify - fails on error
 ```
 
-### Setup
+**Docusaurus (no CI test job):**
+- No automated build test in CI/CD workflows
+- Typecheck available locally: `npm run typecheck`
 
-**Configuration template (`vitest.config.ts`):**
+---
 
-```typescript
-import {defineConfig} from 'vitest/config';
-import react from '@vitejs/plugin-react';
+## Test Framework Configuration
 
-export default defineConfig({
-  plugins: [react()],
-  test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: [],
-    coverage: {
-      provider: 'v8',
-      reporter: ['text', 'json', 'html'],
-      exclude: [
-        'node_modules/',
-        '.docusaurus/',
-        'build/',
-      ],
-    },
-  },
-});
-```
+**test-ci.yml** (`.github/workflows/test-ci.yml`):
+- Runs on push to `main` and all pull requests
+- Python 3.11 environment
+- Concurrent builds cancelled to save resources
+- Environment variable: `NO_MKDOCS_2_WARNING=1`
 
-**Update `package.json` scripts:**
+**No Jest, Vitest, or other JS testing framework configured** - though dependencies are minimal.
 
+**No Python testing framework configured** - pytest, unittest, etc. not in dependencies.
+
+---
+
+## TypeScript Type Checking (v2/)
+
+### Available Tool
+
+**TypeScript Compiler (tsc):**
+- Package: `typescript` v5.6.2
+- Run command: `npm run typecheck`
+- Configuration: `v2/tsconfig.json`
+
+**tsconfig.json settings:**
 ```json
 {
-  "scripts": {
-    "test": "vitest",
-    "test:watch": "vitest --watch",
-    "test:ui": "vitest --ui",
-    "test:coverage": "vitest --coverage"
+  "extends": "@docusaurus/tsconfig",
+  "compilerOptions": {
+    "baseUrl": "."
+  },
+  "exclude": [".docusaurus", "build"]
+}
+```
+
+**Docusaurus tsconfig settings (inherited):**
+```json
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "esModuleInterop": true,
+    "jsx": "preserve",
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM"],
+    "moduleResolution": "bundler",
+    "module": "esnext",
+    "noEmit": true,
+    "skipLibCheck": true
   }
 }
 ```
 
-**Add dev dependencies:**
-- `vitest` - Test runner
-- `@vitest/ui` - Optional UI dashboard
-- `@testing-library/react` - Component testing utilities
-- `@testing-library/user-event` - User interaction simulation
-- `@vitejs/plugin-react` - React plugin for Vite/Vitest
-- `jsdom` - DOM environment for tests
-- `@vitest/coverage-v8` - Coverage reporting
+This configuration:
+- Allows JavaScript files
+- Uses ES2022 as target
+- Preserves JSX for Docusaurus processing
+- Skips library type checking
 
-## Mocking Strategy
+### When to Use
 
-### What to Mock
+Use `npm run typecheck` to:
+- Verify TypeScript compilation before commits
+- Catch type errors early
+- Validate component props and return types
 
-**External APIs/Hooks:**
-- `useDocusaurusContext()` - Mock siteConfig for tests
-- `@docusaurus/Link` - Optionally mock Link component
-- SVG imports - Mock require('@site/...') calls
+---
 
-### What NOT to Mock
+## Python Testing
 
-- React internals
-- Theme components (`@theme/Heading`, `@theme/Layout`) - Test with real implementation if possible
-- CSS module imports - jsdom handles these
+**No testing framework configured.**
 
-### Example Mock Pattern
+**Available verification:**
+- MkDocs markdown extension validation during build
+- YAML frontmatter validation (implicit)
+- Regex pattern matching validation in `generate_migration_data.py` (ad-hoc)
 
-```typescript
-import {describe, it, expect, vi} from 'vitest';
-import {render, screen} from '@testing-library/react';
+### Python Code Verification
 
-vi.mock('@docusaurus/useDocusaurusContext', () => ({
-  default: () => ({
-    siteConfig: {
-      title: 'Test Site',
-      tagline: 'Test Tagline',
-    },
-  }),
-}));
+**generate_migration_data.py** includes basic exception handling:
 
-describe('Home', () => {
-  it('renders with mocked context', () => {
-    // Test implementation
-  });
-});
+```python
+try:
+    with open(filepath, 'r', encoding='utf-8') as f:
+        content = f.read()
+except Exception as e:
+    print(f"Error reading {filepath}: {e}")
+    continue
 ```
 
-## Test Data / Fixtures
+This is the extent of error handling - no formal test structure.
 
-### Fixture Location
+---
 
-Proposed: `v2/src/__fixtures__/` or `v2/src/test-utils/`
+## What Is Being Tested Today
 
-### Example Fixtures
+**MkDocs Build Verification:**
+- Markdown syntax validity
+- YAML configuration correctness
+- Theme rendering (Material theme)
+- Code block syntax highlighting
+- Link integrity (relative link structure)
+- Plugin execution (blog plugin, search plugin, exclude plugin)
 
-**Mock data for FeatureItem:**
+**Docusaurus Build Verification (Manual):**
+- TypeScript compilation (via `npm run typecheck`)
+- React component rendering
+- Dependency resolution
 
-```typescript
-// v2/src/__fixtures__/featureItems.ts
-export const mockFeatureItems = [
-  {
-    title: 'Test Feature 1',
-    Svg: () => <svg />,
-    description: <>Test description</>,
-  },
-  // ... more items
-];
-```
+---
 
-**Test utilities:**
+## Test Coverage
 
-```typescript
-// v2/src/test-utils/index.ts
-import {ReactElement} from 'react';
-import {render as rtlRender, RenderOptions} from '@testing-library/react';
+**Status:** Not measured
 
-// Wrapper for custom providers if needed
-export function render(
-  ui: ReactElement,
-  options?: Omit<RenderOptions, 'wrapper'>,
-) {
-  return rtlRender(ui, {options});
-}
+**No coverage reporting configured.**
 
-export * from '@testing-library/react';
-```
+- `package.json` has no test/coverage commands
+- `pyproject.toml` has no test dependencies
+- No `.nycrc`, `.coveragerc`, or similar coverage config files
 
-## Coverage
+---
 
-**Target:** No specific enforcement currently. Recommended: >80% for critical components.
+## Migration Path for Tests
 
-**View Coverage:**
+**Recommended approach for future testing:**
+
+### For Docusaurus (v2/):
+1. Add Vitest or Jest to devDependencies
+2. Place test files co-located with components: `Component.test.tsx`
+3. Add test script: `"test": "vitest"`
+4. Integrate into CI/CD workflow
+
+### For Python (root):
+1. Add pytest to `pyproject.toml` dependencies
+2. Create `tests/` directory
+3. Place test files: `test_generate_migration_data.py`
+4. Add test script in CI/CD
+
+### For Integration Tests:
+1. Add Playwright for E2E (already in dependencies: `playwright>=1.57.0`)
+2. Create `.github/workflows/e2e.yml` for full site validation
+3. Test against both MkDocs (root) and Docusaurus (v2/) builds
+
+---
+
+## Code Quality Checks Not Yet Automated
+
+**Available but not enforced in CI:**
+- `npm run typecheck` for TypeScript (v2/) - manual only
+- Linting - no linter configured (ESLint, Biome, or Ruff)
+- Formatting - no formatter configured (Prettier, Black, or Biome)
+
+**Recommendations:**
+- Enable TypeScript strict mode in CI
+- Add ESLint to Docusaurus v2/ project
+- Add Biome or Ruff to Python project
+
+---
+
+## Special Directories
+
+**Test Data:**
+- `migration-planning/` - Contains CSV files with content inventory and URL mappings
+  - `content_inventory.csv` - Word counts, syntax complexity (generated)
+  - `url_mapping.csv` - Old MkDocs URLs → new Docusaurus URLs (generated)
+  - `static_assets.csv` - List of asset files (generated)
+
+**Generated on demand by:** `python generate_migration_data.py`
+
+---
+
+## Debugging
+
+**MkDocs:**
+- Build with verbose output: `uv run mkdocs build --verbose`
+- Check generated `site/` directory structure
+
+**Docusaurus:**
+- Check `.docusaurus/` build cache directory (excluded from git)
+- Run in dev mode for hot reload: `npm start`
+- Check `build/` directory after production build
+
+**TypeScript:**
 ```bash
-npm run test:coverage
-# Generates report in: coverage/index.html
+cd v2
+npm run typecheck                # Show all type errors
+tsc --noEmit                     # Explicit tsc call
 ```
 
-**Critical areas to prioritize:**
-- Component rendering logic
-- Props handling
-- Conditional rendering
-- Integration with Docusaurus hooks
+---
 
-## Test Types
+## Current Gaps
 
-### Unit Tests
+1. **No unit tests** for components or utilities
+2. **No integration tests** for page rendering
+3. **No E2E tests** for full site workflows
+4. **No linting** for code quality
+5. **No formatting** enforcement
+6. **No mutation testing** or coverage tracking
+7. **No accessibility testing** (a11y)
+8. **No performance testing** for build times or bundle size
 
-**Scope:** Individual components in isolation
+---
 
-**Approach:**
-```typescript
-describe('Feature component', () => {
-  it('renders title from props', () => {
-    const props = {
-      title: 'My Feature',
-      Svg: () => <svg />,
-      description: <>Desc</>,
-    };
-    render(<Feature {...props} />);
-    expect(screen.getByText('My Feature')).toBeInTheDocument();
-  });
-});
-```
+## Strengths
 
-### Integration Tests
-
-**Scope:** Multiple components working together (e.g., HomepageFeatures + Feature)
-
-**Approach:**
-```typescript
-describe('HomepageFeatures integration', () => {
-  it('renders all features from FeatureList', () => {
-    render(<HomepageFeatures />);
-    expect(screen.getByText('Easy to Use')).toBeInTheDocument();
-    expect(screen.getByText('Focus on What Matters')).toBeInTheDocument();
-    expect(screen.getByText('Powered by React')).toBeInTheDocument();
-  });
-});
-```
-
-### E2E Tests
-
-**Status:** Not recommended for documentation site
-
-**If needed:** Use Playwright (already in `pyproject.toml` for MkDocs)
-- Configure separately from unit tests
-- Run in dedicated E2E workflow
-- Test full page loads, navigation, search
-
-## Common Patterns
-
-### Async Testing
-
-**If components fetch data (future):**
-
-```typescript
-import {render, screen, waitFor} from '@testing-library/react';
-
-it('loads and displays data', async () => {
-  render(<AsyncComponent />);
-
-  await waitFor(() => {
-    expect(screen.getByText(/loaded/)).toBeInTheDocument();
-  });
-});
-```
-
-### User Interaction Testing
-
-```typescript
-import {render, screen} from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-
-it('handles click events', async () => {
-  const user = userEvent.setup();
-  render(<InteractiveComponent />);
-
-  const button = screen.getByRole('button', {name: /click me/i});
-  await user.click(button);
-
-  expect(screen.getByText(/clicked/)).toBeInTheDocument();
-});
-```
-
-### Snapshot Testing
-
-**Not recommended** as primary approach. Use only for stable components:
-
-```typescript
-it('matches snapshot', () => {
-  const {container} = render(<Feature {...mockProps} />);
-  expect(container).toMatchSnapshot();
-});
-```
-
-## CI/CD Integration
-
-**Current workflows (`.github/workflows/`):**
-- `ci.yml` - Deploys MkDocs (Python) to GitHub Pages
-- `test-ci.yml` - Verifies MkDocs build
-
-**Add for Docusaurus testing:**
-
-```yaml
-name: Test Docusaurus
-
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: cd v2 && npm ci
-      - run: cd v2 && npm run typecheck
-      - run: cd v2 && npm test -- --coverage
-      - run: cd v2 && npm run build
-```
-
-## Files and Locations
-
-**Config files to create:**
-- `v2/vitest.config.ts` - Vitest configuration
-- `v2/src/test-utils/index.ts` - Shared test utilities
-- `v2/src/__fixtures__/` - Test data and mocks
-
-**Test files (to be created):**
-- `v2/src/pages/index.test.tsx`
-- `v2/src/components/HomepageFeatures/index.test.tsx`
-- `v2/src/components/HomepageFeatures/Feature.test.tsx` (if Feature extracted)
-
-**Coverage reports:**
-- `v2/coverage/` - Generated by test:coverage command
-- Add to `.gitignore`: `/v2/coverage/`
+1. **Build verification prevents broken deployments** - MkDocs build must succeed to deploy
+2. **TypeScript available** for type safety (though not enforced)
+3. **CI/CD automation** prevents manual testing overhead
+4. **Dependency management** with locked package files (`package-lock.json`, `uv.lock` if present)
 
 ---
 
 *Testing analysis: 2026-03-29*
-
-**Status:** Framework not yet implemented. Ready for implementation when needed.

@@ -4,160 +4,162 @@
 
 ## Pattern Overview
 
-**Overall:** Dual-system static site generator architecture with gradual migration from MkDocs to Docusaurus.
+**Overall:** Dual-system static site generator architecture with gradual migration from MkDocs to Docusaurus v3.
 
 **Key Characteristics:**
-- Two coexisting build systems in single repository (MkDocs at root, Docusaurus in `v2/`)
-- Content-driven architecture (markdown-first for both systems)
-- GitHub Pages deployment via GitHub Actions CI/CD
-- Shared content strategy with migration planning layer
-- Python backend (MkDocs) and Node.js frontend (Docusaurus) both targeting same deployment URL
+- Two independent builds coexist (MkDocs in root, Docusaurus in `v2/`)
+- MkDocs is current production system deployed to GitHub Pages
+- Docusaurus is target migration system with placeholder content
+- Content migration tracked in `migration-planning/` CSV files
+- Shared deployment target: `https://juanfe2793.github.io/Portfolio/`
 
 ## Layers
 
-**Entry Point / Site Generation:**
-- Purpose: Generates static HTML sites from configuration and content
-- Location: Root for MkDocs (`mkdocs.yml`), `v2/` for Docusaurus (`docusaurus.config.ts`)
-- Contains: Configuration files, build scripts, deployment configs
-- Depends on: Framework core libraries (MkDocs Material, Docusaurus v3), content from `docs/`
-- Used by: CI/CD workflows (GitHub Actions)
+**Root System (MkDocs/Python):**
+- Purpose: Current production site, content authoring and deployment
+- Location: Root directory with configuration in `mkdocs.yml`
+- Contains: Python/MkDocs config, GitHub workflows, Python utilities
+- Depends on: Python >=3.11, uv package manager, mkdocs-material theme
+- Used by: `.github/workflows/ci.yml` for automated deployment
 
-**Content Layer:**
-- Purpose: Stores all markdown content, blog posts, guides, portfolio information
-- Location: `docs/` for MkDocs source, `v2/docs/` and `v2/blog/` for Docusaurus (currently empty/placeholder)
-- Contains: Markdown files (`.md`), blog metadata (YAML frontmatter), assets (images in `docs/assets/`)
-- Depends on: None (static content)
-- Used by: Both MkDocs and Docusaurus build systems
+**v2 System (Docusaurus/Node):**
+- Purpose: Future production system and migration target
+- Location: `/v2/` directory
+- Contains: React 19 components, TypeScript configuration, Docusaurus preset-classic
+- Depends on: Node >=20, npm, Docusaurus 3.9.2 with preset-classic
+- Used by: Manual builds and local development during migration
 
-**Theme & Styling:**
-- Purpose: Visual presentation, component styling, custom CSS
-- Location: MkDocs uses Material theme via `mkdocs.yml`. Docusaurus uses theme components at `v2/src/` and custom CSS at `v2/src/css/custom.css`
-- Contains: React components (Docusaurus), CSS modules, theme configuration
-- Depends on: Component framework (React 19 for Docusaurus), Material Design system
-- Used by: Build system to render HTML pages
+**Content Layer (MkDocs):**
+- Purpose: Structured content for portfolio, blog, and technical guides
+- Location: `/docs/` directory
+- Contains: Markdown files organized by section (portfolio, blog, guides)
+- Depends on: Material theme extensions for rendering
+- Used by: MkDocs build process
 
-**Utility Layer:**
-- Purpose: Helper scripts for infrastructure and AWS management (unrelated to site itself)
-- Location: `utils/aws-scripts/`
-- Contains: Python scripts for AWS resource discovery and management
-- Depends on: AWS SDK
-- Used by: Manual operations, not part of main site build
+**Content Layer (Docusaurus - Target):**
+- Purpose: Future content structure for migrated portfolio
+- Location: `/v2/docs/` and `/v2/blog/` directories (currently empty placeholders)
+- Contains: Tutorial files as scaffolding, awaiting content migration
+- Depends on: Docusaurus content plugins
+- Used by: Docusaurus build process after migration
 
-**Migration Planning Layer:**
-- Purpose: Documents content inventory and URL mapping for migration from MkDocs to Docusaurus
-- Location: `migration-planning/`
-- Contains: CSV files mapping content across systems
-- Depends on: None
-- Used by: Human reference during migration tasks
+**UI Components Layer (Docusaurus):**
+- Purpose: Custom React components for page layout and features
+- Location: `/v2/src/` directory
+- Contains: Page components (`index.tsx`), feature components (`HomepageFeatures`), CSS modules
+- Depends on: React 19, Docusaurus theme components
+- Used by: Homepage and custom page layouts
+
+**Configuration & Build Layer:**
+- Purpose: Build configuration, CI/CD, theme customization
+- Location: Root-level configs (`mkdocs.yml`, `.github/workflows/`), `/v2/docusaurus.config.ts`
+- Contains: Navigation structure, theme colors, plugins, deployment settings
+- Depends on: Platform-specific tooling (Python/uv, Node/npm)
+- Used by: Build processes
 
 ## Data Flow
 
-**MkDocs Production Build (Current):**
+**MkDocs Build Flow:**
 
-1. Push to `main` branch triggers GitHub Actions workflow (`.github/workflows/ci.yml`)
-2. Action runs `uv sync --frozen` to install Python dependencies from lockfile
-3. Action runs `uv run mkdocs build` which:
-   - Reads `mkdocs.yml` configuration (site metadata, navigation, theme settings)
-   - Scans `docs/` directory for markdown files
-   - Applies Material theme and markdown extensions (admonition, pymdownx, emoji, code highlighting)
-   - Generates static HTML to `./site/` directory
-4. Action uploads `./site` artifact to GitHub Pages
-5. GitHub Pages serves site at `https://juanfe2793.github.io/Portfolio/`
+1. Developer edits markdown in `/docs/` directory
+2. Commit pushed to `main` branch
+3. GitHub Actions workflow (`.github/workflows/ci.yml`) triggered
+4. Python dependencies installed via `uv sync --frozen`
+5. `mkdocs build` generates static HTML to `./site` directory
+6. Site uploaded to GitHub Pages artifact
+7. Deployed to `https://juanfe2793.github.io/Portfolio/`
 
-**Docusaurus Development Build (Migration Target):**
+**Docusaurus Build Flow (Local Development):**
 
-1. Developer runs `npm start` in `v2/` directory
-2. Docusaurus dev server reads `docusaurus.config.ts` configuration
-3. Server loads React components from `v2/src/pages/` and `v2/src/components/`
-4. Server generates pages from `v2/docs/` (currently contains placeholder tutorial files)
-5. Dev server serves at `http://localhost:3000`
-6. Production build via `npm run build` generates static output to `v2/build/`
+1. Developer runs `npm start` in `/v2/` directory
+2. Docusaurus dev server starts with hot reload
+3. Changes to components or docs reflected in browser
+4. `npm run build` generates static site to `./build` directory
+5. Built site can be served locally or deployed
 
-**Content Migration Flow (In-Progress):**
+**Content Migration Flow:**
 
-1. Content inventory in `migration-planning/content_inventory.csv` identifies all MkDocs content
-2. URL mapping in `migration-planning/url_mapping.csv` defines new paths in Docusaurus
-3. Content gradually copied from `docs/` to `v2/docs/` and `v2/blog/`
-4. Links and references updated to match new Docusaurus structure
-5. Eventually: Replace MkDocs CI/CD with Docusaurus CI/CD on deployment
+1. Content inventory tracked in `/migration-planning/content_inventory.csv`
+2. URL mappings documented in `/migration-planning/url_mapping.csv`
+3. Static assets tracked in `/migration-planning/static_assets.csv`
+4. Migration audit logged in `/migration-plan/AUDIT_MKDOCS_DEPENDENCIES.md`
+5. Content gradually moved from `/docs/` to `/v2/docs/` and `/v2/blog/`
+
+**State Management:**
+
+- **MkDocs**: State via file system (markdown files, YAML config)
+- **Docusaurus**: State via file system (markdown in `/v2/docs/`, config in TypeScript)
+- **Migration tracking**: CSV files in `/migration-planning/` directory
 
 ## Key Abstractions
 
-**Configuration Objects:**
-- Purpose: Define site metadata, navigation, theme behavior, build options
-- Examples: `mkdocs.yml` (MkDocs), `docusaurus.config.ts` (Docusaurus), `v2/sidebars.ts` (Docusaurus navigation)
-- Pattern: External config files define behavior; build systems consume them
+**Theme & Styling:**
+- Purpose: Consistent visual design across site
+- Examples: `mkdocs.yml` theme config (Material theme), `/v2/docusaurus.config.ts` prism themes
+- Pattern: Centralized theme configuration with CSS customization via `src/css/custom.css`
 
-**React Components (Docusaurus):**
-- Purpose: Encapsulate reusable UI elements
-- Examples: `v2/src/pages/index.tsx` (homepage), `v2/src/components/HomepageFeatures/index.tsx` (feature card component)
-- Pattern: TypeScript React components typed with `React.ComponentType`, CSS modules for styling (`*.module.css`)
+**Navigation Structure:**
+- Purpose: Organize content hierarchy and user navigation
+- Examples: `mkdocs.yml` nav section, `/v2/sidebars.ts` (auto-generated from directory)
+- Pattern: Declarative navigation config for MkDocs, filesystem-based autogeneration for Docusaurus
 
-**Markdown Content:**
-- Purpose: Store portable, version-controlled content
-- Examples: `docs/index.md` (homepage), `docs/guides/*.md` (technical guides), `docs/portfolio/cv.md` (CV)
-- Pattern: Markdown with optional YAML frontmatter for metadata (blog posts use author, date, tags)
+**Page Components:**
+- Purpose: Reusable UI patterns for homepage and custom pages
+- Examples: `src/pages/index.tsx` (homepage), `src/components/HomepageFeatures/index.tsx`
+- Pattern: React functional components with TypeScript, using Docusaurus theme hooks
 
-**Theme System:**
-- MkDocs: Material theme plugin system with markdown extensions (pymdownx, admonition, etc.)
-- Docusaurus: `@docusaurus/preset-classic` providing layout, navigation, theme components
+**Content Plugins:**
+- Purpose: Transform and process markdown content
+- Examples: `mkdocs-material` extensions (admonitions, code highlighting), Docusaurus blog plugin
+- Pattern: Configuration-driven plugin system
 
 ## Entry Points
 
-**MkDocs Serve (Development):**
-- Location: Root directory, invoked via `uv run mkdocs serve`
-- Triggers: Developer running local dev server
-- Responsibilities: Watch `docs/` for changes, regenerate HTML in-memory, serve to localhost:8000
+**MkDocs Entry:**
+- Location: `mkdocs.yml` configuration
+- Triggers: `uv run mkdocs serve` or `uv run mkdocs build`
+- Responsibilities: Load site config, process markdown files, generate static site
 
-**MkDocs Build (CI/CD):**
-- Location: Root directory, invoked via `.github/workflows/ci.yml`
+**Docusaurus Entry:**
+- Location: `/v2/docusaurus.config.ts` and `/v2/package.json` scripts
+- Triggers: `npm start` (dev), `npm run build` (production)
+- Responsibilities: Load Docusaurus config, compile React components, build static site
+
+**GitHub Pages Deployment:**
+- Location: `.github/workflows/ci.yml`
 - Triggers: Push to `main` branch
-- Responsibilities: Install dependencies, build static site to `./site/`, prepare artifact for GitHub Pages
+- Responsibilities: Checkout code, build MkDocs site, deploy to GitHub Pages
 
-**Docusaurus Dev (Development):**
-- Location: `v2/` directory, invoked via `npm start`
-- Triggers: Developer running `cd v2 && npm start`
-- Responsibilities: Start dev server with hot-reload, watch `v2/src/` and `v2/docs/`, serve to localhost:3000
-
-**Docusaurus Build (Production):**
-- Location: `v2/` directory, invoked via `npm run build`
-- Triggers: Manual execution during migration, future CI/CD
-- Responsibilities: Generate optimized static site to `v2/build/`
-
-**Homepage:**
-- MkDocs: `docs/index.md` - rendered by Material theme
-- Docusaurus: `v2/src/pages/index.tsx` - React homepage with header and feature cards
+**Homepage (Docusaurus):**
+- Location: `/v2/src/pages/index.tsx`
+- Triggers: Request to `/` route
+- Responsibilities: Render hero banner with site title/tagline, display feature components
 
 ## Error Handling
 
-**Strategy:** Build-time validation with fail-fast approach.
+**Strategy:** Configuration-driven validation with build-time enforcement.
 
 **Patterns:**
-- MkDocs: Validates markdown syntax and references during build; deployment fails if build fails
-- Docusaurus: TypeScript type checking (`npm run typecheck`) catches component prop errors. Docusaurus config has `onBrokenLinks: 'throw'` to fail on invalid links
-- GitHub Actions: Both workflows fail the job if build command exits with non-zero status, preventing broken builds from deploying
+- `onBrokenLinks: 'throw'` in `docusaurus.config.ts` - Fails build on broken links
+- `NO_MKDOCS_2_WARNING` environment variable in CI - Suppresses MkDocs warnings
+- Blog post validation in Docusaurus: warns on inline tags, inline authors, untruncated posts
 
 ## Cross-Cutting Concerns
 
 **Logging:**
-- MkDocs: Console output to stdout/stderr with warnings (e.g., missing markdown includes)
-- Docusaurus: Dev server logs build progress and warnings to console
-- GitHub Actions: Workflow logs visible in Actions tab; Python and Node.js errors logged to job output
+- MkDocs: Standard output from `mkdocs build` command, saved to `mkdocs.log`
+- Docusaurus: Console output from dev server and build process
 
 **Validation:**
-- MkDocs: Markdown extension validation, link checking via plugins
-- Docusaurus: TypeScript compilation validates component and config types; broken link detection
-- Content: YAML frontmatter in blog posts validated for required fields (author, date)
+- MkDocs: Markdown syntax via Material theme extensions
+- Docusaurus: TypeScript type checking via `tsc` (available via `npm run typecheck`)
 
-**Theming & Styling:**
-- MkDocs: Material theme configuration in `mkdocs.yml` (color palette, features, fonts)
-- Docusaurus: Theme config in `docusaurus.config.ts` (prism code themes, color mode, navbar/footer layout)
-- Custom CSS: `docs/assets/css/extra.css` (MkDocs), `v2/src/css/custom.css` (Docusaurus)
+**Authentication:**
+- None required - Static site generation, no runtime authentication
 
-**Navigation & Routing:**
-- MkDocs: Navigation hierarchy defined in `mkdocs.yml` nav section
-- Docusaurus: Sidebar navigation auto-generated from `v2/docs/` structure or manually defined in `v2/sidebars.ts`
-- Both: URL structure determines page hierarchy and browser routing
+**Deployment:**
+- MkDocs: GitHub Pages via workflow artifact upload
+- Docusaurus: Ready for GitHub Pages deployment (config set with `baseUrl: '/Portfolio/'`)
 
 ---
 
