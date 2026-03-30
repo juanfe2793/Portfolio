@@ -1,6 +1,7 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import type * as ClientRedirects from '@docusaurus/plugin-client-redirects';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -35,31 +36,54 @@ const config: Config = {
     locales: ['en'],
   },
 
+  plugins: [
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        // Redirects from MkDocs URL structure to Docusaurus paths.
+        // Activate each entry after the corresponding content is migrated (Story 1.4+).
+        redirects: [
+          // { from: '/guides/kubectl_commands/', to: '/docs/guides/kubectl_commands/' },
+          // { from: '/guides/helm_commands/', to: '/docs/guides/helm_commands/' },
+          // { from: '/guides/', to: '/docs/guides/' },
+          // { from: '/guides/bash_profile/', to: '/docs/guides/bash_profile/' },
+          // { from: '/guides/aws_cli_commands/', to: '/docs/guides/aws_cli_commands/' },
+          // { from: '/guides/linux_commands/', to: '/docs/guides/linux_commands/' },
+          // { from: '/guides/docker_containerd_commands/', to: '/docs/guides/docker_containerd_commands/' },
+          // { from: '/guides/git_commands/', to: '/docs/guides/git_commands/' },
+          // { from: '/guides/carvel_commands/', to: '/docs/guides/carvel_commands/' },
+          // { from: '/guides/saltstack_commands/', to: '/docs/guides/saltstack_commands/' },
+          // { from: '/portfolio/cv/', to: '/docs/portfolio/cv/' },
+        ],
+      } satisfies ClientRedirects.Options,
+    ],
+  ],
+
   presets: [
     [
       'classic',
       {
         docs: {
+          path: 'docs',
           sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/juanfe2793/Portfolio/tree/main/v2/',
+          editUrl: 'https://github.com/juanfe2793/Portfolio/tree/main/v2/',
         },
         blog: {
+          path: 'blog',
           showReadingTime: true,
+          truncateMarker: /<!--\s*(truncate)\s*-->/,
           feedOptions: {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/juanfe2793/Portfolio/tree/main/v2/',
-          // Useful options to enforce blogging best practices
+          editUrl: 'https://github.com/juanfe2793/Portfolio/tree/main/v2/',
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
+        },
+        sitemap: {
+          changefreq: 'weekly',
+          priority: 0.5,
         },
         theme: {
           customCss: './src/css/custom.css',
