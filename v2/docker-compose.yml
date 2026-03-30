@@ -1,0 +1,22 @@
+services:
+  dev:
+    image: node:20-alpine
+    working_dir: /app
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    command: sh -c "npm install && npm start -- --host 0.0.0.0"
+    profiles:
+      - dev
+
+  prod:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: serve
+    ports:
+      - "3000:3000"
+    profiles:
+      - prod
