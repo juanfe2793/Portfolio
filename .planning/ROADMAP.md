@@ -11,7 +11,7 @@
 | Phase | Name | Status | Requirements | Est. |
 |-------|------|--------|-------------|------|
 | 1 | Foundation & Scaffolding | ✓ Complete | FOUND-01–03 | Done |
-| 2 | Content Migration | ○ Pending | CONT-01–06 | 3.5 weeks |
+| 2 | Content Migration | 3/4 | In Progress|  |
 | 3 | Theme, Styling & Components | ○ Pending | THEME-01–06 | 1.5 weeks |
 | 4 | CI/CD Pipeline | ○ Pending | CICD-01–04 | 1 week |
 | 5 | Testing, QA & Launch | ○ Pending | QA-01–06 | 1.5 weeks |
@@ -19,7 +19,7 @@
 
 ---
 
-## Phase 1 — Foundation & Scaffolding ✓
+## Phase 1: Foundation & Scaffolding ✓
 
 **Goal:** Docusaurus running locally with all plugins configured and Docker dev environment ready.
 
@@ -35,11 +35,19 @@
 
 ---
 
-## Phase 2 — Content Migration
+## Phase 2: Content Migration
 
 **Goal:** All MkDocs content (CV, blog posts, guides) renders correctly in Docusaurus with no broken links or syntax errors.
 
 **Requirements:** CONT-01, CONT-02, CONT-03, CONT-04, CONT-05, CONT-06
+
+**Plans:** 3/4 plans executed
+
+Plans:
+- [x] 02-01-PLAN.md — Placeholder clearance, CV migration, and static assets (CONT-01, CONT-05)
+- [x] 02-02-PLAN.md — Blog post migration with frontmatter conversion (CONT-02)
+- [x] 02-03-PLAN.md — Technical guides migration with sidebar config (CONT-03, CONT-04)
+- [ ] 02-04-PLAN.md — Redirect activation and validation (CONT-06)
 
 **Success criteria:**
 - `npm run build` completes with zero errors
@@ -47,37 +55,9 @@
 - All 11 URL redirects activated and tested
 - No broken image/asset links
 
-### Plans
-
-**Plan 2.1 — CV & Static Assets Migration**
-- Copy `docs/portfolio/cv.md` → `v2/docs/portfolio/cv.mdx`
-- Convert MkDocs frontmatter to Docusaurus schema
-- Copy all assets from MkDocs asset dirs to `v2/static/`
-- Fix all asset references; run broken-link scan
-- Requirements: CONT-01, CONT-05
-
-**Plan 2.2 — Blog Posts Migration**
-- Create `v2/blog/authors.yml` with Juan Felipe's metadata
-- Batch-copy blog posts from `docs/blog/posts/` to `v2/blog/`
-- Write conversion script: MkDocs frontmatter → Docusaurus (date, slug, tags, authors, truncate marker)
-- Validate blog index, tag pages, RSS feed
-- Requirements: CONT-02
-
-**Plan 2.3 — Technical Guides Migration**
-- Batch-copy guide files from `docs/guides/` to `v2/docs/guides/`
-- Write conversion scripts: MkDocs admonitions → `:::note`, tabs → MDX `<Tabs>`
-- Fix internal cross-links between guides
-- Verify sidebar structure and code block highlighting
-- Requirements: CONT-03, CONT-04
-
-**Plan 2.4 — Redirect Activation & Validation**
-- Activate all 11 redirect entries in `docusaurus.config.ts` (now that target pages exist)
-- Automated test of every redirect from `migration-planning/url_mapping.csv`
-- Requirements: CONT-06
-
 ---
 
-## Phase 3 — Theme, Styling & Components
+## Phase 3: Theme, Styling & Components
 
 **Goal:** Custom visual identity with dark/light mode, proper navbar/footer, and reusable MDX components.
 
@@ -118,7 +98,7 @@
 
 ---
 
-## Phase 4 — CI/CD Pipeline
+## Phase 4: CI/CD Pipeline
 
 **Goal:** GitHub Actions deploys Docusaurus on merge to `main`; PRs blocked on build + lint failures; old MkDocs workflow removed.
 
@@ -145,7 +125,7 @@
 
 ---
 
-## Phase 5 — Testing, QA & Launch
+## Phase 5: Testing, QA & Launch
 
 **Goal:** Docusaurus site passes full QA and launches on `main`, replacing MkDocs.
 
@@ -181,7 +161,7 @@
 
 ---
 
-## Phase 6 — Custom Domain Setup
+## Phase 6: Custom Domain Setup
 
 **Goal:** `felipegomez.me` serves the portfolio over HTTPS with email uninterrupted.
 
@@ -199,7 +179,7 @@
 
 **Plan 6.1 — DNS & GitHub Pages Config**
 - Export/backup current DNS records at Porkbun
-- Add A (×4), AAAA (×4), CNAME (www) records; preserve MX/SPF/DKIM/DMARC
+- Add A (x4), AAAA (x4), CNAME (www) records; preserve MX/SPF/DKIM/DMARC
 - Add `static/CNAME` file to repo; enable custom domain in GitHub Pages settings
 - Verify domain ownership in GitHub; enforce HTTPS
 - Requirements: DOMAIN-01, DOMAIN-02, DOMAIN-03

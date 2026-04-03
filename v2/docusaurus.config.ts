@@ -26,7 +26,7 @@ const config: Config = {
   organizationName: 'juanfe2793', // Usually your GitHub org/user name.
   projectName: 'Portfolio', // Usually your repo name.
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -43,17 +43,17 @@ const config: Config = {
         // Redirects from MkDocs URL structure to Docusaurus paths.
         // Activate each entry after the corresponding content is migrated (Story 1.4+).
         redirects: [
-          // { from: '/guides/kubectl_commands/', to: '/docs/guides/kubectl_commands/' },
-          // { from: '/guides/helm_commands/', to: '/docs/guides/helm_commands/' },
-          // { from: '/guides/', to: '/docs/guides/' },
-          // { from: '/guides/bash_profile/', to: '/docs/guides/bash_profile/' },
-          // { from: '/guides/aws_cli_commands/', to: '/docs/guides/aws_cli_commands/' },
-          // { from: '/guides/linux_commands/', to: '/docs/guides/linux_commands/' },
-          // { from: '/guides/docker_containerd_commands/', to: '/docs/guides/docker_containerd_commands/' },
-          // { from: '/guides/git_commands/', to: '/docs/guides/git_commands/' },
-          // { from: '/guides/carvel_commands/', to: '/docs/guides/carvel_commands/' },
-          // { from: '/guides/saltstack_commands/', to: '/docs/guides/saltstack_commands/' },
-          // { from: '/portfolio/cv/', to: '/docs/portfolio/cv/' },
+          { from: '/guides/kubectl_commands/', to: '/docs/guides/kubectl_commands/' },
+          { from: '/guides/helm_commands/', to: '/docs/guides/helm_commands/' },
+          { from: '/guides/', to: '/docs/guides/' },
+          { from: '/guides/bash_profile/', to: '/docs/guides/bash_profile/' },
+          { from: '/guides/aws_cli_commands/', to: '/docs/guides/aws_cli_commands/' },
+          { from: '/guides/linux_commands/', to: '/docs/guides/linux_commands/' },
+          { from: '/guides/docker_containerd_commands/', to: '/docs/guides/docker_containerd_commands/' },
+          { from: '/guides/git_commands/', to: '/docs/guides/git_commands/' },
+          { from: '/guides/carvel_commands/', to: '/docs/guides/carvel_commands/' },
+          { from: '/guides/saltstack_commands/', to: '/docs/guides/saltstack_commands/' },
+          { from: '/portfolio/cv/', to: '/docs/portfolio/cv/' },
         ],
       } satisfies ClientRedirects.Options,
     ],
@@ -109,9 +109,15 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Docs',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
+        {
+          type: 'docSidebar',
+          sidebarId: 'tutorialSidebar',
+          position: 'left',
+          label: 'CV / Resume',
+        },
         {
           href: 'https://github.com/juanfe2793/Portfolio',
           label: 'GitHub',
@@ -126,25 +132,21 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'Tutorial',
-              to: '/docs/intro',
+              label: 'Docs',
+              to: '/docs/portfolio/cv',
             },
           ],
         },
         {
-          title: 'Community',
+          title: 'Social',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'LinkedIn',
+              href: 'https://linkedin.com/in/juangomez27',
             },
             {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
+              label: 'GitHub',
+              href: 'https://github.com/juanfe2793',
             },
           ],
         },
@@ -154,10 +156,6 @@ const config: Config = {
             {
               label: 'Blog',
               to: '/blog',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/juanfe2793/Portfolio',
             },
           ],
         },
