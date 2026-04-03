@@ -19,7 +19,7 @@
 
 ---
 
-## Phase 1 — Foundation & Scaffolding ✓
+## Phase 1: Foundation & Scaffolding ✓
 
 **Goal:** Docusaurus running locally with all plugins configured and Docker dev environment ready.
 
@@ -35,7 +35,7 @@
 
 ---
 
-## Phase 2 — Content Migration
+## Phase 2: Content Migration
 
 **Goal:** All MkDocs content (CV, blog posts, guides) renders correctly in Docusaurus with no broken links or syntax errors.
 
@@ -77,7 +77,7 @@
 
 ---
 
-## Phase 3 — Theme, Styling & Components
+## Phase 3: Theme, Styling & Components
 
 **Goal:** Custom visual identity with dark/light mode, proper navbar/footer, and reusable MDX components.
 
@@ -118,7 +118,7 @@
 
 ---
 
-## Phase 4 — CI/CD Pipeline
+## Phase 4: CI/CD Pipeline
 
 **Goal:** GitHub Actions deploys Docusaurus on merge to `main`; PRs blocked on build + lint failures; old MkDocs workflow removed.
 
@@ -145,7 +145,7 @@
 
 ---
 
-## Phase 5 — Testing, QA & Launch
+## Phase 5: Testing, QA & Launch
 
 **Goal:** Docusaurus site passes full QA and launches on `main`, replacing MkDocs.
 
@@ -181,7 +181,7 @@
 
 ---
 
-## Phase 6 — Custom Domain Setup
+## Phase 6: Custom Domain Setup
 
 **Goal:** `felipegomez.me` serves the portfolio over HTTPS with email uninterrupted.
 
