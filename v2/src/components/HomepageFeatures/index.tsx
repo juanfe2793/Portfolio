@@ -1,56 +1,53 @@
 import type {ReactNode} from 'react';
-import clsx from 'clsx';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
 
-type FeatureItem = {
+type ExpertiseItem = {
+  icon: string;
   title: string;
-  Svg: React.ComponentType<React.ComponentProps<'svg'>>;
-  description: ReactNode;
+  description: string;
 };
 
-const FeatureList: FeatureItem[] = [
+const ExpertiseList: ExpertiseItem[] = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
-    description: (
-      <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
-      </>
-    ),
+    icon: '🌐',
+    title: 'Service Communication & API Management',
+    description:
+      'Architecting scalable domain gateway infrastructures using Kong and Service Mesh technologies (Istio, Envoy).',
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
-    description: (
-      <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
-      </>
-    ),
+    icon: '🔒',
+    title: 'Public Ingress Gateway',
+    description:
+      'Implementing secure Kubernetes Services exposure using AWS LB Ingress Controller, external-dns, ACM certificates, and Route53 with Zero-Trust Connectivity.',
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
-    description: (
-      <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
-      </>
-    ),
+    icon: '📡',
+    title: 'Network Reliability & Modernization',
+    description:
+      'Driving global high-resilience DNS modernization, agnostic DNS boundary for multi-region support and enabling Domain Driven Design (DDD).',
+  },
+  {
+    icon: '📊',
+    title: 'Observability & Performance',
+    description:
+      'Implementing robust telemetry (OpenTelemetry sidecars) and building automated performance testing ecosystems (k6).',
+  },
+  {
+    icon: '⚙️',
+    title: 'Infrastructure as Code & Orchestration',
+    description:
+      'Managing complex, multi-cluster environments utilizing Kubernetes, Terraform, Helm, and Carvel.',
   },
 ];
 
-function Feature({title, Svg, description}: FeatureItem) {
+function Expertise({icon, title, description}: ExpertiseItem) {
   return (
-    <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
-      </div>
-      <div className="text--center padding-horiz--md">
-        <Heading as="h3">{title}</Heading>
-        <p>{description}</p>
+    <div className={styles.expertiseItem}>
+      <div className={styles.expertiseIcon}>{icon}</div>
+      <div className={styles.expertiseText}>
+        <strong>{title}</strong>
+        <span>{description}</span>
       </div>
     </div>
   );
@@ -58,11 +55,14 @@ function Feature({title, Svg, description}: FeatureItem) {
 
 export default function HomepageFeatures(): ReactNode {
   return (
-    <section className={styles.features}>
+    <section className={styles.expertiseSection}>
+      <Heading as="h2" className={styles.sectionTitle}>
+        🚀 Core Expertise
+      </Heading>
       <div className="container">
-        <div className="row">
-          {FeatureList.map((props, idx) => (
-            <Feature key={idx} {...props} />
+        <div className={styles.expertiseGrid}>
+          {ExpertiseList.map((props, idx) => (
+            <Expertise key={idx} {...props} />
           ))}
         </div>
       </div>

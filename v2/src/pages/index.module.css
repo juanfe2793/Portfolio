@@ -1,8 +1,4 @@
-/**
- * CSS files with the .module.css suffix will be treated as CSS modules
- * and scoped locally.
- */
-
+/* Hero */
 .heroBanner {
   padding: 4rem 0;
   text-align: center;
@@ -20,4 +16,147 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* About Section */
+.aboutSection {
+  padding: 3rem 0;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.aboutSection h2 {
+  margin-bottom: 1rem;
+}
+
+/* Expertise Section */
+.expertiseSection {
+  padding: 3rem 0;
+  background: var(--ifm-background-color);
+}
+
+.sectionTitle {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.expertiseGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.expertiseItem {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.expertiseIcon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.expertiseText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.expertiseText strong {
+  font-size: 0.95rem;
+}
+
+.expertiseText span {
+  font-size: 0.875rem;
+  color: var(--ifm-color-content-secondary);
+}
+
+/* Projects Section */
+.projectsSection {
+  padding: 3rem 0;
+}
+
+.projectsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.projectCard {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.cardIcon {
+  font-size: 1.5rem;
+}
+
+.projectCard h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.projectCard p {
+  margin: 0;
+  font-size: 0.875rem;
+  flex-grow: 1;
+}
+
+.cardTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.cardTag {
+  background: var(--ifm-color-primary-lightest);
+  color: var(--ifm-color-primary-darkest);
+  padding: 0.15rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* CTA Section */
+.ctaSection {
+  text-align: center;
+  padding: 3rem 0;
+}
+
+.ctaSection p {
+  margin-bottom: 1rem;
+}
+
+/* Social Links */
+.socialLinks {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 0.75rem;
+}
+
+.socialLink {
+  color: inherit;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.socialLink:hover {
+  opacity: 1;
+  text-decoration: none;
+}
+
+.socialLink svg {
+  width: 1.25rem;
+  height: 1.25rem;
 }
