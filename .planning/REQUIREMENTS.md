@@ -15,11 +15,11 @@ Requirements for the migration milestone (launch on `felipegomez.me`).
 
 ### Content Migration
 
-- [ ] **CONT-01**: CV/Resume page migrated to `docs/portfolio/cv.mdx` and renders correctly
-- [ ] **CONT-02**: All blog posts migrated to `blog/` with correct dates, authors, tags, and truncation
-- [ ] **CONT-03**: All technical guides migrated to `docs/guides/` with sidebar auto-generation
-- [ ] **CONT-04**: MkDocs admonitions (`!!! note`) converted to Docusaurus syntax (`:::note`)
-- [ ] **CONT-05**: All static assets copied to `static/` with no broken image/asset links
+- [x] **CONT-01**: CV/Resume page migrated to `docs/portfolio/cv.mdx` and renders correctly
+- [x] **CONT-02**: All blog posts migrated to `blog/` with correct dates, authors, tags, and truncation
+- [x] **CONT-03**: All technical guides migrated to `docs/guides/` with sidebar auto-generation
+- [x] **CONT-04**: MkDocs admonitions (`!!! note`) converted to Docusaurus syntax (`:::note`)
+- [x] **CONT-05**: All static assets copied to `static/` with no broken image/asset links
 - [ ] **CONT-06**: URL redirect map fully activated (all 11 old MkDocs paths redirect correctly)
 
 ### Theme & Components

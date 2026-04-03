@@ -11,7 +11,7 @@
 | Phase | Name | Status | Requirements | Est. |
 |-------|------|--------|-------------|------|
 | 1 | Foundation & Scaffolding | ✓ Complete | FOUND-01–03 | Done |
-| 2 | Content Migration | 2/4 | In Progress|  |
+| 2 | Content Migration | 3/4 | In Progress|  |
 | 3 | Theme, Styling & Components | ○ Pending | THEME-01–06 | 1.5 weeks |
 | 4 | CI/CD Pipeline | ○ Pending | CICD-01–04 | 1 week |
 | 5 | Testing, QA & Launch | ○ Pending | QA-01–06 | 1.5 weeks |
@@ -41,12 +41,12 @@
 
 **Requirements:** CONT-01, CONT-02, CONT-03, CONT-04, CONT-05, CONT-06
 
-**Plans:** 2/4 plans executed
+**Plans:** 3/4 plans executed
 
 Plans:
 - [x] 02-01-PLAN.md — Placeholder clearance, CV migration, and static assets (CONT-01, CONT-05)
 - [x] 02-02-PLAN.md — Blog post migration with frontmatter conversion (CONT-02)
-- [ ] 02-03-PLAN.md — Technical guides migration with sidebar config (CONT-03, CONT-04)
+- [x] 02-03-PLAN.md — Technical guides migration with sidebar config (CONT-03, CONT-04)
 - [ ] 02-04-PLAN.md — Redirect activation and validation (CONT-06)
 
 **Success criteria:**
