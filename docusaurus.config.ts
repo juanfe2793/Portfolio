@@ -73,7 +73,7 @@ const config: Config = {
         docs: {
           path: 'docs',
           sidebarPath: './sidebars.ts',
-          editUrl: 'https://github.com/juanfe2793/Portfolio/tree/main/v2/',
+          editUrl: 'https://github.com/juanfe2793/Portfolio/tree/main/',
         },
         blog: {
           path: 'blog',
@@ -83,7 +83,7 @@ const config: Config = {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          editUrl: 'https://github.com/juanfe2793/Portfolio/tree/main/v2/',
+          editUrl: 'https://github.com/juanfe2793/Portfolio/tree/main/',
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
