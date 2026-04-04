@@ -4,54 +4,44 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Personal portfolio and technical blog for Juan Felipe Gómez Manzanares (Staff Software Engineer). The site is **migrating from MkDocs to Docusaurus v3** — both systems coexist in the repo. MkDocs is the current production system; the Docusaurus scaffold lives in `v2/`.
+Personal portfolio and technical blog for Juan Felipe Gómez Manzanares (Staff Software Engineer). Built with Docusaurus v3 (Node.js/TypeScript/React 19), deployed to GitHub Pages.
 
 ## Architecture
 
-- **Root directory**: MkDocs site (Python/uv) — currently deployed to GitHub Pages
-- **`v2/`**: Docusaurus v3 project (Node.js/TypeScript/React 19) — in-progress migration target
-- **`docs/`**: MkDocs content (markdown files for portfolio, blog, guides)
-- **`v2/src/pages/`**: Docusaurus page components (TSX) — currently placeholder templates
-- **`v2/docs/` and `v2/blog/`**: Empty, awaiting content migration
-- **`migration-planning/`**: CSV files mapping MkDocs content to Docusaurus structure
-- **`utils/aws-scripts/`**: AWS helper scripts (unrelated to the site itself)
+- **Root directory**: Docusaurus v3 project — the portfolio site
+- **`docs/`**: Content pages (portfolio CV, technical guides)
+- **`blog/`**: Blog posts
+- **`src/pages/`**: React page components (TSX)
+- **`static/`**: Static assets (images, CSS)
+- **`utils/aws-scripts/`**: AWS helper scripts (unrelated to the site)
+- **`migration-plan/`**: Historical migration planning documents
 
 ## Build & Development Commands
 
-### MkDocs (current production)
 ```bash
-uv sync                    # Install Python dependencies
-uv run mkdocs serve        # Local dev server (port 8000)
-uv run mkdocs build        # Build static site to ./site
-```
-
-### Docusaurus (v2/ directory)
-```bash
-cd v2
 npm install                # Install Node dependencies
 npm start                  # Local dev server
 npm run build              # Production build
 npm run typecheck          # TypeScript type checking (tsc)
 ```
 
-### Docker (MkDocs only)
+### Docker
 ```bash
 docker build -t portfolio .
-docker run -p 8000:8000 portfolio
+docker run -p 3000:3000 portfolio
 ```
 
 ## CI/CD
 
-- **`.github/workflows/ci.yml`**: Deploys MkDocs to GitHub Pages on push to `main`
-- **`.github/workflows/test-ci.yml`**: Verifies MkDocs build on PRs and pushes to `main`
+- **`.github/workflows/ci.yml`**: Deploys Docusaurus to GitHub Pages on push to `main`
+- **`.github/workflows/test-ci.yml`**: Verifies build + type check on PRs and pushes to `main`
 - Deployment target: GitHub Pages at `https://juanfe2793.github.io/Portfolio/`
 
 ## Key Config Files
 
-- `mkdocs.yml` — MkDocs site config (Material theme, nav structure, markdown extensions)
-- `v2/docusaurus.config.ts` — Docusaurus config (navbar, theme, deployment settings)
-- `v2/tsconfig.json` — Extends `@docusaurus/tsconfig`
-- `pyproject.toml` — Python deps managed by uv (requires Python >=3.11)
+- `docusaurus.config.ts` — Docusaurus config (navbar, theme, URL redirects, deployment settings)
+- `tsconfig.json` — Extends `@docusaurus/tsconfig`
+- `sidebars.ts` — Sidebar structure for docs
 
 ## Licensing
 

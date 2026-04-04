@@ -1,5 +1,18 @@
+# Node / Docusaurus
+node_modules/
+/build
+.docusaurus
+.cache-loader
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# OS
+.DS_Store
 tmp*
-site/
-.venv/
-__pycache__/
-*.pyc
