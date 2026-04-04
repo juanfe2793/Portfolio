@@ -1,6 +1,7 @@
 # Node / Docusaurus
 node_modules/
 /build
+.planning/
 .docusaurus
 .cache-loader
 npm-debug.log*
