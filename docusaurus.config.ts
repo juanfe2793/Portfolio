@@ -120,8 +120,7 @@ const config: Config = {
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          to: '/docs/portfolio/cv',
           position: 'left',
           label: 'CV / Resume',
         },
