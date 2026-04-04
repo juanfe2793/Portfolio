@@ -1,27 +1,21 @@
-# Use an official Python runtime as a parent image
-FROM python:3.11-slim
-
-# Set the working directory in the container
+# Stage 1: Install dependencies
+FROM node:20-alpine AS deps
 WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci
 
-# Suppress MkDocs 2.0 warning
-ENV NO_MKDOCS_2_WARNING=1
+# Stage 2: Build the site
+FROM node:20-alpine AS build
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+RUN npm run build
 
-# Install uv
-RUN pip install uv
-
-# Copy the project configuration files
-COPY pyproject.toml uv.lock ./
-
-# Install dependencies
-RUN uv sync --frozen
-
-# Copy the current directory contents into the container at /app
-COPY . /app
-
-# Expose port 8000 for the MkDocs development server
-EXPOSE 8000
-
-# Command to serve the site
-# Using 0.0.0.0 to allow access from outside the container
-CMD ["uv", "run", "mkdocs", "serve", "--dev-addr", "0.0.0.0:8000"]
+# Stage 3: Serve the built site
+FROM node:20-alpine AS serve
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY --from=build /app/build ./build
+COPY --from=build /app/package.json ./package.json
+EXPOSE 3000
+CMD ["npm", "run", "serve", "--", "--port", "3000", "--host", "0.0.0.0"]

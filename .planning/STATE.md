@@ -20,25 +20,25 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-30)
 
 **Core value:** Professional platform positioning Juan Felipe as a recognized voice in infrastructure and platform engineering
-**Current focus:** Phase 02 — content-migration
+**Current focus:** Phase 03 — Theme, Styling & Components
 
 ---
 
 ## Current Status
 
 **Milestone:** v1 — Launch on felipegomez.me
-**Active phase:** Phase 2 (Content Migration)
-**Branch:** `initial-docusaurus-config`
+**Active phase:** Phase 3 (Theme, Styling & Components)
+**Branch:** `migrate-to-docusaurus`
 **Last activity:** 2026-04-03
 
-Progress: ██░░░░░░░░ 17%
+Progress: ███░░░░░░░ 33%
 
 | Phase | Status | Plans | Notes |
 |-------|--------|-------|-------|
 | 1 | ✓ | 2/2 | Docker + plugins done |
 | 2 | ✓ | 4/4 | Content migration complete |
 | 3 | ○ | 0/4 | Theme pending |
-| 4 | ○ | 0/2 | CI/CD pending |
+| 4 | ~  | 1/2 | Deploy + build check workflows done; ESLint/link-check pending |
 | 5 | ○ | 0/3 | QA/launch pending |
 | 6 | ○ | 0/2 | Domain pending |
 
@@ -50,11 +50,10 @@ Progress: ██░░░░░░░░ 17%
 
 **Completed:** 2026-03-30
 
-- `v2/Dockerfile` — multi-stage node:20-alpine (Issue #73)
-- `v2/docker-compose.yml` — dev + prod profiles with hot-reload (Issue #73)
-- `v2/README.md` — Docker + npm instructions (Issue #73)
-- `v2/docusaurus.config.ts` — plugins configured: docs, blog, sitemap, client-redirects (Issue #74)
-- `@docusaurus/plugin-client-redirects` installed; redirect map seeded from `migration-planning/url_mapping.csv` (disabled pending content migration)
+- `Dockerfile` — multi-stage node:20-alpine (Issue #73)
+- `docker-compose.yml` — dev + prod profiles with hot-reload (Issue #73)
+- `docusaurus.config.ts` — plugins configured: docs, blog, sitemap, client-redirects (Issue #74)
+- `@docusaurus/plugin-client-redirects` installed; all 11 URL redirects activated
 
 ### Quick Tasks Completed
 
@@ -64,18 +63,14 @@ Progress: ██░░░░░░░░ 17%
 
 ---
 
-## Blockers / Concerns
+## Completed Migrations
 
-- Redirect map (11 entries) is commented out in `docusaurus.config.ts` — activate each entry after the corresponding guide/page is migrated in Phase 2
-- `v2/docs/` and `v2/blog/` still contain placeholder content (tutorial skeleton) — must be cleared before content migration
-- MkDocs syntax: admonitions (`!!! note`), tabs, and custom macros need conversion scripts before bulk migration
+- Docusaurus promoted from `v2/` to root (2026-04-03)
+- MkDocs artifacts removed (mkdocs.yml, pyproject.toml, docs/, Dockerfile, etc.)
+- CI/CD workflows updated to Docusaurus (Node 20 + npm)
 
 ---
 
 ## Next Up
 
-Run `/gsd:plan-phase 2` to plan the content migration phase.
-
-`/gsd:plan-phase 2`
-
-<sub>`/clear` first → fresh context window</sub>
+`/gsd:plan-phase 3` — Theme, Styling & Components

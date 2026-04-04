@@ -2,7 +2,7 @@
 
 **Milestone:** v1 — Launch on felipegomez.me
 **Target:** 2026-05-18 (site live) → 2026-06-30 (full brand build)
-**Status:** In Progress — Phase 1 Complete
+**Status:** In Progress — Phases 1 & 2 Complete, Phase 4 Partial
 
 ---
 
@@ -11,9 +11,9 @@
 | Phase | Name | Status | Requirements | Est. |
 |-------|------|--------|-------------|------|
 | 1 | Foundation & Scaffolding | ✓ Complete | FOUND-01–03 | Done |
-| 2 | Content Migration | 3/4 | In Progress|  |
+| 2 | Content Migration | ✓ Complete | All 4 plans done |  |
 | 3 | Theme, Styling & Components | ○ Pending | THEME-01–06 | 1.5 weeks |
-| 4 | CI/CD Pipeline | ○ Pending | CICD-01–04 | 1 week |
+| 4 | CI/CD Pipeline | ~ Partial | Deploy + build check done; lint/link-check pending | 1 week |
 | 5 | Testing, QA & Launch | ○ Pending | QA-01–06 | 1.5 weeks |
 | 6 | Custom Domain Setup | ○ Pending | DOMAIN-01–06 | 2 days |
 
@@ -26,9 +26,9 @@
 **Status:** Complete (Issues #73 + #74 merged, Sprint 2)
 
 **Delivered:**
-- Docusaurus v3.9.2 scaffold with TypeScript config (`v2/`)
-- `v2/Dockerfile` multi-stage (node:20-alpine) + `v2/docker-compose.yml` (dev + prod profiles)
-- Plugins: docs, blog, sitemap, client-redirects (seeded redirect map)
+- Docusaurus v3.9.2 scaffold with TypeScript config (now at root)
+- `Dockerfile` multi-stage (node:20-alpine) + `docker-compose.yml` (dev + prod profiles)
+- Plugins: docs, blog, sitemap, client-redirects (all 11 redirects active)
 - `npm run build` and `npm run typecheck` pass clean
 
 **Key commits:** `438171f` (Docker), `12838a1` (plugins)
@@ -47,7 +47,7 @@ Plans:
 - [x] 02-01-PLAN.md — Placeholder clearance, CV migration, and static assets (CONT-01, CONT-05)
 - [x] 02-02-PLAN.md — Blog post migration with frontmatter conversion (CONT-02)
 - [x] 02-03-PLAN.md — Technical guides migration with sidebar config (CONT-03, CONT-04)
-- [ ] 02-04-PLAN.md — Redirect activation and validation (CONT-06)
+- [x] 02-04-PLAN.md — Redirect activation and validation (CONT-06)
 
 **Success criteria:**
 - `npm run build` completes with zero errors
@@ -112,10 +112,10 @@ Plans:
 
 ### Plans
 
-**Plan 4.1 — Deploy Workflow**
-- Write `.github/workflows/deploy.yml` (setup-node, npm ci, npm run build, deploy-pages)
-- Add caching for `node_modules` and `.docusaurus`
-- Remove/archive old MkDocs `ci.yml`
+**Plan 4.1 — Deploy Workflow** ✓ Done
+- `.github/workflows/ci.yml` updated to Docusaurus (setup-node, npm ci, npm run build, deploy-pages)
+- `.github/workflows/test-ci.yml` updated (build + typecheck on PRs)
+- MkDocs workflows replaced
 - Requirements: CICD-01, CICD-04
 
 **Plan 4.2 — PR Quality Gates**
