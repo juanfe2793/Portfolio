@@ -12,21 +12,31 @@ Personal portfolio and technical blog for Juan Felipe Gómez Manzanares (Staff S
 - **`docs/`**: Content pages (portfolio CV, technical guides)
 - **`blog/`**: Blog posts
 - **`src/pages/`**: React page components (TSX)
+- **`src/css/custom.css`**: Infima CSS variable overrides — primary theming entry point
+- **`src/components/`**: Shared React components (e.g., HomepageFeatures)
 - **`static/`**: Static assets (images, CSS)
 - **`utils/aws-scripts/`**: AWS helper scripts (unrelated to the site)
-- **`migration-plan/`**: Historical migration planning documents
 
 ## Build & Development Commands
+
+> Requires Node.js >=20
 
 ```bash
 npm install                # Install Node dependencies
 npm start                  # Local dev server
 npm run build              # Production build
 npm run typecheck          # TypeScript type checking (tsc)
+npm run serve              # Serve the production build locally
+npm run clear              # Clear Docusaurus cache (use when builds behave unexpectedly)
 ```
 
 ### Docker
 ```bash
+# Preferred: docker-compose (supports hot-reload)
+docker compose --profile dev up     # Dev server with hot-reload on :3000
+docker compose --profile prod up    # Production build served on :3000
+
+# Or raw docker:
 docker build -t portfolio .
 docker run -p 3000:3000 portfolio
 ```
