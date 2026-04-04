@@ -5,6 +5,7 @@ status: draft
 shadcn_initialized: false
 preset: none
 created: 2026-04-03
+revised: 2026-04-03
 ---
 
 # Phase 3 — UI Design Contract
@@ -52,14 +53,14 @@ Exceptions: Touch targets for social links — minimum 44x44px hit area (accessi
 | Body | 16px | 400 (regular) | 1.5 |
 | Label | 12px | 600 (semibold) | 1.33 |
 | Heading | 20px | 600 (semibold) | 1.2 |
-| Display | 28px | 700 (bold) | 1.15 |
+| Display | 28px | 600 (semibold) | 1.15 |
 
 Notes:
 - Body (16px): Default Infima `--ifm-font-size-base`. Used for paragraphs, about section, project descriptions.
 - Label (12px): `.cardTag` text (currently `0.75rem`), SkillBadge pill text, Timeline date badges.
 - Heading (20px): Section headings (`h2`), project card titles (`h3` at `1.1rem` stays as-is for cards).
-- Display (28px): Hero title (`hero__title`), landing page name. Infima handles the `h1` sizing via `hero__title` class; this value is the minimum enforced.
-- Weights limited to 400 and 600 for body/UI elements. 700 reserved exclusively for the Display role (hero title).
+- Display (28px): Hero title (`hero__title`), landing page name. Infima handles the `h1` sizing via `hero__title` class; this value is the minimum enforced. Visual hierarchy between Display and Heading is achieved through the 28px vs 20px size difference — no extra weight step needed.
+- Weights limited to 400 (regular) and 600 (semibold) across all roles.
 
 ---
 
@@ -143,7 +144,7 @@ Pill background uses 15% opacity of the category color. Pill text uses the full 
 
 ```
 +-------------------------------------------+
-| [tinted pill bg]  Kubernetes  ● ● ○       |
+| [tinted pill bg]  Kubernetes  * * o       |
 +-------------------------------------------+
 ```
 
@@ -183,6 +184,18 @@ Pill background uses 15% opacity of the category color. Pill text uses the full 
 - Left margin from line to content: 24px (lg)
 - Vertical spacing between entries: 32px (xl)
 - Line positioned 16px from left edge of component
+
+### Social Links (Icon-Only) — Accessibility
+
+Icon-only social links in the hero section (`.socialLink`) must include `aria-label` attributes for screen reader accessibility:
+
+| Icon | `aria-label` value |
+|------|-------------------|
+| GitHub SVG | `"GitHub profile"` |
+| LinkedIn SVG | `"LinkedIn profile"` |
+| Email SVG | `"Send email"` |
+
+Each `.socialLink` anchor element must carry the corresponding `aria-label`. The SVG icons themselves should have `aria-hidden="true"` since the anchor label provides the accessible name.
 
 ---
 
@@ -298,11 +311,12 @@ The existing `@media screen and (max-width: 996px)` pattern in `index.module.css
 | Landing page — theme only, no restructure | CONTEXT.md D-16 |
 | Profile picture teal update | CONTEXT.md D-17 |
 | Card tags auto-adopt palette | CONTEXT.md D-18 |
-| Typography scale | Researcher discretion (CONTEXT.md) |
+| Typography scale (2 weights: 400, 600) | Researcher discretion (CONTEXT.md) |
 | System font stack (no Inter) | Researcher discretion (CONTEXT.md) |
 | Hero gradient | Researcher discretion (CONTEXT.md) |
 | Hover/transition effects | Researcher discretion (CONTEXT.md) |
 | Spacing scale | Researcher default (8-point grid) |
+| Social link aria-labels | Researcher addition (accessibility) |
 
 ---
 
