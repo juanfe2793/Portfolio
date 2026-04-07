@@ -134,38 +134,23 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Navigation',
           items: [
-            {
-              label: 'Docs',
-              to: '/docs/portfolio/cv',
-            },
+            { label: 'CV / Resume', to: '/docs/portfolio/cv' },
+            { label: 'Guides', to: '/docs/guides' },
+            { label: 'Blog', to: '/blog' },
           ],
         },
         {
-          title: 'Social',
+          title: 'Connect',
           items: [
-            {
-              label: 'LinkedIn',
-              href: 'https://linkedin.com/in/juangomez27',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/juanfe2793',
-            },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'Blog',
-              to: '/blog',
-            },
+            { label: 'GitHub', href: 'https://github.com/juanfe2793' },
+            { label: 'LinkedIn', href: 'https://linkedin.com/in/juangomez27' },
+            { label: 'Email', href: 'mailto:hello@felipegomez.me' },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Juan Felipe Gomez. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Juan Felipe Gómez Manzanares.`,
     },
     prism: {
       theme: prismThemes.github,
