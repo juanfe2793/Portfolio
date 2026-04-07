@@ -63,7 +63,7 @@ function HeroSection() {
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <img
-          src="https://github.com/juanfe2793.png"
+          src="https://ui-avatars.com/api/?name=Juan+Felipe&background=0D9488&color=fff&size=200&rounded=true"
           alt="Profile Picture"
           style={{borderRadius: '50%', marginBottom: '1.5rem', width: '120px', height: '120px'}}
         />

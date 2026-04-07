@@ -113,16 +113,18 @@ const config: Config = {
       },
       items: [
         {
-          to: '/docs/portfolio/cv',
+          type: 'docSidebar',
+          sidebarId: 'tutorialSidebar',
+          position: 'left',
+          label: 'Docs',
+        },
+        {to: '/blog', label: 'Blog', position: 'left'},
+        {
+          type: 'docSidebar',
+          sidebarId: 'tutorialSidebar',
           position: 'left',
           label: 'CV / Resume',
         },
-        {
-          to: '/docs/guides',
-          position: 'left',
-          label: 'Guides',
-        },
-        { to: '/blog', label: 'Blog', position: 'left' },
         {
           href: 'https://github.com/juanfe2793/Portfolio',
           label: 'GitHub',
