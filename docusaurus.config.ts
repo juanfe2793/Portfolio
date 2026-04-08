@@ -8,7 +8,7 @@ import type * as ClientRedirects from '@docusaurus/plugin-client-redirects';
 const config: Config = {
   title: 'Juan Felipe Gomez',
   tagline: 'Staff Software Engineer',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.svg',
 
   stylesheets: [
     {
