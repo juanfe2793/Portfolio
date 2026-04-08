@@ -1,11 +1,64 @@
-.features {
-  display: flex;
-  align-items: center;
-  padding: 2rem 0;
-  width: 100%;
+.expertiseSection {
+  padding: 6rem 0;
 }
 
-.featureSvg {
-  height: 200px;
-  width: 200px;
+.eyebrow {
+  font-family: var(--ifm-font-family-monospace);
+  font-variant: small-caps;
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.5rem;
+}
+
+.expertiseLedger {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.expertiseRow {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 2rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--rule);
+  align-items: start;
+}
+
+.expertiseIndex {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 1rem;
+  color: var(--ink-soft);
+}
+
+.expertiseMain {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.expertiseTitle {
+  font-family: var(--ifm-heading-font-family);
+  font-size: 1.25rem;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.expertiseDesc {
+  font-size: 1.1rem;
+  color: var(--ink-soft);
+  max-width: 60ch;
+  line-height: 1.5;
+}
+
+@media screen and (max-width: 720px) {
+  .expertiseRow {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  .expertiseIndex {
+    font-size: 0.8rem;
+  }
 }

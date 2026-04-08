@@ -1,0 +1,137 @@
+---
+title: Twilio-wide DNS Modernization
+description: Centralizing DNS boundaries for a multi-region Kubernetes platform, eliminating manual operations.
+sidebar_label: 02 — DNS Modernization
+sidebar_position: 2
+---
+
+<span className="eyebrow">CASE STUDY — 02</span>
+
+# Twilio-wide DNS Modernization
+
+<p className="cs-lead">
+  How replacing fragmented, ticket-driven DNS management with an agnostic, code-defined boundary
+  eliminated 80% of operational burnout and enabled the One Twilio Kubernetes platform to scale
+  across regions without DNS as a bottleneck.
+</p>
+
+<div className="cs-metric-grid">
+  <div className="cs-metric">
+    <span className="cs-metric-value">100+</span>
+    <span className="cs-metric-label">Hosted Zones Managed</span>
+  </div>
+  <div className="cs-metric">
+    <span className="cs-metric-value">80%</span>
+    <span className="cs-metric-label">Ops Burnout Reduced</span>
+  </div>
+  <div className="cs-metric">
+    <span className="cs-metric-value">0</span>
+    <span className="cs-metric-label">Manual DNS Interventions</span>
+  </div>
+  <div className="cs-metric">
+    <span className="cs-metric-value">3+</span>
+    <span className="cs-metric-label">AWS Regions Covered</span>
+  </div>
+</div>
+
+---
+
+<span className="cs-section-tag">The Challenge</span>
+
+## DNS as an Organizational Bottleneck
+
+The "One Twilio" initiative aimed to unify hundreds of services under a common Kubernetes platform.
+DNS was the hidden blocker. The existing state:
+
+- **Manual record management** — every new service, cluster migration, or region expansion
+  required a ticket and human intervention.
+- **Brittle multi-cluster discovery** — services in `us-east-1` couldn't reliably resolve
+  services in `us-west-2` without custom, error-prone workarounds.
+- **No namespace isolation** — DNS changes in one domain could silently break another.
+- **Audit impossibility** — no code-of-record for what DNS state *should* be, only what it *was*.
+
+The on-call rotation was spending a disproportionate amount of time on DNS incidents.
+The root cause was structural: DNS was treated as an operational task, not a platform capability.
+
+---
+
+<span className="cs-section-tag">Architecture</span>
+
+## The Centralized DNS Boundary
+
+```mermaid
+graph TB
+  subgraph K8s["Kubernetes Clusters — One Twilio Platform"]
+    C1["Cluster: us-east-1\nEKS"]
+    C2["Cluster: us-west-2\nEKS"]
+    C3["Cluster: eu-west-1\nEKS"]
+  end
+
+  subgraph Boundary["DNS Boundary Layer"]
+    ED["ExternalDNS\nController"]
+    TF["Terraform\nZone Definitions"]
+  end
+
+  subgraph Cloud["AWS DNS Layer"]
+    R53["Route 53\n100+ Hosted Zones"]
+  end
+
+  C1 -->|"Service annotations"| ED
+  C2 -->|"Service annotations"| ED
+  C3 -->|"Service annotations"| ED
+  TF -->|"Zone architecture"| R53
+  ED -->|"Automated record sync"| R53
+  R53 -->|"Geo-aware resolution"| CLIENTS["Global Clients"]
+```
+
+---
+
+<span className="cs-section-tag">Strategic Solution</span>
+
+## Decoupling Service Discovery from Cluster Identity
+
+The architectural principle was **agnosticism**: the DNS boundary should not know or care
+which specific cluster a service lives in. This enabled cluster migrations and regional
+failovers without any DNS changes on the client side.
+
+**The ExternalDNS controller** was configured with organizational conventions so that
+a Kubernetes `Service` or `Ingress` with the right annotations would automatically
+create, update, and delete its own DNS records across all relevant hosted zones.
+No tickets. No manual steps.
+
+**Terraform zone architecture** defined the hosted zone structure, delegation chains,
+and IAM governance as code — giving the platform team full auditability and the ability
+to evolve the DNS topology through pull requests, not support requests.
+
+**Namespace-scoped permissions** ensured that domain teams could manage their own records
+within their allocated zones, but could not affect records belonging to other domains.
+Self-service without blast radius.
+
+---
+
+<span className="cs-section-tag">Organizational Impact</span>
+
+## What Changed
+
+| Workflow | Before | After |
+|---|---|---|
+| New service DNS record | Ticket → wait → manual entry | Service annotation → auto-synced |
+| Cluster migration | Multi-day DNS coordination | Transparent to all consumers |
+| Multi-region expansion | Manual replication per region | Single controller, all regions |
+| On-call DNS incidents | Weekly occurrence | Near-zero |
+
+The **80% reduction in operational burnout** was measured through on-call incident
+frequency before and after the rollout. Engineers reclaimed time previously spent
+on DNS firefighting and redirected it to platform improvements.
+
+---
+
+<span className="cs-section-tag">Technical Implementation</span>
+
+## Stack
+
+- **Service Discovery** — Kubernetes ExternalDNS (custom configuration per cluster)
+- **Cloud DNS** — Amazon Route 53 (100+ hosted zones, geo-routing policies)
+- **IaC** — Terraform for zone architecture, delegation, and IAM boundary
+- **Governance** — AWS IAM + IRSA (IAM Roles for Service Accounts) for namespace-scoped access
+- **Multi-Region** — Route 53 health checks + latency-based routing for active-active resolution

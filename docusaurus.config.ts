@@ -12,7 +12,7 @@ const config: Config = {
 
   stylesheets: [
     {
-      href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap',
+      href: 'https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:wght@400;500&display=swap',
       type: 'text/css',
     },
   ],
@@ -33,7 +33,7 @@ const config: Config = {
   organizationName: 'juanfe2793', // Usually your GitHub org/user name.
   projectName: 'Portfolio', // Usually your repo name.
 
-  onBrokenLinks: 'warn',
+  onBrokenLinks: 'throw',
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -43,12 +43,16 @@ const config: Config = {
     locales: ['en'],
   },
 
+  markdown: {
+    mermaid: true,
+  },
+
+  themes: ['@docusaurus/theme-mermaid'],
+
   plugins: [
     [
       '@docusaurus/plugin-client-redirects',
       {
-        // Redirects from MkDocs URL structure to Docusaurus paths.
-        // Activate each entry after the corresponding content is migrated (Story 1.4+).
         redirects: [
           { from: '/guides/kubectl_commands/', to: '/docs/guides/kubectl_commands/' },
           { from: '/guides/helm_commands/', to: '/docs/guides/helm_commands/' },
@@ -103,7 +107,7 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     colorMode: {
-      respectPrefersColorScheme: true,
+      defaultMode: 'dark',
     },
     navbar: {
       title: 'Juan Felipe Gomez',
@@ -113,18 +117,21 @@ const config: Config = {
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
-          label: 'Docs',
-        },
-        {to: '/blog', label: 'Blog', position: 'left'},
-        {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          to: '/docs/portfolio/cv',
           position: 'left',
           label: 'CV / Resume',
         },
+        {
+          to: '/docs/case-studies',
+          position: 'left',
+          label: 'Architecture Hub',
+        },
+        {
+          to: '/docs/guides',
+          position: 'left',
+          label: "The Principal's Playbook",
+        },
+        { to: '/blog', label: 'Blog', position: 'left' },
         {
           href: 'https://github.com/juanfe2793/Portfolio',
           label: 'GitHub',
@@ -136,42 +143,29 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Navigation',
           items: [
-            {
-              label: 'Docs',
-              to: '/docs/portfolio/cv',
-            },
+            { label: 'CV / Resume', to: '/docs/portfolio/cv' },
+            { label: 'Architecture Hub', to: '/docs/case-studies' },
+            { label: "The Principal's Playbook", to: '/docs/guides' },
+            { label: 'Blog', to: '/blog' },
           ],
         },
         {
-          title: 'Social',
+          title: 'Connect',
           items: [
-            {
-              label: 'LinkedIn',
-              href: 'https://linkedin.com/in/juangomez27',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/juanfe2793',
-            },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'Blog',
-              to: '/blog',
-            },
+            { label: 'GitHub', href: 'https://github.com/juanfe2793' },
+            { label: 'LinkedIn', href: 'https://linkedin.com/in/juangomez27' },
+            { label: 'Email', href: 'mailto:hello@felipegomez.me' },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Juan Felipe Gomez. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Juan Felipe Gómez Manzanares.`,
     },
     prism: {
-      theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
+      theme: prismThemes.oneLight,
+      darkTheme: prismThemes.oneDark,
+      additionalLanguages: ['bash', 'yaml', 'hcl'],
     },
   } satisfies Preset.ThemeConfig,
 };
