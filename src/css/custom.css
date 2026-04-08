@@ -1,38 +1,291 @@
 /**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
+ * Design System: The Obsidian Command Center
+ * A high-contrast, dark-first architecture for executive engineering leadership.
  */
 
-/* You can override the default Infima variables here. */
 :root {
   /* Typography Tokens */
-  --ifm-font-family-base: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  --ifm-font-family-monospace: 'JetBrains Mono', SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  --ifm-code-font-size: 95%;
+  --ifm-font-family-base: 'Inter', system-ui, -apple-system, sans-serif;
+  --ifm-heading-font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  --ifm-font-family-monospace: 'JetBrains Mono', monospace;
+  --ifm-code-font-size: 90%;
 
-  /* Teal Palette (Light Mode) */
-  --ifm-color-primary: #008080;
-  --ifm-color-primary-dark: #007373;
-  --ifm-color-primary-darker: #006c6c;
-  --ifm-color-primary-darkest: #005959;
-  --ifm-color-primary-light: #008d8d;
-  --ifm-color-primary-lighter: #009393;
-  --ifm-color-primary-lightest: #00a6a6;
+  /* Light Palette (Maintained for accessibility, but not default) */
+  --paper: #FAF7F0;
+  --paper-deep: #F2EDE0;
+  --ink: #141414;
+  --ink-soft: #4A4A48;
+  --rule: #1F1F1F1A;
+  --accent: #B43A0B;
+  --accent-soft: #FCE7D6;
+  --accent-deep: #7C2D12;
 
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  /* Infima Variable Mapping */
+  --ifm-background-color: var(--paper);
+  --ifm-color-primary: var(--accent);
+  --ifm-color-primary-dark: var(--accent-deep);
+  --ifm-color-primary-darker: var(--accent-deep);
+  --ifm-color-primary-darkest: var(--accent-deep);
+  --ifm-color-primary-light: var(--accent);
+  --ifm-color-primary-lighter: var(--accent);
+  --ifm-color-primary-lightest: var(--accent);
+
+  --ifm-navbar-background-color: var(--paper);
+  --ifm-navbar-color: var(--ink);
+  --ifm-navbar-link-color: var(--ink-soft);
+  --ifm-navbar-link-hover-color: var(--accent);
+
+  --ifm-footer-background-color: var(--paper-deep);
+  --ifm-footer-color: var(--ink-soft);
+
+  --ifm-link-color: var(--accent);
+  --ifm-link-hover-color: var(--accent-deep);
+
+  /* Scale & Rhythm */
+  --measure-prose: 68ch;
+  --measure-wide: 1120px;
+  --measure-narrow: 560px;
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  /* Cyan/Teal Palette (Dark Mode) */
-  --ifm-color-primary: #00b3b3;
-  --ifm-color-primary-dark: #00a1a1;
-  --ifm-color-primary-darker: #009898;
-  --ifm-color-primary-darkest: #007d7d;
-  --ifm-color-primary-light: #00c5c5;
-  --ifm-color-primary-lighter: #00cece;
-  --ifm-color-primary-lightest: #00e8e8;
+  /* Obsidian Palette */
+  --paper: #000000;          /* OLED Black */
+  --paper-deep: #0A0B10;     /* Deep Navy */
+  --ink: #FFFFFF;            /* Pure White */
+  --ink-soft: #A1A1AA;       /* Muted Silver */
+  --rule: rgba(255, 255, 255, 0.1);
+  --accent: #00D1FF;         /* Electric Blue */
+  --accent-soft: rgba(0, 209, 255, 0.1);
+  --accent-deep: #00A3C7;
 
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  /* Infima Variable Mapping Overrides */
+  --ifm-background-color: var(--paper);
+  --ifm-color-primary: var(--accent);
+  --ifm-navbar-background-color: var(--paper);
+  --ifm-navbar-color: var(--ink);
+  --ifm-navbar-link-color: var(--ink-soft);
+  --ifm-footer-background-color: var(--paper-deep);
+  --ifm-footer-color: var(--ink-soft);
+}
+
+/* Base Element Styling */
+body {
+  color: var(--ink);
+  background-color: var(--paper);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--ifm-heading-font-family);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* Editorial Motifs */
+.eyebrow {
+  font-family: var(--ifm-font-family-monospace);
+  font-variant: small-caps;
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+/* Drop Cap */
+.prose-section p:first-of-type::first-letter {
+  font-family: var(--ifm-heading-font-family);
+  float: left;
+  font-size: 3.5rem;
+  line-height: 1;
+  margin-right: 0.5rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 2rem 0;
+}
+
+/* Code blocks */
+pre {
+  background-color: var(--paper-deep) !important;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+}
+
+/* Case Study Utilities */
+.cs-lead {
+  font-size: 1.25rem;
+  color: var(--ink-soft);
+  max-width: 65ch;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.cs-metric-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.cs-metric {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+}
+
+.cs-metric-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--accent);
+  display: block;
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+
+.cs-metric-label {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  letter-spacing: 0.1em;
+}
+
+.cs-section-tag {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+/* Glassmorphism Utility */
+.glass-panel {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+}
+
+/* Bento-Grid Utility */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+}
+
+/* ── Blog / SRE Philosophy Log ─────────────────────────────── */
+
+/* Blog list container */
+.blog-list-page {
+  background: var(--paper);
+}
+
+/* Blog post excerpt cards */
+article[itemProp="blogPost"],
+.col article {
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: 1.5rem;
+  transition: border-color 150ms ease-out, background 150ms ease-out;
+}
+
+article[itemProp="blogPost"]:hover,
+.col article:hover {
+  border-color: var(--accent);
+  background: var(--paper-deep);
+}
+
+/* Blog post title */
+article[itemProp="blogPost"] h2 a,
+.col article h2 a {
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 150ms ease-out;
+}
+
+article[itemProp="blogPost"] h2 a:hover,
+.col article h2 a:hover {
+  color: var(--accent);
+}
+
+/* Blog metadata (date, author) */
+.blog-post-date,
+time[itemProp="datePublished"] {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+}
+
+/* Blog tags */
+.blog-tags a,
+[class*="blogPostTags"] a {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: 0.15rem 0.5rem;
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: border-color 150ms ease-out, color 150ms ease-out;
+}
+
+.blog-tags a:hover,
+[class*="blogPostTags"] a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Blog "Read more" / truncate footer */
+[class*="readMore"] a,
+.blog-read-more a {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+[class*="readMore"] a:hover,
+.blog-read-more a:hover {
+  color: var(--accent-deep);
+}
+
+/* Blog sidebar — recent posts */
+[class*="blogSidebar"] {
+  border-left: 1px solid var(--rule);
+  padding-left: 1.5rem;
+}
+
+[class*="blogSidebarTitle"] {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+  margin-bottom: 1rem;
+}
+
+/* ── Guides / Playbook ─────────────────────────────────────── */
+
+/* Override heading emoji in guides */
+.theme-doc-markdown h1 {
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.5rem;
 }

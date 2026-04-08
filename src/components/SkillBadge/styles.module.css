@@ -4,17 +4,24 @@
   gap: 4px;
   padding: 4px 12px;
   border-radius: 9999px;
-  background-color: var(--ifm-color-primary-lightest);
-  color: var(--ifm-color-primary-darkest);
+  background-color: var(--accent-soft);
+  color: var(--accent-deep);
   font-family: var(--ifm-font-family-base);
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   font-weight: 600;
   line-height: 1.4;
   white-space: nowrap;
+  border: 1px solid transparent;
+}
+
+.tag {
+  background-color: var(--paper-deep);
+  color: var(--ink-soft);
+  border-color: var(--rule);
 }
 
 .icon {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   line-height: 1;
 }
 
@@ -26,19 +33,19 @@
   display: inline-flex;
   align-items: center;
   gap: 2px;
-  margin-left: 2px;
+  margin-left: 4px;
 }
 
 .dot {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   background-color: transparent;
-  border: 1px solid var(--ifm-color-primary-darkest);
+  border: 1px solid var(--accent-deep);
   box-sizing: border-box;
 }
 
 .dotFilled {
-  background-color: var(--ifm-color-primary-darkest);
-  border-color: var(--ifm-color-primary-darkest);
+  background-color: var(--accent);
+  border-color: var(--accent);
 }

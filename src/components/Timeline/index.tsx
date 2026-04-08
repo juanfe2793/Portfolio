@@ -1,6 +1,7 @@
 import React from 'react';
+import clsx from 'clsx';
 import styles from './styles.module.css';
-import SkillBadge, { type SkillLevel } from '@site/src/components/SkillBadge';
+import SkillBadge from '@site/src/components/SkillBadge';
 
 export interface TimelineEntry {
   date: string;
@@ -19,7 +20,9 @@ export default function Timeline({ entries }: TimelineProps): React.JSX.Element 
     <ol className={styles.timeline}>
       {entries.map((entry, idx) => (
         <li key={idx} className={styles.entry}>
-          <span className={styles.dot} aria-hidden="true" />
+          <span className={clsx(styles.dot, idx === 0 && styles.current)} aria-hidden="true">
+            {idx === 0 ? '▸' : '•'}
+          </span>
           <div className={styles.content}>
             <div className={styles.date}>{entry.date}</div>
             <h3 className={styles.title}>{entry.title}</h3>
@@ -28,7 +31,7 @@ export default function Timeline({ entries }: TimelineProps): React.JSX.Element 
             {entry.tags && entry.tags.length > 0 && (
               <div className={styles.tags}>
                 {entry.tags.map((tag) => (
-                  <SkillBadge key={tag} name={tag} level={'advanced' as SkillLevel} />
+                  <SkillBadge key={tag} name={tag} variant="tag" />
                 ))}
               </div>
             )}

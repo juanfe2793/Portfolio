@@ -12,7 +12,7 @@ const config: Config = {
 
   stylesheets: [
     {
-      href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap',
+      href: 'https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:wght@400;500&display=swap',
       type: 'text/css',
     },
   ],
@@ -43,12 +43,16 @@ const config: Config = {
     locales: ['en'],
   },
 
+  markdown: {
+    mermaid: true,
+  },
+
+  themes: ['@docusaurus/theme-mermaid'],
+
   plugins: [
     [
       '@docusaurus/plugin-client-redirects',
       {
-        // Redirects from MkDocs URL structure to Docusaurus paths.
-        // Activate each entry after the corresponding content is migrated (Story 1.4+).
         redirects: [
           { from: '/guides/kubectl_commands/', to: '/docs/guides/kubectl_commands/' },
           { from: '/guides/helm_commands/', to: '/docs/guides/helm_commands/' },
@@ -103,7 +107,7 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     colorMode: {
-      respectPrefersColorScheme: true,
+      defaultMode: 'dark',
     },
     navbar: {
       title: 'Juan Felipe Gomez',
@@ -118,9 +122,14 @@ const config: Config = {
           label: 'CV / Resume',
         },
         {
+          to: '/docs/case-studies',
+          position: 'left',
+          label: 'Architecture Hub',
+        },
+        {
           to: '/docs/guides',
           position: 'left',
-          label: 'Guides',
+          label: "The Principal's Playbook",
         },
         { to: '/blog', label: 'Blog', position: 'left' },
         {
@@ -137,7 +146,8 @@ const config: Config = {
           title: 'Navigation',
           items: [
             { label: 'CV / Resume', to: '/docs/portfolio/cv' },
-            { label: 'Guides', to: '/docs/guides' },
+            { label: 'Architecture Hub', to: '/docs/case-studies' },
+            { label: "The Principal's Playbook", to: '/docs/guides' },
             { label: 'Blog', to: '/blog' },
           ],
         },
@@ -153,8 +163,9 @@ const config: Config = {
       copyright: `Copyright © ${new Date().getFullYear()} Juan Felipe Gómez Manzanares.`,
     },
     prism: {
-      theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
+      theme: prismThemes.oneLight,
+      darkTheme: prismThemes.oneDark,
+      additionalLanguages: ['bash', 'yaml', 'hcl'],
     },
   } satisfies Preset.ThemeConfig,
 };

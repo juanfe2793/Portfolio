@@ -7,6 +7,9 @@ hide_table_of_contents: false
 custom_edit_url: null
 ---
 
+import Timeline from '@site/src/components/Timeline';
+import SkillBadge from '@site/src/components/SkillBadge';
+
 # Curriculum Vitae
 
 ## **Juan Felipe Gómez Manzanares**
@@ -18,85 +21,125 @@ Expert in scaling cloud-native infrastructure, high-throughput API gateways, and
 
 ---
 
-## 💼 Professional Experience
+<div className="eyebrow">§ 01 — PROFESSIONAL EXPERIENCE</div>
 
-### **Twilio**
-
-**Staff Software Engineer (L4)** | *June 2023 – Present*
-
-:::success[Key Achievements]
--   **API Gateway:** Led the design of Domain Gateway Infrastructure using **Kong**, achieving **3.39M aggregate RPS**.
--   **DNS Modernization:** Designed centralized, agnostic DNS boundary (`twilioinfra.com`) for multi-region support.
--   **Operational Excellence:** Reduced incident volume and achieved **MTTA of &lt;4 minutes**.
-:::
-
-*   **Public Ingress:** Designed secure public ingress for Kubernetes Platform (&lt;90s provisioning).
-*   **Observability:** Implemented Kong observability via **OpenTelemetry**.
-*   **Testing:** Created `appconn-ondemand-tests` using **k6** and **Helm**.
-
-**Sr Software Engineer - Kubernetes Platform (L3)** | *November 2021 – June 2023*
-
-*   **Observability:** Implemented monitoring/alerting using **Datadog**.
-*   **GitOps:** Operated **Argo CD** for automated rollouts.
-*   **Fleet Management:** Managed **50+ Kubernetes clusters** via Terraform.
+<Timeline 
+  entries={[
+    {
+      date: 'June 2023 – Present',
+      title: 'Staff Software Engineer (L4)',
+      org: 'Twilio',
+      description: (
+        <>
+          :::success[Key Achievements]
+          - **API Gateway:** Led the design of Domain Gateway Infrastructure using **Kong**, achieving **3.39M aggregate RPS**.
+          - **DNS Modernization:** Designed centralized, agnostic DNS boundary (`twilioinfra.com`) for multi-region support.
+          - **Operational Excellence:** Reduced incident volume and achieved **MTTA of {`<4 minutes`}**.
+          :::
+          
+          - Designed secure public ingress for Kubernetes Platform ({`<90s provisioning`}).
+          - Implemented Kong observability via **OpenTelemetry**.
+          - Created `appconn-ondemand-tests` using **k6** and **Helm**.
+        </>
+      ),
+      tags: ['Kong', 'Terraform', 'OpenTelemetry', 'k6', 'EKS']
+    },
+    {
+      date: 'November 2021 – June 2023',
+      title: 'Sr Software Engineer - Kubernetes Platform (L3)',
+      org: 'Twilio',
+      description: 'Implemented monitoring/alerting using Datadog, operated Argo CD for automated rollouts, and managed 50+ Kubernetes clusters via Terraform.',
+      tags: ['Datadog', 'Argo CD', 'Terraform', 'Kubernetes']
+    },
+    {
+      date: 'June 2020 – November 2021',
+      title: 'Site Reliability Engineer / DevOps',
+      org: 'Adyton PBC',
+      description: 'Implemented IaC on AWS (GovCloud) for DoD services using Terraform and SaltStack. Managed EKS clusters and ELK Stack monitoring. Built CI/CD systems using Bazel, GitLab Pipelines, Argo CD, and Jenkins.',
+      tags: ['AWS GovCloud', 'Terraform', 'SaltStack', 'Bazel', 'EKS']
+    },
+    {
+      date: 'August 2016 – December 2020',
+      title: 'Professor',
+      org: 'Universidad Icesi',
+      description: 'Taught Operating Systems, Computer Networks II, and Infrastructure Automation. Developed Cloud Computing labs using AWS.',
+      tags: ['Education', 'AWS', 'Networking']
+    },
+    {
+      date: 'January 2018 – December 2019',
+      title: 'Research Assistant',
+      org: 'Universidad Icesi',
+      description: 'Published research on Software Defined Networks (SDN) in IEEEXplore.',
+      tags: ['SDN', 'Research', 'IEEEXplore']
+    },
+    {
+      date: 'January 2020 – February 2020',
+      title: 'Cloud and DevOps Engineer',
+      org: 'IPINNOVATECH',
+      description: 'Implemented centralized management with AWS SSM and CloudWatch.',
+      tags: ['AWS SSM', 'CloudWatch']
+    },
+    {
+      date: 'December 2014 – December 2016',
+      title: 'Network Engineer',
+      org: 'Global Networks Solutions',
+      description: 'Designed network infrastructure for government ministries (127 Cisco devices).',
+      tags: ['Cisco', 'Network Design']
+    }
+  ]}
+/>
 
 ---
 
-### **Adyton PBC**
-**Site Reliability Engineer / DevOps** | *June 2020 – November 2021*
+<div className="eyebrow">§ 02 — TECHNICAL SKILLS</div>
 
-*   Implemented IaC on **AWS (GovCloud)** for DoD services using **Terraform** and **SaltStack**.
-*   Managed EKS clusters and **ELK Stack** monitoring.
-*   Built CI/CD systems using **Bazel**, GitLab Pipelines, Argo CD, and Jenkins.
+### Service Mesh & Networking
+<div style={{display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '1.5rem'}}>
+  <SkillBadge name="Kong API Gateway" level="expert" />
+  <SkillBadge name="Envoy" level="advanced" />
+  <SkillBadge name="gRPC" level="advanced" />
+  <SkillBadge name="TLS/SSL" level="expert" />
+  <SkillBadge name="DNS Modernization" level="expert" />
+  <SkillBadge name="Zero-Trust" level="advanced" />
+</div>
 
----
+### Infrastructure & Orchestration
+<div style={{display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '1.5rem'}}>
+  <SkillBadge name="AWS" level="expert" />
+  <SkillBadge name="Kubernetes (EKS)" level="expert" />
+  <SkillBadge name="Terraform" level="expert" />
+  <SkillBadge name="SaltStack" level="advanced" />
+  <SkillBadge name="Argo CD" level="advanced" />
+  <SkillBadge name="Helm" level="expert" />
+  <SkillBadge name="Bazel" level="intermediate" />
+</div>
 
-### **Universidad Icesi**
-**Professor** | *August 2016 – December 2020*
+### Observability & Performance
+<div style={{display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '1.5rem'}}>
+  <SkillBadge name="Datadog" level="expert" />
+  <SkillBadge name="OpenTelemetry" level="advanced" />
+  <SkillBadge name="ELK Stack" level="advanced" />
+  <SkillBadge name="Prometheus" level="advanced" />
+  <SkillBadge name="Grafana" level="advanced" />
+  <SkillBadge name="k6" level="expert" />
+</div>
 
-*   Taught **Operating Systems**, **Computer Networks II**, and **Infrastructure Automation**.
-*   Developed Cloud Computing labs using AWS.
-
-**Research Assistant** | *January 2018 – December 2019*
-
-*   Published research on **Software Defined Networks (SDN)** in IEEEXplore.
-
----
-
-### **IPINNOVATECH**
-**Cloud and DevOps Engineer** | *January 2020 – February 2020*
-
-*   Implemented centralized management with **AWS SSM** and **CloudWatch**.
-
----
-
-### **Global Networks Solutions**
-**Network Engineer** | *December 2014 – December 2016*
-
-*   Designed network infrastructure for government ministries (127 Cisco devices).
-
----
-
-## 🛠️ Technical Skills
-
-| Domain | Technologies |
-| :--- | :--- |
-| **API Management** | Kong API Gateway, Envoy, gRPC, TLS |
-| **Infrastructure** | AWS (Expert), Kubernetes (EKS), Terraform, SaltStack, Argo CD, Helm, Bazel |
-| **Observability** | Datadog, OpenTelemetry, ELK Stack, Prometheus, Grafana, k6 |
-| **Networking** | SDN, Service Mesh, DNS Modernization, Zero-Trust |
-| **Languages** | Python, Go, Java, Bash |
+### Languages
+<div style={{display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '1.5rem'}}>
+  <SkillBadge name="Python" level="expert" />
+  <SkillBadge name="Go" level="intermediate" />
+  <SkillBadge name="Java" level="intermediate" />
+  <SkillBadge name="Bash" level="expert" />
+</div>
 
 ---
+
+<div className="eyebrow">§ APPENDIX</div>
 
 ## 🎓 Education
-
-*   **Master in Informatics and Telecommunications** | Universidad ICESI (2018 – 2020)
-*   **Professional in Telematics Engineering** | Universidad ICESI (2010 – 2016)
-
----
+- **Master in Informatics and Telecommunications** | Universidad ICESI (2018 – 2020)
+- **Professional in Telematics Engineering** | Universidad ICESI (2010 – 2016)
 
 ## 📜 Certifications & Publications
-
-*   **Certification:** LFS 265 - Software Defined Networking Fundamentals.
-*   **Publication:** "Performance of QoS policies in Software-Defined Networks" (IEEEXplore).
+- **Certification:** LFS 265 - Software Defined Networking Fundamentals.
+- **Publication:** "Performance of QoS policies in Software-Defined Networks" (IEEEXplore).

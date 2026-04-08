@@ -6,8 +6,9 @@ export type SkillLevel = 'beginner' | 'intermediate' | 'advanced' | 'expert';
 
 export interface SkillBadgeProps {
   name: string;
-  level: SkillLevel;
+  level?: SkillLevel;
   icon?: string;
+  variant?: 'skill' | 'tag';
 }
 
 const LEVEL_COUNT: Record<SkillLevel, number> = {
@@ -17,20 +18,27 @@ const LEVEL_COUNT: Record<SkillLevel, number> = {
   expert: 4,
 };
 
-export default function SkillBadge({ name, level, icon }: SkillBadgeProps): React.JSX.Element {
+export default function SkillBadge({
+  name,
+  level = 'advanced',
+  icon,
+  variant = 'skill'
+}: SkillBadgeProps): React.JSX.Element {
   const filled = LEVEL_COUNT[level];
   return (
-    <span className={styles.badge} aria-label={`${name} skill level ${level}`}>
+    <span className={clsx(styles.badge, variant === 'tag' && styles.tag)} aria-label={`${name} skill level ${level}`}>
       {icon && <span className={styles.icon} aria-hidden="true">{icon}</span>}
       <span className={styles.name}>{name}</span>
-      <span className={styles.dots} aria-hidden="true">
-        {[0, 1, 2, 3].map((i) => (
-          <span
-            key={i}
-            className={clsx(styles.dot, i < filled && styles.dotFilled)}
-          />
-        ))}
-      </span>
+      {variant === 'skill' && (
+        <span className={styles.dots} aria-hidden="true">
+          {[0, 1, 2, 3].map((i) => (
+            <span
+              key={i}
+              className={clsx(styles.dot, i < filled && styles.dotFilled)}
+            />
+          ))}
+        </span>
+      )}
     </span>
   );
 }

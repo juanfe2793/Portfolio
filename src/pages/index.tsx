@@ -1,10 +1,13 @@
 import type {ReactNode} from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import Heading from '@theme/Heading';
+import SkillBadge from '@site/src/components/SkillBadge';
+import ImpactMatrix from '@site/src/components/ImpactMatrix';
+import AIVision from '@site/src/components/AIVision';
 
 import styles from './index.module.css';
 
@@ -27,151 +30,136 @@ const EmailIcon = () => (
 );
 
 type ProjectItem = {
-  icon: string;
   title: string;
   description: string;
   tags: string[];
+  link: string;
 };
 
 const ProjectList: ProjectItem[] = [
   {
-    icon: '🚀',
     title: 'Cloud Native API Gateway',
     description:
       'Architected and implemented a Domain Gateway Infrastructure using Kong. Developed Terraform modules for standardized deployment, configuration management and internal custom plugins testing and delivery. Enabled cross-domain connectivity with TLS/gRPC support.',
     tags: ['3M+ RPS', '99.999% Availability', 'Kong', 'Terraform'],
+    link: '/docs/case-studies/api-gateway',
   },
   {
-    icon: '🌍',
     title: 'Twilio-wide DNS Modernization',
     description:
       'Architected and implemented a centralized DNS boundary for the One Twilio Kubernetes platform. This agnostic architecture supports multi-cluster/multi-region deployments and simplifies service discovery.',
     tags: ['100+ Hosted Zones', '80% Less Ops Burnout', 'Multi-Region'],
+    link: '/docs/case-studies/dns-modernization',
   },
   {
-    icon: '📈',
     title: 'Automated Observability & Load Testing',
     description:
       'Standardized platform observability with OpenTelemetry and k6, enabling data-driven performance optimizations across all Twilio Kubernetes platform services.',
     tags: ['OpenTelemetry', 'k6', 'Helm'],
+    link: '/docs/case-studies/observability-load-testing',
   },
 ];
 
 function HeroSection() {
-  const {siteConfig} = useDocusaurusContext();
+  const avatarSrc = useBaseUrl('/img/avatar.jpg');
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <div className="container">
-        <img
-          src="https://github.com/juanfe2793.png"
-          alt="Profile Picture"
-          style={{borderRadius: '50%', marginBottom: '1.5rem', width: '120px', height: '120px'}}
-        />
-        <Heading as="h1" className="hero__title">
-          Juan Felipe Gómez Manzanares
-        </Heading>
-        <p className="hero__subtitle">
-          <strong>Staff Software Engineer</strong> at <strong>Twilio</strong>
-        </p>
-        <p className="hero__tagline">Building high-scale, resilient cloud infrastructure.</p>
-        <div className={styles.socialLinks}>
-          <a
-            href="https://github.com/juanfe2793"
-            title="GitHub"
-            className={styles.socialLink}>
-            <GitHubIcon />
-          </a>
-          <a
-            href="https://linkedin.com/in/juangomez27"
-            title="LinkedIn"
-            className={styles.socialLink}>
-            <LinkedInIcon />
-          </a>
-          <a
-            href="mailto:hello@felipegomez.me"
-            title="Email"
-            className={styles.socialLink}>
-            <EmailIcon />
-          </a>
+    <section className={clsx(styles.hero, 'container')}>
+      <div className={styles.heroGrid}>
+        <div className={styles.heroLeft}>
+          <div className={styles.eyebrow}>EXECUTIVE COMMAND</div>
+          <Heading as="h1" className={styles.heroName}>
+            Juan Felipe<br />Gómez Manzanares
+          </Heading>
+          <div className={styles.heroSubtitle}>Principal Software Engineer · Cloud Architecture</div>
+          <p className={styles.heroTagline}>
+            Driving organizational impact through high-scale, resilient cloud infrastructure and AI-driven platform engineering.
+          </p>
+          <div className={styles.heroActions}>
+            <Link className={styles.heroCta} to="/docs/portfolio/cv">
+              [ View Strategic CV → ]
+            </Link>
+            <div className={styles.socialRow}>
+              <a href="https://github.com/juanfe2793" className={styles.socialLink}><GitHubIcon /></a>
+              <a href="https://linkedin.com/in/juangomez27" className={styles.socialLink}><LinkedInIcon /></a>
+              <a href="mailto:hello@felipegomez.me" className={styles.socialLink}><EmailIcon /></a>
+            </div>
+          </div>
         </div>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/portfolio/cv">
-            View CV
-          </Link>
+        <div className={styles.heroRight}>
+          <figure className={styles.avatarFigure}>
+            <img src={avatarSrc} alt="Juan Felipe Gómez" />
+            <figcaption>Executive Profile — 2026</figcaption>
+          </figure>
         </div>
-      </div>
-    </header>
-  );
-}
-
-function AboutSection() {
-  return (
-    <section className={styles.aboutSection}>
-      <div className="container">
-        <Heading as="h2">👤 About Me</Heading>
-        <p>
-          Hello! I am a <strong>Software Infrastructure Engineer</strong> with over{' '}
-          <strong>10 years of experience</strong> driving the lifecycle of Compute and
-          Network infrastructure, from on-premise data centers to massive-scale cloud
-          environments.
-        </p>
-        <p>
-          Currently operating as a Staff Software Engineer at Twilio, I lead the design,
-          implementation, and scaling of mission-critical cloud architectures. I focus on
-          designing resilient, high-traffic architectures with an emphasis on{' '}
-          <strong>reliability engineering</strong>, <strong>operational excellence</strong>,
-          and <strong>strategic infrastructure leadership</strong>. My expertise lies in{' '}
-          <strong>API Gateways</strong> (Kong), <strong>Service Mesh</strong> (Istio,
-          Envoy), <strong>Kubernetes</strong> (EKS), and <strong>AWS</strong>.
-        </p>
-        <p>
-          My work sits at the intersection of high availability, automated performance, and
-          platform modernization. I am deeply passionate about maximizing product
-          resilience and am actively exploring the{' '}
-          <strong>integration of AI</strong> into cloud infrastructure processes
-          — specifically by developing custom <strong>Claude skills and plugins</strong>
-          — to drive the next generation of platform engineering.
-        </p>
       </div>
     </section>
   );
 }
 
-function ProjectCard({icon, title, description, tags}: ProjectItem) {
+function AboutSection() {
   return (
-    <div className={styles.projectCard}>
-      <div className={styles.cardIcon}>{icon}</div>
-      <h3>{title}</h3>
-      <p>{description}</p>
-      <div className={styles.cardTags}>
-        {tags.map((tag) => (
-          <span key={tag} className={styles.cardTag}>
-            {tag}
-          </span>
-        ))}
+    <section className={clsx(styles.about, 'container')}>
+      <div className={styles.aboutGrid}>
+        <div className={styles.eyebrow}>ABOUT</div>
+        <div className={styles.aboutContent}>
+          <div className={styles.proseSection}>
+            <p>
+              Hello! I am a <strong>Software Infrastructure Engineer</strong> with over{' '}
+              <strong>10 years of experience</strong> driving the lifecycle of Compute and
+              Network infrastructure, from on-premise data centers to massive-scale cloud
+              environments.
+            </p>
+            <p>
+              Currently operating as a Staff Software Engineer at Twilio, I lead the design,
+              implementation, and scaling of mission-critical cloud architectures. I focus on
+              designing resilient, high-traffic architectures with an emphasis on{' '}
+              <strong>reliability engineering</strong>, <strong>operational excellence</strong>,
+              and <strong>strategic infrastructure leadership</strong>. My expertise lies in{' '}
+              <strong>API Gateways</strong> (Kong), <strong>Service Mesh</strong> (Istio,
+              Envoy), <strong>Kubernetes</strong> (EKS), and <strong>AWS</strong>.
+            </p>
+          </div>
+          <div className={styles.aboutQuote}>
+            "My work sits at the intersection of high availability, automated performance, and platform modernization."
+          </div>
+          <div className={styles.proseSection}>
+            <p>
+              I am deeply passionate about maximizing product resilience and am actively exploring the{' '}
+              <strong>integration of AI</strong> into cloud infrastructure processes
+              — specifically by developing custom <strong>Claude skills and plugins</strong>
+              — to drive the next generation of platform engineering.
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
 
 function ProjectsSection() {
   return (
-    <section className={styles.projectsSection}>
-      <div className="container">
-        <Heading as="h2" className={styles.sectionTitle}>
-          💡 Featured Projects
-        </Heading>
-        <p style={{textAlign: 'center', marginBottom: '2rem'}}>
-          As a Staff Engineer, my focus is on solving complex, high-impact problems. Here
-          is a look at some of the key architectural initiatives I have led:
-        </p>
-        <div className={styles.projectsGrid}>
-          {ProjectList.map((props, idx) => (
-            <ProjectCard key={idx} {...props} />
-          ))}
-        </div>
+    <section className={clsx(styles.projects, 'container')}>
+      <div className={styles.projectsList}>
+        <div className={styles.eyebrow}>SELECTED WORK</div>
+        {ProjectList.map((project, idx) => (
+          <div key={idx} className={styles.projectRow}>
+            <div className={styles.projectIndex}>0{idx + 1}</div>
+            <div className={styles.projectMain}>
+              <Heading as="h3" className={styles.projectTitle}>{project.title}</Heading>
+              <p className={styles.projectDesc}>{project.description}</p>
+              <div className={styles.projectFooter}>
+                <div className={styles.projectTags}>
+                  {project.tags.map(tag => (
+                    <SkillBadge key={tag} name={tag} variant="tag" />
+                  ))}
+                </div>
+                <Link className={styles.projectLink} to={project.link}>
+                  Deep Dive →
+                </Link>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );
@@ -179,12 +167,17 @@ function ProjectsSection() {
 
 function CtaSection() {
   return (
-    <section className={styles.ctaSection}>
-      <div className="container">
-        <p>Want to know more about my professional background and experience?</p>
-        <Link className="button button--primary button--lg" to="/docs/portfolio/cv">
-          📄 View My Full CV / Resume
-        </Link>
+    <section className={clsx(styles.cta, 'container')}>
+      <div className={styles.ctaGrid}>
+        <div className={styles.eyebrow}>COLOPHON</div>
+        <div className={styles.colophon}>
+          <p>
+            Set in Inter and JetBrains Mono. Built with Docusaurus on a quiet Sunday.
+          </p>
+          <Link className={styles.ctaLink} to="/docs/portfolio/cv">
+            View My Full CV / Resume →
+          </Link>
+        </div>
       </div>
     </section>
   );
@@ -197,7 +190,9 @@ export default function Home(): ReactNode {
       description="Personal portfolio and technical blog of Juan Felipe Gómez Manzanares — Staff Software Engineer at Twilio">
       <HeroSection />
       <main>
+        <div className="container"><ImpactMatrix /></div>
         <AboutSection />
+        <div className="container"><AIVision /></div>
         <HomepageFeatures />
         <ProjectsSection />
         <CtaSection />
