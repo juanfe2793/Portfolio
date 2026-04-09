@@ -1,66 +1,59 @@
 # Juan Felipe Gómez Manzanares | Professional Portfolio & Technical Blog
 
-Welcome to my digital home! I am a **Software Infrastructure Engineer** with over 10 years of experience driving the lifecycle of Compute and Network infrastructure. 
+Personal portfolio and technical blog for a **Staff Software Engineer** specializing in cloud-native infrastructure, API gateways, Kubernetes, and SRE. Built with **Docusaurus v3** (React 19 / TypeScript), deployed to GitHub Pages.
 
-Currently, I serve as a **Staff Software Engineer** in **Twilio’s Platform Infrastructure Team**, specializing in AWS, Kubernetes, Service Communications, and Infrastructure as Code. I've led critical initiatives handling **3M+ RPS** and maintaining **99.99%+ availability**.
-
----
-
-## 🌐 Live Site
-The rendered version of this portfolio is available at:
-**[https://juanfe2793.github.io/JuanPipe/](https://juanfe2793.github.io/JuanPipe/)**
+**Live site:** [https://juanfe2793.github.io/Portfolio/](https://juanfe2793.github.io/Portfolio/)
 
 ---
 
 ## Repository Structure
-*   `docs/portfolio/`: Professional profile, metrics, and CV.
-*   `docs/blog/`: Technical articles and engineering deep dives.
-*   `docs/guides/`: A collection of DevOps, SRE, and Cloud cheatsheets.
-*   `utils/`: Helper scripts for AWS and infrastructure management.
+
+| Path | Purpose |
+|---|---|
+| `src/pages/` | React page components (home page) |
+| `src/components/` | Shared components (Timeline, SkillBadge, SocialLinks, …) |
+| `src/css/custom.css` | Design system tokens and global styles |
+| `docs/portfolio/` | CV / Resume |
+| `docs/case-studies/` | Architecture Hub — deep-dive case studies |
+| `docs/guides/` | The Principal's Playbook — DevOps/SRE cheatsheets |
+| `blog/` | Technical blog posts |
+| `utils/aws-scripts/` | AWS helper scripts (unrelated to the site) |
 
 ---
 
-## 🛠️ Local Development Guide
+## Local Development
 
-This guide explains how to build and preview the portfolio locally before pushing changes.
+Requires **Node.js >=20**.
 
-### 🐍 Using Python & MkDocs (via uv)
-1.  **Prerequisites:**
-    Install [uv](https://docs.astral.sh/uv/getting-started/installation/).
-2.  **Install Dependencies:**
-    ```bash
-    uv sync
-    ```
-3.  **Run Development Server:**
-    ```bash
-    NO_MKDOCS_2_WARNING=1 uv run mkdocs serve
-    ```
-    Access at [http://localhost:8000](http://localhost:8000).
+```bash
+npm install          # Install dependencies
+npm start            # Dev server at http://localhost:3000
+npm run build        # Production build
+npm run typecheck    # TypeScript type check
+npm run serve        # Serve production build locally
+npm run clear        # Clear Docusaurus cache
+```
 
-### 🐳 Using Docker
-1.  **Build the Image:**
-    ```bash
-    docker build -t portfolio-site .
-    ```
-2.  **Run the Container:**
-    ```bash
-    docker run -p 8000:8000 portfolio-site
-    ```
-    Access at [http://localhost:8000](http://localhost:8000).
+### Docker
+
+```bash
+docker compose --profile dev up    # Dev server with hot-reload on :3000
+docker compose --profile prod up   # Production build on :3000
+```
 
 ---
 
-## 🚀 Deployment
-The site is automatically deployed to GitHub Pages via GitHub Actions when pushing to the `main` branch. 
-Check the **Actions** tab to monitor deployment status.
+## Deployment
+
+Automatically deployed to GitHub Pages on push to `main` via GitHub Actions (`.github/workflows/ci.yml`). PRs and pushes to `main` also run a build + typecheck CI check (`.github/workflows/test-ci.yml`).
 
 ---
 
-## 📄 License
+## License
 
-This project uses a **dual-license** model:
+Dual-licensed:
 
-| Scope | License | File |
-|:--|:--|:--|
-| **Code** (CSS, Python, YAML, Dockerfile, configs, scripts) | [MIT](LICENSE) | `LICENSE` |
-| **Content** (blog posts, guides, CV, articles in `docs/`) | [CC BY 4.0](LICENSE-CC-BY-4.0) | `LICENSE-CC-BY-4.0` |
+| Scope | License |
+|---|---|
+| Code (configs, components, scripts) | [MIT](LICENSE) |
+| Content (blog posts, guides, CV) | [CC BY 4.0](LICENSE-CC-BY-4.0) |
