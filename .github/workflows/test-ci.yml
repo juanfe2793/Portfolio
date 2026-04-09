@@ -2,7 +2,7 @@ name: Verify Site Build
 
 on:
   push:
-    branches:
+    branches-ignore:
       - main
   pull_request:
     branches:
@@ -13,8 +13,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
-    name: Build site
+  verify:
+    name: Typecheck, build & smoke test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -29,8 +29,31 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Type check
+        run: npm run typecheck
+
       - name: Build site
         run: npm run build
 
-      - name: Type check
-        run: npm run typecheck
+      - name: Smoke test — verify key pages respond 200
+        run: |
+          npx docusaurus serve --port 3000 &
+          SERVER_PID=$!
+
+          for i in $(seq 1 15); do
+            curl -sf http://localhost:3000/Portfolio/ > /dev/null && break
+            sleep 2
+          done
+
+          check() {
+            curl -sf "$1" > /dev/null || { echo "FAIL: $1"; kill $SERVER_PID; exit 1; }
+            echo "OK:   $1"
+          }
+
+          check http://localhost:3000/Portfolio/
+          check http://localhost:3000/Portfolio/docs/portfolio/cv/
+          check http://localhost:3000/Portfolio/docs/case-studies/
+          check http://localhost:3000/Portfolio/docs/guides/
+          check http://localhost:3000/Portfolio/blog/
+
+          kill $SERVER_PID
