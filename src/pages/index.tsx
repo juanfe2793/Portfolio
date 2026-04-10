@@ -53,7 +53,7 @@ function HeroSection() {
           <Heading as="h1" className={styles.heroName}>
             Juan Felipe<br />Gómez Manzanares
           </Heading>
-          <div className={styles.heroSubtitle}>Principal Software Engineer · Cloud Architecture</div>
+          <div className={styles.heroSubtitle}>Staff Software Engineer · Cloud Architecture</div>
           <p className={styles.heroTagline}>
             Driving organizational impact through high-scale, resilient cloud infrastructure and AI-driven platform engineering.
           </p>
