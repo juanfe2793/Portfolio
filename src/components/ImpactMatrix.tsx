@@ -14,19 +14,24 @@ const metrics: MetricItem[] = [
     description: 'Architected Domain Gateway for massive scale traffic.',
   },
   {
-    label: 'Efficiency',
-    value: '80% ↓',
-    description: 'Reduction in operational burnout via DNS modernization.',
-  },
-  {
     label: 'Availability',
     value: '99.999%',
     description: 'Maintaining five-nines for mission-critical cloud infra.',
   },
   {
-    label: 'Leadership',
-    value: 'Staff+',
-    description: 'Defining organizational standards for IaC and SRE.',
+    label: 'Infrastructure',
+    value: '100+',
+    description: 'Hosted Zones managed across multi-region architectures.',
+  },
+  {
+    label: 'Efficiency',
+    value: '80%',
+    description: 'Reduction in operational burnout via modern abstraction.',
+  },
+  {
+    label: 'Experience',
+    value: '10+ Yrs',
+    description: 'Driving compute and network infrastructure lifecycles.',
   },
 ];
 

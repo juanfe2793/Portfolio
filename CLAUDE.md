@@ -41,7 +41,7 @@ src/
 docs/
   portfolio/cv.mdx          # CV page — uses Timeline + SkillBadge components
   case-studies/             # Architecture case study MDX pages
-  guides/                   # "The Principal's Playbook" command-reference guides
+  guides/                   # "The Staff's Playbook" command-reference guides
 blog/                       # Blog posts (MDX)
 static/img/                 # favicon.svg, avatar.jpg, logo.svg
 ```
@@ -79,7 +79,7 @@ Default color mode is **dark**. Always use these tokens rather than hard-coded c
 **Navbar sections** (label → route):
 - CV / Resume → `/docs/portfolio/cv`
 - Architecture Hub → `/docs/case-studies`
-- The Principal's Playbook → `/docs/guides`
+- The Staff's Playbook → `/docs/guides`
 - Blog → `/blog`
 
 A `@docusaurus/plugin-client-redirects` block preserves old `/guides/*` and `/portfolio/cv/` URLs — update it when adding new redirected paths.

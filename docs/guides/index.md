@@ -1,5 +1,5 @@
 ---
-title: The Principal's Playbook
+title: The Staff's Playbook
 sidebar_label: Overview
 sidebar_position: 1
 slug: /guides
@@ -7,7 +7,7 @@ slug: /guides
 
 <div className="eyebrow">THE STANDARD</div>
 
-# The Principal's Playbook
+# The Staff's Playbook
 
 Organizational standards and operational runbooks — the paved road for high-scale cloud infrastructure management.
 

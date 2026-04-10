@@ -9,6 +9,37 @@
   gap: 1.5rem;
 }
 
+@media (min-width: 996px) {
+  .bentoGrid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .bentoGrid > *:nth-child(1),
+  .bentoGrid > *:nth-child(2),
+  .bentoGrid > *:nth-child(3) {
+    grid-column: span 2;
+  }
+
+  .bentoGrid > *:nth-child(4) {
+    grid-column: 2 / span 2;
+  }
+
+  .bentoGrid > *:nth-child(5) {
+    grid-column: 4 / span 2;
+  }
+}
+
+@media (max-width: 995px) and (min-width: 768px) {
+  .bentoGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .bentoGrid > *:nth-child(5) {
+    grid-column: 1 / span 2;
+    margin: 0 auto;
+    width: calc(50% - 0.75rem);
+  }
+}
+
 .glassPanel {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);

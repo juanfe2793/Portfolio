@@ -15,7 +15,7 @@ Personal portfolio and technical blog for a **Staff Software Engineer** speciali
 | `src/css/custom.css` | Design system tokens and global styles |
 | `docs/portfolio/` | CV / Resume |
 | `docs/case-studies/` | Architecture Hub — deep-dive case studies |
-| `docs/guides/` | The Principal's Playbook — DevOps/SRE cheatsheets |
+| `docs/guides/` | The Staff's Playbook — DevOps/SRE cheatsheets |
 | `blog/` | Technical blog posts |
 | `utils/aws-scripts/` | AWS helper scripts (unrelated to the site) |
 
