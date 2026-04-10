@@ -129,7 +129,7 @@ const config: Config = {
         {
           to: '/docs/guides',
           position: 'left',
-          label: "The Principal's Playbook",
+          label: "The Staff's Playbook",
         },
         { to: '/blog', label: 'Blog', position: 'left' },
         {
@@ -147,7 +147,7 @@ const config: Config = {
           items: [
             { label: 'CV / Resume', to: '/docs/portfolio/cv' },
             { label: 'Architecture Hub', to: '/docs/case-studies' },
-            { label: "The Principal's Playbook", to: '/docs/guides' },
+            { label: "The Staff's Playbook", to: '/docs/guides' },
             { label: 'Blog', to: '/blog' },
           ],
         },
