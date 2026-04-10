@@ -5,8 +5,23 @@
 
 .bentoGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  /* Desktop: 5 columns */
+  grid-template-columns: repeat(5, 1fr);
   gap: 1.5rem;
+}
+
+/* Tablet: 2 top, 3 bottom (or 3 top, 2 bottom) */
+@media (max-width: 1024px) {
+  .bentoGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Mobile: 1 column */
+@media (max-width: 768px) {
+  .bentoGrid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .glassPanel {
@@ -20,6 +35,11 @@
   flex-direction: column;
   gap: 0.5rem;
   transition: border-color 0.3s ease;
+}
+
+[data-theme='light'] .glassPanel {
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .glassPanel:hover {
@@ -39,10 +59,11 @@
   font-weight: 700;
   color: var(--accent);
   margin: 0.5rem 0;
+  white-space: nowrap;
 }
 
 .description {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--ink-soft);
   margin: 0;
   line-height: 1.4;
