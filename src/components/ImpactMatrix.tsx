@@ -33,7 +33,7 @@ const metrics: MetricItem[] = [
     description: 'DNS Management',
   },
   {
-    label: 'Ops Reduction',
+    label: 'Toil Reduction',
     value: 80,
     suffix: '%',
     description: 'Less manual overhead',
