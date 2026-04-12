@@ -7,7 +7,7 @@ export interface TimelineEntry {
   date: string;
   title: string;
   org: string;
-  description?: string;
+  description?: React.ReactNode;
   tags?: string[];
 }
 
@@ -27,7 +27,7 @@ export default function Timeline({ entries }: TimelineProps): React.JSX.Element 
             <div className={styles.date}>{entry.date}</div>
             <h3 className={styles.title}>{entry.title}</h3>
             <div className={styles.org}>{entry.org}</div>
-            {entry.description && <p className={styles.description}>{entry.description}</p>}
+            {entry.description && <div className={styles.description}>{entry.description}</div>}
             {entry.tags && entry.tags.length > 0 && (
               <div className={styles.tags}>
                 {entry.tags.map((tag) => (

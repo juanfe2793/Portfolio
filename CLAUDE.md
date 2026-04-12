@@ -92,7 +92,7 @@ Mermaid diagrams are enabled (`@docusaurus/theme-mermaid`); use fenced ` ```merm
 
 **Case studies** (`docs/case-studies/*.mdx`): Lead with `<span className="eyebrow">` + `<p className="cs-lead">` + `<div className="cs-metric-grid">` stat block before narrative sections.
 
-**Blog posts**: Include `<!-- truncate -->` to set the excerpt boundary for the blog listing page.
+**Blog posts**: Include `{/* truncate */}` to set the excerpt boundary for the blog listing page.
 
 ## CI/CD
 

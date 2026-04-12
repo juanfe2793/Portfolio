@@ -32,15 +32,19 @@ Expert in scaling cloud-native infrastructure, high-throughput API gateways, and
       org: 'Twilio',
       description: (
         <>
-          :::success[Key Achievements]
-          - **API Gateway:** Led the design of Domain Gateway Infrastructure using **Kong**, achieving **3.39M aggregate RPS**.
-          - **DNS Modernization:** Designed centralized, agnostic DNS boundary (`twilioinfra.com`) for multi-region support.
-          - **Operational Excellence:** Reduced incident volume and achieved **MTTA of {`<4 minutes`}**.
-          :::
-          
-          - Designed secure public ingress for Kubernetes Platform ({`<90s provisioning`}).
-          - Implemented Kong observability via **OpenTelemetry**.
-          - Created `appconn-ondemand-tests` using **k6** and **Helm**.
+          <div style={{background: 'var(--ifm-color-success-contrast-background)', border: '1px solid var(--ifm-color-success-dark)', borderRadius: '6px', padding: '0.75rem 1rem', marginBottom: '0.75rem'}}>
+            <strong style={{color: 'var(--ifm-color-success-darkest)'}}>Key Achievements</strong>
+            <ul style={{margin: '0.5rem 0 0 0', paddingLeft: '1.25rem'}}>
+              <li><strong>API Gateway:</strong> Led the design of Domain Gateway Infrastructure using <strong>Kong</strong>, achieving <strong>3.39M aggregate RPS</strong>.</li>
+              <li><strong>DNS Modernization:</strong> Designed centralized, agnostic DNS boundary (<code>twilioinfra.com</code>) for multi-region support.</li>
+              <li><strong>Operational Excellence:</strong> Reduced incident volume and achieved <strong>MTTA of &lt;4 minutes</strong>.</li>
+            </ul>
+          </div>
+          <ul style={{margin: 0, paddingLeft: '1.25rem'}}>
+            <li>Designed secure public ingress for Kubernetes Platform (&lt;90s provisioning).</li>
+            <li>Implemented Kong observability via <strong>OpenTelemetry</strong>.</li>
+            <li>Created <code>appconn-ondemand-tests</code> using <strong>k6</strong> and <strong>Helm</strong>.</li>
+          </ul>
         </>
       ),
       tags: ['Kong', 'Terraform', 'OpenTelemetry', 'k6', 'EKS']
@@ -97,11 +101,11 @@ Expert in scaling cloud-native infrastructure, high-throughput API gateways, and
 ### Service Mesh & Networking
 <div style={{display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '1.5rem'}}>
   <SkillBadge name="Kong API Gateway" level="expert" />
+  <SkillBadge name="Istio" level="advanced" />
   <SkillBadge name="Envoy" level="advanced" />
-  <SkillBadge name="gRPC" level="advanced" />
-  <SkillBadge name="TLS/SSL" level="expert" />
-  <SkillBadge name="DNS Modernization" level="expert" />
-  <SkillBadge name="Zero-Trust" level="advanced" />
+  <SkillBadge name="Public Ingress (ALB, ACM, cert-manager, external-dns)" level="expert" />
+  <SkillBadge name="DNS Infrastructure Modernization" level="expert" />
+  <SkillBadge name="Zero-Trust Security" level="advanced" />
 </div>
 
 ### Infrastructure & Orchestration
@@ -109,17 +113,14 @@ Expert in scaling cloud-native infrastructure, high-throughput API gateways, and
   <SkillBadge name="AWS" level="expert" />
   <SkillBadge name="Kubernetes (EKS)" level="expert" />
   <SkillBadge name="Terraform" level="expert" />
-  <SkillBadge name="SaltStack" level="advanced" />
   <SkillBadge name="Argo CD" level="advanced" />
   <SkillBadge name="Helm" level="expert" />
-  <SkillBadge name="Bazel" level="intermediate" />
 </div>
 
 ### Observability & Performance
 <div style={{display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '1.5rem'}}>
   <SkillBadge name="Datadog" level="expert" />
   <SkillBadge name="OpenTelemetry" level="advanced" />
-  <SkillBadge name="ELK Stack" level="advanced" />
   <SkillBadge name="Prometheus" level="advanced" />
   <SkillBadge name="Grafana" level="advanced" />
   <SkillBadge name="k6" level="expert" />
@@ -127,9 +128,8 @@ Expert in scaling cloud-native infrastructure, high-throughput API gateways, and
 
 ### Languages
 <div style={{display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '1.5rem'}}>
-  <SkillBadge name="Python" level="expert" />
+  <SkillBadge name="Python" level="advanced" />
   <SkillBadge name="Go" level="intermediate" />
-  <SkillBadge name="Java" level="intermediate" />
   <SkillBadge name="Bash" level="expert" />
 </div>
 
