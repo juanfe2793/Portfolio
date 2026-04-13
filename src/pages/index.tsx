@@ -9,39 +9,9 @@ import SkillBadge from '@site/src/components/SkillBadge';
 import ImpactMatrix from '@site/src/components/ImpactMatrix';
 import AIVision from '@site/src/components/AIVision';
 import SocialLinks from '@site/src/components/SocialLinks';
+import FeaturedProjects from '@site/src/components/FeaturedProjects';
 
 import styles from './index.module.css';
-
-type ProjectItem = {
-  title: string;
-  description: string;
-  tags: string[];
-  link: string;
-};
-
-const ProjectList: ProjectItem[] = [
-  {
-    title: 'Cloud Native API Gateway',
-    description:
-      'Architected and implemented a Domain Gateway Infrastructure using Kong. Developed Terraform modules for standardized deployment, configuration management and internal custom plugins testing and delivery. Enabled cross-domain connectivity with TLS/gRPC support.',
-    tags: ['3M+ RPS', '99.999% Availability', 'Kong', 'Terraform'],
-    link: '/docs/case-studies/api-gateway',
-  },
-  {
-    title: 'Twilio-wide DNS Modernization',
-    description:
-      'Architected and implemented a centralized DNS boundary for the One Twilio Kubernetes platform. This agnostic architecture supports multi-cluster/multi-region deployments and simplifies service discovery.',
-    tags: ['100+ Hosted Zones', '80% Less Ops Burnout', 'Multi-Region'],
-    link: '/docs/case-studies/dns-modernization',
-  },
-  {
-    title: 'Automated Observability & Load Testing',
-    description:
-      'Standardized platform observability with OpenTelemetry and k6, enabling data-driven performance optimizations across all Twilio Kubernetes platform services.',
-    tags: ['OpenTelemetry', 'k6', 'Helm'],
-    link: '/docs/case-studies/observability-load-testing',
-  },
-];
 
 function HeroSection() {
   const avatarSrc = useBaseUrl('/img/avatar.jpg');
@@ -115,35 +85,6 @@ function AboutSection() {
   );
 }
 
-function ProjectsSection() {
-  return (
-    <section className={clsx(styles.projects, 'container')}>
-      <div className={styles.projectsList}>
-        <div className={styles.eyebrow}>SELECTED WORK</div>
-        {ProjectList.map((project, idx) => (
-          <div key={idx} className={styles.projectRow}>
-            <div className={styles.projectIndex}>0{idx + 1}</div>
-            <div className={styles.projectMain}>
-              <Heading as="h3" className={styles.projectTitle}>{project.title}</Heading>
-              <p className={styles.projectDesc}>{project.description}</p>
-              <div className={styles.projectFooter}>
-                <div className={styles.projectTags}>
-                  {project.tags.map(tag => (
-                    <SkillBadge key={tag} name={tag} variant="tag" />
-                  ))}
-                </div>
-                <Link className={styles.projectLink} to={project.link}>
-                  Deep Dive →
-                </Link>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
 function CtaSection() {
   return (
     <section className={clsx(styles.cta, 'container')}>
@@ -172,8 +113,8 @@ export default function Home(): ReactNode {
         <div className="container"><ImpactMatrix /></div>
         <AboutSection />
         <div className="container"><AIVision /></div>
+        <FeaturedProjects />
         <HomepageFeatures />
-        <ProjectsSection />
         <CtaSection />
       </main>
     </Layout>

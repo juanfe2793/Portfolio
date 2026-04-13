@@ -1,0 +1,49 @@
+.featuredProjects {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.eyebrow {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--ifm-color-emphasis-600);
+  margin-bottom: 0.5rem;
+  font-family: var(--ifm-font-family-monospace);
+  text-transform: uppercase;
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  margin-bottom: 2.5rem;
+  color: var(--ifm-heading-color);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+/* Tablet: 2 columns, last item spans full width if odd number of items */
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* If there are exactly 3 items, make the last one span both columns */
+  .gridItem:nth-child(3):last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Desktop: 3 columns */
+@media (min-width: 996px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .gridItem:nth-child(3):last-child {
+    grid-column: auto;
+  }
+}
