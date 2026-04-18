@@ -5,9 +5,11 @@ import Heading from '@theme/Heading';
 export default function AIVision() {
   return (
     <section className={styles.container}>
+      <div className="section-header">
+        <span className="section-label">AI Vision</span>
+      </div>
       <div className={styles.layoutGrid}>
         <div className={styles.mainBlock}>
-          <div className={styles.eyebrow}>AI Vision</div>
           <Heading as="h2" className={styles.title}>
             The Next Generation of Platform Engineering
           </Heading>

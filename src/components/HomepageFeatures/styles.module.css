@@ -1,16 +1,7 @@
 .expertiseSection {
-  padding: 6rem 0;
+  padding: 6rem 0 3rem;
 }
 
-.eyebrow {
-  font-family: var(--ifm-font-family-monospace);
-  font-variant: small-caps;
-  font-size: 0.75rem;
-  color: var(--ink-soft);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 1.5rem;
-}
 
 .expertiseLedger {
   display: flex;

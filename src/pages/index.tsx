@@ -1,4 +1,4 @@
-import type {ReactNode} from 'react';
+import type { ReactNode } from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -19,7 +19,6 @@ function HeroSection() {
     <section className={clsx(styles.hero, 'container')}>
       <div className={styles.heroGrid}>
         <div className={styles.heroLeft}>
-          <div className={styles.eyebrow}>EXECUTIVE COMMAND</div>
           <Heading as="h1" className={styles.heroName}>
             Juan Felipe<br />Gómez Manzanares
           </Heading>
@@ -48,37 +47,35 @@ function HeroSection() {
 function AboutSection() {
   return (
     <section className={clsx(styles.about, 'container')}>
-      <div className={styles.aboutGrid}>
-        <div className={styles.eyebrow}>ABOUT</div>
-        <div className={styles.aboutContent}>
-          <div className={styles.proseSection}>
-            <p>
-              Hello! I am a <strong>Software Infrastructure Engineer</strong> with over{' '}
-              <strong>10 years of experience</strong> driving the lifecycle of Compute and
-              Network infrastructure, from on-premise data centers to massive-scale cloud
-              environments.
-            </p>
-            <p>
-              Currently operating as a Staff Software Engineer at Twilio, I lead the design,
-              implementation, and scaling of mission-critical cloud architectures. I focus on
-              designing resilient, high-traffic architectures with an emphasis on{' '}
-              <strong>reliability engineering</strong>, <strong>operational excellence</strong>,
-              and <strong>strategic infrastructure leadership</strong>. My expertise lies in{' '}
-              <strong>API Gateways</strong> (Kong), <strong>Service Mesh</strong> (Istio,
-              Envoy), <strong>Kubernetes</strong> (EKS), and <strong>AWS</strong>.
-            </p>
-          </div>
-          <div className={styles.aboutQuote}>
-            "My work sits at the intersection of high availability, automated performance, and platform modernization."
-          </div>
-          <div className={styles.proseSection}>
-            <p>
-              I am deeply passionate about maximizing product resilience and am actively exploring the{' '}
-              <strong>integration of AI</strong> into cloud infrastructure processes
-              — specifically by developing custom <strong>Claude skills and plugins</strong>
-              — to drive the next generation of platform engineering.
-            </p>
-          </div>
+      <div className="section-header">
+        <span className="section-label">About</span>
+      </div>
+      <div className={styles.aboutContent}>
+        <div className={styles.proseSection}>
+          <p>
+            Hello! I am a <strong>Software Infrastructure Engineer</strong> with over{' '}
+            <strong>10 years of experience</strong> driving the lifecycle of Compute and
+            Network infrastructure, from on-premise data centers to massive-scale cloud
+            environments.
+          </p>
+          <p>
+            Currently operating as a Staff Software Engineer at Twilio, I lead the design,
+            implementation, and scaling of mission-critical cloud architectures. I focus on
+            designing resilient, high-traffic architectures with an emphasis on{' '}
+            <strong>reliability engineering</strong>, <strong>operational excellence</strong>,
+            and <strong>strategic infrastructure leadership</strong>. My expertise lies in{' '}
+            <strong>API Gateways</strong> (Kong), <strong>Service Mesh</strong> (Istio,
+            Envoy), <strong>Kubernetes</strong> (EKS), and <strong>AWS</strong>.
+          </p>
+          <p>
+            I am deeply passionate about maximizing product resilience and am actively exploring the{' '}
+            <strong>integration of AI</strong> into cloud infrastructure processes
+            — specifically by developing custom <strong>Claude skills and plugins</strong>
+            — to drive the next generation of platform engineering.
+          </p>
+        </div>
+        <div className={styles.aboutQuote}>
+          "My work sits at the intersection of high availability, automated performance, and platform modernization."
         </div>
       </div>
     </section>
@@ -88,16 +85,15 @@ function AboutSection() {
 function CtaSection() {
   return (
     <section className={clsx(styles.cta, 'container')}>
-      <div className={styles.ctaGrid}>
-        <div className={styles.eyebrow}>COLOPHON</div>
-        <div className={styles.colophon}>
-          <p>
-            Set in Inter and JetBrains Mono. Built with Docusaurus on a quiet Sunday.
-          </p>
-          <Link className={styles.ctaLink} to="/docs/portfolio/cv">
-            View My Full CV / Resume →
-          </Link>
-        </div>
+      <div className={styles.ctaInner}>
+        <span className={styles.ctaEyebrow}>Ready to connect?</span>
+        <p className={styles.ctaHeading}>
+          Let's build something resilient.
+        </p>
+        <Link className={styles.ctaButton} to="/docs/portfolio/cv">
+          <span>View Full CV / Resume</span>
+          <span className={styles.ctaArrow} aria-hidden="true">→</span>
+        </Link>
       </div>
     </section>
   );

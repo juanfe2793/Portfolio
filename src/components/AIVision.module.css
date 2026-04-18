@@ -12,15 +12,7 @@
 .mainBlock {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-}
-
-.eyebrow {
-  font-family: var(--ifm-font-family-monospace);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  letter-spacing: 0.1em;
+  gap: 1.25rem;
 }
 
 .title {

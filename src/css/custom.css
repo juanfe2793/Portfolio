@@ -5,20 +5,20 @@
 
 :root {
   /* Typography Tokens */
-  --ifm-font-family-base: 'Inter', system-ui, -apple-system, sans-serif;
-  --ifm-heading-font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  --ifm-font-family-base: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --ifm-heading-font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --ifm-font-family-monospace: 'JetBrains Mono', monospace;
   --ifm-code-font-size: 90%;
 
   /* Light Palette (Maintained for accessibility, but not default) */
-  --paper: #FAF7F0;
-  --paper-deep: #F2EDE0;
+  --paper: #F9FAFB;
+  --paper-deep: #F0F2F5;
   --ink: #141414;
-  --ink-soft: #4A4A48;
-  --rule: #1F1F1F1A;
-  --accent: #B43A0B;
-  --accent-soft: #FCE7D6;
-  --accent-deep: #7C2D12;
+  --ink-soft: #4A4A58;
+  --rule: #1F1F2E1A;
+  --accent: #4338CA;
+  --accent-soft: rgba(67, 56, 202, 0.08);
+  --accent-deep: #3730A3;
 
   /* Infima Variable Mapping */
   --ifm-background-color: var(--paper);
@@ -54,9 +54,9 @@
   --ink: #FFFFFF;            /* Pure White */
   --ink-soft: #A1A1AA;       /* Muted Silver */
   --rule: rgba(255, 255, 255, 0.1);
-  --accent: #00D1FF;         /* Electric Blue */
-  --accent-soft: rgba(0, 209, 255, 0.1);
-  --accent-deep: #00A3C7;
+  --accent: #60A5FA;         /* Soft Sky Blue */
+  --accent-soft: rgba(96, 165, 250, 0.1);
+  --accent-deep: #3B82F6;
 
   /* Infima Variable Mapping Overrides */
   --ifm-background-color: var(--paper);
@@ -79,6 +79,43 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--ifm-heading-font-family);
   color: var(--ink);
   font-weight: 600;
+}
+
+/* ── Shared Section Header ─────────────────────────────────── */
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.section-header::before {
+  content: '';
+  display: block;
+  width: 4px;
+  height: 2rem;
+  background: var(--accent);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.section-label {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 1.5rem;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  line-height: 1;
+}
+
+@media screen and (max-width: 720px) {
+  .section-label {
+    font-size: 1.15rem;
+  }
 }
 
 /* Editorial Motifs */
@@ -279,6 +316,20 @@ time[itemProp="datePublished"] {
   letter-spacing: 0.1em;
   color: var(--ink-soft);
   margin-bottom: 1rem;
+}
+
+/* ── Footer Social Links ───────────────────────────────────── */
+
+.footer-social-link {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 150ms ease-out;
+}
+
+.footer-social-link svg {
+  flex-shrink: 0;
+  opacity: 0.8;
 }
 
 /* ── Guides / Playbook ─────────────────────────────────────── */

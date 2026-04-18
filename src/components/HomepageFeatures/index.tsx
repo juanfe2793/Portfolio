@@ -50,7 +50,9 @@ function Expertise({title, description, index}: ExpertiseItem & { index: number 
 export default function HomepageFeatures(): ReactNode {
   return (
     <section className={clsx(styles.expertiseSection, 'container')}>
-      <div className={styles.eyebrow}>§ 03 — DOMAINS</div>
+      <div className="section-header">
+        <span className="section-label">Domains</span>
+      </div>
       <div className={styles.expertiseLedger}>
         {ExpertiseList.map((props, idx) => (
           <Expertise key={idx} {...props} index={idx} />
