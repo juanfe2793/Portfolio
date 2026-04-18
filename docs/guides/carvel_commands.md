@@ -15,7 +15,7 @@ curl -s kind-registry.local:5000/v2/internal/cluster-issuer/tags/list | jq .
 
 export IMGPKG_ENABLE_IAAS_AUTH=false
 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 12345678910.dkr.ecr.us-east-1.amazonaws.com
-imgpkg push -f bundle -b --registry 433117149852.dkr.ecr.us-east-1.amazonaws.com
+imgpkg push -f bundle -b --registry 123456789012.dkr.ecr.us-east-1.amazonaws.com
 
 # Pulling from ECR
 
