@@ -18,7 +18,7 @@ export const projects: Project[] = [
   },
   {
     title: 'Twilio-wide DNS Modernization',
-    summary: 'Architected and implemented a centralized DNS boundary for the One Twilio Kubernetes platform.',
+    summary: 'Architected and implemented a centralized DNS boundary for Twilio\'s unified Kubernetes platform.',
     description: 'This agnostic architecture supports multi-cluster/multi-region deployments and simplifies service discovery.',
     metrics: ['100+ Hosted Zones', '80% Less Ops Burnout', 'Multi-Region Support'],
     tags: ['DNS', 'Kubernetes', 'Multi-Region'],
