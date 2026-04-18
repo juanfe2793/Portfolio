@@ -8,10 +8,9 @@ import styles from './styles.module.css';
 export default function FeaturedProjects() {
   return (
     <section className={clsx(styles.featuredProjects, 'container')}>
-      <div className={styles.eyebrow}>FEATURED PROJECTS</div>
-      <Heading as="h2" className={styles.sectionTitle}>
-        Architecture & Infrastructure
-      </Heading>
+      <div className="section-header">
+        <span className="section-label">Featured Projects</span>
+      </div>
       <div className={styles.grid}>
         {projects.map((project, idx) => (
           <div key={idx} className={styles.gridItem}>
