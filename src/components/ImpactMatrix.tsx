@@ -1,6 +1,7 @@
 import React from 'react';
 import CountUp from 'react-countup';
 import { useInView } from 'react-intersection-observer';
+import useIsBrowser from '@docusaurus/useIsBrowser';
 import styles from './ImpactMatrix.module.css';
 
 type MetricItem = {
@@ -47,6 +48,7 @@ const metrics: MetricItem[] = [
 ];
 
 export default function ImpactMatrix() {
+  const isBrowser = useIsBrowser();
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -59,7 +61,7 @@ export default function ImpactMatrix() {
           <div key={idx} className={styles.glassPanel}>
             <span className={styles.label}>{metric.label}</span>
             <div className={styles.value}>
-              {inView ? (
+              {isBrowser && inView ? (
                 <CountUp
                   start={0}
                   end={metric.value}
@@ -70,7 +72,7 @@ export default function ImpactMatrix() {
                   separator=","
                 />
               ) : (
-                `${metric.prefix || ''}0${metric.suffix || ''}`
+                `${metric.prefix || ''}${metric.value}${metric.suffix || ''}`
               )}
             </div>
             <p className={styles.description}>{metric.description}</p>
