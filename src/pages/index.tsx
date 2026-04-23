@@ -87,13 +87,18 @@ function CtaSection() {
     <section className={clsx(styles.cta, 'container')}>
       <div className={styles.ctaInner}>
         <span className={styles.ctaEyebrow}>Ready to connect?</span>
-        <p className={styles.ctaHeading}>
+        <h2 className={styles.ctaHeading}>
           Let's build something resilient.
+        </h2>
+        <p className={styles.ctaContext}>
+          Currently at Twilio · Open to senior platform advisory roles
         </p>
-        <Link className={styles.ctaButton} to="/docs/portfolio/cv">
-          <span>View Full CV / Resume</span>
-          <span className={styles.ctaArrow} aria-hidden="true">→</span>
-        </Link>
+        <a href="mailto:juanfe.2793@gmail.com" className={styles.ctaEmail}>
+          juanfe.2793@gmail.com
+        </a>
+        <div className={styles.ctaSocial}>
+          <SocialLinks />
+        </div>
       </div>
     </section>
   );
