@@ -7,7 +7,8 @@
   /* Typography Tokens */
   --font-display: 'Space Grotesk', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --font-mono: 'DM Mono', 'JetBrains Mono', monospace;
-  --ifm-font-family-base: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --ifm-font-family-base: var(--font-body);
   --ifm-heading-font-family: var(--font-display);
   --ifm-font-family-monospace: var(--font-mono);
   --ifm-code-font-size: 90%;
@@ -361,7 +362,7 @@ time[itemProp="datePublished"] {
     linear-gradient(90deg, rgba(96, 165, 250, 0.025) 1px, transparent 1px);
   background-size: 60px 60px;
   pointer-events: none;
-  z-index: 0;
+  z-index: -1;
 }
 
 /* ── Scroll Progress Bar ───────────────────────────────────── */
@@ -386,4 +387,20 @@ time[itemProp="datePublished"] {
     from { transform: scaleX(0); }
     to   { transform: scaleX(1); }
   }
+}
+
+/* JS-driven fallback for browsers without animation-timeline support */
+.navbar {
+  position: relative;
+}
+
+.navbar::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: calc(var(--scroll-progress, 0) * 1%);
+  transition: width 0.1s linear;
 }

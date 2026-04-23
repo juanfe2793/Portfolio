@@ -1,5 +1,4 @@
-import type { ReactNode } from 'react';
-import { useEffect } from 'react';
+import { type ReactNode, useEffect } from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -22,9 +21,9 @@ function HeroSection() {
           <Heading as="h1" className={styles.heroName}>
             Building Platform Infrastructure<br />at Organizational Scale
           </Heading>
-          <div className={styles.heroSubtitle}>Juan Felipe Gómez · Staff Platform Engineer at Twilio</div>
+          <div className={styles.heroSubtitle}>Principal Platform Engineer · Cloud & AI Infrastructure</div>
           <p className={styles.heroTagline}>
-            Principal platform engineer focused on reliability, toil elimination, and AI-native infrastructure — designing systems that run at 3M+ RPS with five-nines availability.
+            I build platform infrastructure at organizational scale — reliability engineering, toil elimination, and AI-native systems. 10+ years. 3M+ RPS.
           </p>
           <div className={styles.heroActions}>
             <Link className={styles.heroCta} to="/docs/case-studies">
@@ -149,10 +148,20 @@ export default function Home(): ReactNode {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const updateScrollProgress = () => {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const scrolled = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+      document.documentElement.style.setProperty('--scroll-progress', String(scrolled));
+    };
+    window.addEventListener('scroll', updateScrollProgress, { passive: true });
+    return () => window.removeEventListener('scroll', updateScrollProgress);
+  }, []);
+
   return (
     <Layout
       title="Home"
-      description="Personal portfolio and technical blog of Juan Felipe Gómez Manzanares — Staff Software Engineer at Twilio">
+      description="Personal portfolio and technical blog of Juan Felipe Gómez Manzanares — Principal Platform Engineer designing resilient systems at organizational scale.">
       <HeroSection />
       <main>
         <div className={clsx('container', styles.fadeUp)}><ImpactMatrix /></div>

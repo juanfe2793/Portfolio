@@ -6,7 +6,7 @@ export type Project = {
   metrics: string[];
   tags: string[];
   link: string;
-  diagram: { nodes: string[]; }
+  diagram: { nodes: string[]; label: string };
 };
 
 export const projects: Project[] = [
@@ -18,7 +18,7 @@ export const projects: Project[] = [
     metrics: ['3M+ RPS', '99.999% Availability', 'Minutes to Onboard'],
     tags: ['Kong', 'Terraform', 'AWS EKS'],
     link: '/docs/case-studies/api-gateway',
-    diagram: { nodes: ['Client', 'Kong Gateway', 'Auth', 'Services'] },
+    diagram: { nodes: ['Client', 'Kong GW', 'Auth', 'Services'], label: 'API Gateway Architecture' },
   },
   {
     title: 'Twilio-wide DNS Modernization',
@@ -28,7 +28,7 @@ export const projects: Project[] = [
     metrics: ['100+ Hosted Zones', '80% Toil Eliminated', 'Multi-Region'],
     tags: ['Route53', 'ExternalDNS', 'Terraform'],
     link: '/docs/case-studies/dns-modernization',
-    diagram: { nodes: ['K8s Service', 'ExternalDNS', 'Route53', 'Clients'] },
+    diagram: { nodes: ['Cluster A', 'DNS Boundary', 'Cluster B', 'Route53'], label: 'DNS Architecture' },
   },
   {
     title: 'Automated Observability & Load Testing',
@@ -38,6 +38,6 @@ export const projects: Project[] = [
     metrics: ['OTel Standardized', 'k6 in CI/CD', 'Proactive Perf Eng'],
     tags: ['OpenTelemetry', 'k6', 'Grafana'],
     link: '/docs/case-studies/observability-load-testing',
-    diagram: { nodes: ['Services', 'OTel Collector', 'k6 Tests', 'Grafana'] },
+    diagram: { nodes: ['Services', 'OTel Collector', 'Prometheus', 'Grafana'], label: 'Observability Stack' },
   },
 ];

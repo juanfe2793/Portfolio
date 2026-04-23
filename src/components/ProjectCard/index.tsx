@@ -4,15 +4,18 @@ import SkillBadge from '@site/src/components/SkillBadge';
 import type { Project } from '@site/src/data/projects';
 import styles from './styles.module.css';
 
-function SystemDiagram({ nodes }: { nodes: string[] }) {
+function SystemDiagram({ nodes, label }: { nodes: string[]; label: string }) {
   return (
-    <div className={styles.diagram}>
-      {nodes.map((node, i) => (
-        <React.Fragment key={node}>
-          <span className={styles.diagNode}>{node}</span>
-          {i < nodes.length - 1 && <span className={styles.diagArrow} aria-hidden="true">→</span>}
-        </React.Fragment>
-      ))}
+    <div className={styles.diagram} aria-label={label}>
+      <div className={styles.diagramFlow}>
+        {nodes.map((node, i) => (
+          <React.Fragment key={node}>
+            <span className={styles.diagNode}>{node}</span>
+            {i < nodes.length - 1 && <span className={styles.diagArrow} aria-hidden="true">→</span>}
+          </React.Fragment>
+        ))}
+      </div>
+      <span className={styles.diagramLabel}>{label}</span>
     </div>
   );
 }
@@ -20,7 +23,7 @@ function SystemDiagram({ nodes }: { nodes: string[] }) {
 export default function ProjectCard({ project }: { project: Project }) {
   return (
     <div className={styles.card}>
-      <SystemDiagram nodes={project.diagram.nodes} />
+      <SystemDiagram nodes={project.diagram.nodes} label={project.diagram.label} />
 
       <div className={styles.cardContent}>
         <h3 className={styles.title}>{project.title}</h3>
