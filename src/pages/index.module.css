@@ -57,13 +57,9 @@
   margin-top: 2rem;
 }
 
-.heroCta {
-  font-family: var(--ifm-font-family-monospace);
-  color: var(--ink);
-  text-decoration: none;
-  font-weight: 600;
-  border-bottom: 1px solid var(--accent);
-  padding-bottom: 2px;
+
+.ctaSecondary {
+  font-size: 0.875rem;
 }
 
 .socialRow {
@@ -208,6 +204,79 @@
 
 .ctaButton:hover .ctaArrow {
   transform: translateX(5px);
+}
+
+.ctaContext {
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+  margin: 0.5rem 0 1.5rem;
+  letter-spacing: 0.02em;
+}
+
+.ctaEmail {
+  display: inline-block;
+  font-family: var(--font-mono, 'DM Mono', monospace);
+  font-size: 1.1rem;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 2px;
+  margin-bottom: 2rem;
+  transition: opacity 0.2s ease;
+}
+
+.ctaEmail:hover {
+  opacity: 0.75;
+}
+
+.ctaSocial {
+  display: flex;
+  justify-content: center;
+}
+
+/* Engineering Principles */
+.principles {
+  padding: 4rem 0;
+}
+
+.principlesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .principlesGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.principleCard {
+  border-left: 3px solid var(--accent);
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+[data-theme='light'] .principleCard {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.principleTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0;
+}
+
+.principleBody {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  margin: 0;
 }
 
 /* Responsive */

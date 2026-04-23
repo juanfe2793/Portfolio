@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { type ReactNode, useEffect } from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -70,34 +70,103 @@ function AboutSection() {
   );
 }
 
+const principles = [
+  { title: 'Design for Toil Elimination', body: 'If an engineer is doing it twice, automate it. Toil is the enemy of scale.' },
+  { title: 'Every Metric is a Business Outcome', body: 'Reliability, latency, and throughput are not SRE metrics — they are revenue metrics.' },
+  { title: 'Reliability is a Product Feature', body: 'Uptime is not an infrastructure concern. It is a product promise to every customer.' },
+  { title: 'Systems Eat Heroics', body: 'The goal is an on-call rotation where nobody gets paged, not one where heroes save the day.' },
+  { title: 'Platform Teams Ship Products', body: 'Internal developer platforms deserve the same product rigor as customer-facing ones.' },
+];
+
+function PrinciplesSection() {
+  return (
+    <section className={clsx(styles.principles, 'container')}>
+      <div className="section-header">
+        <span className="section-label">Engineering Principles</span>
+      </div>
+      <div className={styles.principlesGrid}>
+        {principles.map((p) => (
+          <div key={p.title} className={styles.principleCard}>
+            <h3 className={styles.principleTitle}>{p.title}</h3>
+            <p className={styles.principleBody}>{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function CtaSection() {
   return (
     <section className={clsx(styles.cta, 'container')}>
       <div className={styles.ctaInner}>
         <span className={styles.ctaEyebrow}>Ready to connect?</span>
-        <p className={styles.ctaHeading}>
+        <h2 className={styles.ctaHeading}>
           Let's build something resilient.
+        </h2>
+        <p className={styles.ctaContext}>
+          Currently at Twilio · Open to senior platform advisory roles
         </p>
-        <Link className={styles.ctaButton} to="/docs/portfolio/cv">
-          <span>View Full CV / Resume</span>
-          <span className={styles.ctaArrow} aria-hidden="true">→</span>
-        </Link>
+        <a href="mailto:juanfe.2793@gmail.com" className={styles.ctaEmail}>
+          juanfe.2793@gmail.com
+        </a>
+        <div className={styles.ctaSocial}>
+          <SocialLinks />
+        </div>
       </div>
     </section>
   );
 }
 
 export default function Home(): ReactNode {
+  useEffect(() => {
+    const elements = document.querySelectorAll<HTMLElement>('[data-animate="fadeUp"]');
+    elements.forEach((el) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            const el = e.target as HTMLElement;
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+            observer.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const updateScrollProgress = () => {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const scrolled = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+      document.documentElement.style.setProperty('--scroll-progress', String(scrolled));
+    };
+
+    window.addEventListener('scroll', updateScrollProgress, { passive: true });
+    return () => window.removeEventListener('scroll', updateScrollProgress);
+  }, []);
+
   return (
     <Layout
       title="Home"
       description="Personal portfolio and technical blog of Juan Felipe Gómez Manzanares — Principal Platform Engineer designing resilient systems at organizational scale.">
       <HeroSection />
       <main>
-        <div className="container"><ImpactMatrix /></div>
-        <AboutSection />
-        <div className="container"><AIVision /></div>
-        <FeaturedProjects />
+        <div className="container" data-animate="fadeUp"><ImpactMatrix /></div>
+        <div data-animate="fadeUp"><AboutSection /></div>
+        <div data-animate="fadeUp"><PrinciplesSection /></div>
+        <AIVision />
+        <div data-animate="fadeUp"><FeaturedProjects /></div>
         <HomepageFeatures />
         <CtaSection />
       </main>

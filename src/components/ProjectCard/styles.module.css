@@ -19,14 +19,53 @@
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
 }
 
-.imagePlaceholder {
-  width: 100%;
-  height: 160px;
-  background-color: var(--ifm-color-emphasis-100);
-  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+.diagramWrapper {
+  height: 120px;
+  background: var(--paper-deep);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem;
+}
+
+[data-theme='light'] .diagramWrapper {
+  background: var(--paper-deep);
+}
+
+.diagramFlow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.diagNode {
+  font-family: var(--font-mono, 'DM Mono', monospace);
+  font-size: 0.7rem;
+  color: var(--ink);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  padding: 0.2rem 0.5rem;
+  white-space: nowrap;
+}
+
+.diagArrow {
+  color: var(--accent);
+  font-size: 0.75rem;
+}
+
+.diagramLabel {
+  font-family: var(--font-mono, 'DM Mono', monospace);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
 }
 
 .cardContent {

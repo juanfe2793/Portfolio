@@ -356,3 +356,19 @@ time[itemProp="datePublished"] {
   pointer-events: none;
   z-index: -1;
 }
+
+/* ── Scroll Progress Bar ── */
+.navbar {
+  position: relative;
+}
+
+.navbar::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: calc(var(--scroll-progress, 0) * 1%);
+  transition: width 0.1s linear;
+}

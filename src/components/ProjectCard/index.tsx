@@ -7,28 +7,18 @@ import styles from './styles.module.css';
 export default function ProjectCard({ project }: { project: Project }) {
   return (
     <div className={styles.card}>
-      <div className={styles.imagePlaceholder}>
-        <svg
-          width="100%"
-          height="160"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="xMidYMid slice"
-          focusable="false"
-          role="img"
-          aria-label="Architecture Placeholder"
-        >
-          <rect width="100%" height="100%" fill="var(--ifm-color-emphasis-200)" />
-          <text
-            x="50%"
-            y="50%"
-            fill="var(--ifm-color-emphasis-600)"
-            dy=".3em"
-            textAnchor="middle"
-            fontFamily="monospace"
-          >
-            Architecture Diagram
-          </text>
-        </svg>
+      <div className={styles.diagramWrapper} aria-label={project.diagram.label}>
+        <div className={styles.diagramFlow}>
+          {project.diagram.nodes.map((node, i) => (
+            <React.Fragment key={node}>
+              <span className={styles.diagNode}>{node}</span>
+              {i < project.diagram.nodes.length - 1 && (
+                <span className={styles.diagArrow} aria-hidden="true">→</span>
+              )}
+            </React.Fragment>
+          ))}
+        </div>
+        <span className={styles.diagramLabel}>{project.diagram.label}</span>
       </div>
 
       <div className={styles.cardContent}>
