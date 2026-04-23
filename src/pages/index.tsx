@@ -22,13 +22,16 @@ function HeroSection() {
           <Heading as="h1" className={styles.heroName}>
             Juan Felipe<br />Gómez Manzanares
           </Heading>
-          <div className={styles.heroSubtitle}>Staff Software Engineer · Cloud Architecture</div>
+          <div className={styles.heroSubtitle}>Principal Platform Engineer · Cloud & AI Infrastructure</div>
           <p className={styles.heroTagline}>
-            Driving organizational impact through high-scale, resilient cloud infrastructure and AI-driven platform engineering.
+            I build platform infrastructure at organizational scale — reliability engineering, toil elimination, and AI-native systems. 10+ years. 3M+ RPS.
           </p>
           <div className={styles.heroActions}>
-            <Link className={styles.heroCta} to="/docs/portfolio/cv">
-              [ View Strategic CV → ]
+            <Link className={clsx('button button--primary button--lg')} to="/docs/case-studies">
+              View Case Studies →
+            </Link>
+            <Link className={clsx('button button--outline button--lg', styles.ctaSecondary)} to="/docs/portfolio/cv">
+              Read CV
             </Link>
             <SocialLinks />
           </div>
@@ -53,25 +56,10 @@ function AboutSection() {
       <div className={styles.aboutContent}>
         <div className={styles.proseSection}>
           <p>
-            Hello! I am a <strong>Software Infrastructure Engineer</strong> with over{' '}
-            <strong>10 years of experience</strong> driving the lifecycle of Compute and
-            Network infrastructure, from on-premise data centers to massive-scale cloud
-            environments.
-          </p>
-          <p>
-            Currently operating as a Staff Software Engineer at Twilio, I lead the design,
-            implementation, and scaling of mission-critical cloud architectures. I focus on
-            designing resilient, high-traffic architectures with an emphasis on{' '}
-            <strong>reliability engineering</strong>, <strong>operational excellence</strong>,
-            and <strong>strategic infrastructure leadership</strong>. My expertise lies in{' '}
-            <strong>API Gateways</strong> (Kong), <strong>Service Mesh</strong> (Istio,
-            Envoy), <strong>Kubernetes</strong> (EKS), and <strong>AWS</strong>.
-          </p>
-          <p>
-            I am deeply passionate about maximizing product resilience and am actively exploring the{' '}
-            <strong>integration of AI</strong> into cloud infrastructure processes
-            — specifically by developing custom <strong>Claude skills and plugins</strong>
-            — to drive the next generation of platform engineering.
+            I design platform infrastructure that makes reliability a product feature, not an afterthought.
+            At Twilio, that meant scaling an API gateway to 3M RPS, eliminating entire on-call rotations through automation,
+            and building the DNS backbone for 100+ enterprise customers.
+            Now I'm applying that same systems thinking to AI-native infrastructure.
           </p>
         </div>
         <div className={styles.aboutQuote}>
@@ -103,7 +91,7 @@ export default function Home(): ReactNode {
   return (
     <Layout
       title="Home"
-      description="Personal portfolio and technical blog of Juan Felipe Gómez Manzanares — Staff Software Engineer at Twilio">
+      description="Personal portfolio and technical blog of Juan Felipe Gómez Manzanares — Principal Platform Engineer designing resilient systems at organizational scale.">
       <HeroSection />
       <main>
         <div className="container"><ImpactMatrix /></div>
