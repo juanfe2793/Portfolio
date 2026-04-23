@@ -4,43 +4,45 @@ import SkillBadge from '@site/src/components/SkillBadge';
 import type { Project } from '@site/src/data/projects';
 import styles from './styles.module.css';
 
+function SystemDiagram({ nodes }: { nodes: string[] }) {
+  return (
+    <div className={styles.diagram}>
+      {nodes.map((node, i) => (
+        <React.Fragment key={node}>
+          <span className={styles.diagNode}>{node}</span>
+          {i < nodes.length - 1 && <span className={styles.diagArrow} aria-hidden="true">→</span>}
+        </React.Fragment>
+      ))}
+    </div>
+  );
+}
+
 export default function ProjectCard({ project }: { project: Project }) {
   return (
     <div className={styles.card}>
-      <div className={styles.imagePlaceholder}>
-        <svg
-          width="100%"
-          height="160"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="xMidYMid slice"
-          focusable="false"
-          role="img"
-          aria-label="Architecture Placeholder"
-        >
-          <rect width="100%" height="100%" fill="var(--ifm-color-emphasis-200)" />
-          <text
-            x="50%"
-            y="50%"
-            fill="var(--ifm-color-emphasis-600)"
-            dy=".3em"
-            textAnchor="middle"
-            fontFamily="monospace"
-          >
-            Architecture Diagram
-          </text>
-        </svg>
-      </div>
+      <SystemDiagram nodes={project.diagram.nodes} />
 
       <div className={styles.cardContent}>
         <h3 className={styles.title}>{project.title}</h3>
-        <p className={styles.summary}>{project.summary}</p>
+
+        <dl className={styles.psi}>
+          <div className={styles.psiRow}>
+            <dt className={styles.psiLabel}>Problem</dt>
+            <dd className={styles.psiText}>{project.problem}</dd>
+          </div>
+          <div className={styles.psiRow}>
+            <dt className={styles.psiLabel}>Decision</dt>
+            <dd className={styles.psiText}>{project.decision}</dd>
+          </div>
+          <div className={styles.psiRow}>
+            <dt className={styles.psiLabel}>Impact</dt>
+            <dd className={styles.psiText}>{project.impact}</dd>
+          </div>
+        </dl>
 
         <div className={styles.metrics}>
-          {project.metrics.map((metric, idx) => (
-            <div key={idx} className={styles.metricItem}>
-              <span className={styles.metricIcon}>⚡</span>
-              <span className={styles.metricText}>{metric}</span>
-            </div>
+          {project.metrics.map((metric) => (
+            <span key={metric} className={styles.metricItem}>{metric}</span>
           ))}
         </div>
 
