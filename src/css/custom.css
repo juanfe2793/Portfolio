@@ -5,10 +5,13 @@
 
 :root {
   /* Typography Tokens */
-  --ifm-font-family-base: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --ifm-heading-font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --ifm-font-family-monospace: 'JetBrains Mono', monospace;
+  --ifm-font-family-base: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --ifm-heading-font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --ifm-font-family-monospace: 'DM Mono', monospace;
   --ifm-code-font-size: 90%;
+  --font-display: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --font-body: var(--ifm-font-family-base);
 
   /* Light Palette (Maintained for accessibility, but not default) */
   --paper: #F9FAFB;
@@ -339,4 +342,17 @@ time[itemProp="datePublished"] {
   border-bottom: 1px solid var(--rule);
   padding-bottom: 0.75rem;
   margin-bottom: 1.5rem;
+}
+
+/* ── Background Grid Texture (dark mode only) ── */
+[data-theme='dark'] body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(96, 165, 250, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(96, 165, 250, 0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: -1;
 }
