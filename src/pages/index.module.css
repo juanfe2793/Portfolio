@@ -1,5 +1,5 @@
 .hero {
-  padding: 8rem 0 6rem;
+  padding: 5rem 0 3.5rem;
   position: relative;
   z-index: 1;
 }
@@ -68,9 +68,30 @@
   display: flex;
   align-items: center;
   gap: 2rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
+
+.ctaSecondary {
+  font-size: 0.875rem;
+}
+
+.heroCtaSecondary {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 2px;
+  transition: color 0.2s ease;
+}
+
+.heroCta:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
 
 .ctaSecondary {
   font-size: 0.875rem;
@@ -132,10 +153,27 @@
 }
 
 .avatarFigure figcaption {
-  font-family: var(--ifm-font-family-monospace);
-  font-size: 0.75rem;
   margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  text-align: center;
+}
+
+.avatarName {
+  font-family: var(--ifm-heading-font-family);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  display: block;
+}
+
+.avatarCaption {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.7rem;
   color: var(--ink-soft);
+  display: block;
 }
 
 .marginalia {
@@ -144,7 +182,7 @@
 
 /* About Section */
 .about {
-  padding: 6rem 0;
+  padding: 3.5rem 0;
 }
 
 
@@ -270,7 +308,7 @@
 
 /* Principles Section */
 .principles {
-  padding: 6rem 0;
+  padding: 3.5rem 0;
   border-top: 1px solid var(--rule);
 }
 
@@ -337,7 +375,7 @@
 /* Responsive */
 @media screen and (max-width: 720px) {
   .hero {
-    padding: 4rem 0 3rem;
+    padding: 3rem 0 2.5rem;
   }
   .heroGrid {
     grid-template-columns: 1fr;
