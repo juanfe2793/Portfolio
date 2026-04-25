@@ -46,6 +46,22 @@
   border-color: var(--accent);
 }
 
+.glassPanelLink {
+  cursor: pointer;
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+.glassPanelLink:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  text-decoration: none !important;
+}
+
+.glassPanelLink:hover .value {
+  color: var(--accent);
+}
+
 .label {
   font-family: var(--ifm-font-family-monospace);
   font-size: 0.75rem;
@@ -55,7 +71,7 @@
 }
 
 .value {
-  font-size: 2.5rem;
+  font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 700;
   color: var(--accent);
   margin: 0.5rem 0;

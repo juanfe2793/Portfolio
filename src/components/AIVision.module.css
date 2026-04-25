@@ -1,12 +1,17 @@
 .container {
-  padding: 4rem 0;
-  width: 100%;
+  padding: 5rem 0;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background: var(--paper-deep);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
 }
 
 .layoutGrid {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
-  gap: 2rem;
+  gap: 3rem;
+  align-items: start;
 }
 
 .mainBlock {
@@ -16,17 +21,18 @@
 }
 
 .title {
-  font-size: 2.5rem;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
   line-height: 1.1;
   margin: 0;
   color: var(--ink);
 }
 
 .text {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   color: var(--ink-soft);
   max-width: 60ch;
-  line-height: 1.6;
+  line-height: 1.7;
+  margin: 0;
 }
 
 .sideBlocks {
@@ -36,13 +42,16 @@
 }
 
 .glassPanel {
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 1.5rem;
-  transition: border-color 0.3s ease;
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  transition: border-color 0.2s ease;
+}
+
+[data-theme='light'] .glassPanel {
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .glassPanel:hover {
@@ -51,16 +60,16 @@
 
 .label {
   font-family: var(--ifm-font-family-monospace);
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   text-transform: uppercase;
   color: var(--ink-soft);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 .content {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--ink);
 }
@@ -68,5 +77,6 @@
 @media screen and (max-width: 720px) {
   .layoutGrid {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
 }

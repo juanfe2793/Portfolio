@@ -5,9 +5,12 @@
 
 :root {
   /* Typography Tokens */
-  --ifm-font-family-base: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --ifm-heading-font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --ifm-font-family-monospace: 'JetBrains Mono', monospace;
+  --font-display: 'Space Grotesk', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'DM Mono', 'JetBrains Mono', monospace;
+  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --ifm-font-family-base: var(--font-body);
+  --ifm-heading-font-family: var(--font-display);
+  --ifm-font-family-monospace: var(--font-mono);
   --ifm-code-font-size: 90%;
 
   /* Light Palette (Maintained for accessibility, but not default) */
@@ -75,7 +78,14 @@ body {
   line-height: 1.6;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+h4, h5, h6 {
   font-family: var(--ifm-heading-font-family);
   color: var(--ink);
   font-weight: 600;
@@ -339,4 +349,58 @@ time[itemProp="datePublished"] {
   border-bottom: 1px solid var(--rule);
   padding-bottom: 0.75rem;
   margin-bottom: 1.5rem;
+}
+
+/* ── Background Grid Texture (dark mode only) ─────────────── */
+
+[data-theme='dark'] body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(96, 165, 250, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(96, 165, 250, 0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ── Scroll Progress Bar ───────────────────────────────────── */
+
+@supports (animation-timeline: scroll()) {
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--accent);
+    z-index: 9999;
+    transform-origin: left;
+    transform: scaleX(0);
+    animation: scroll-progress linear both;
+    animation-timeline: scroll();
+  }
+
+  @keyframes scroll-progress {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+}
+
+/* JS-driven fallback for browsers without animation-timeline support */
+.navbar {
+  position: relative;
+}
+
+.navbar::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: calc(var(--scroll-progress, 0) * 1%);
+  transition: width 0.1s linear;
 }

@@ -1,0 +1,127 @@
+---
+title: "Case Study: [Name]"
+description: "[One sentence description of the problem and outcome]"
+sidebar_label: "0X — [Short Name]"
+sidebar_position: 99
+draft: true
+---
+
+import CaseStudyHeader from '@site/src/components/CaseStudyHeader';
+
+<span className="eyebrow">CASE STUDY — 0X</span>
+
+# [Case Study Title]
+
+<CaseStudyHeader
+  number="0X / 03"
+  role="Staff Software Engineer — Platform Lead"
+  duration="YYYY – YYYY"
+  stack={['Tool A', 'Tool B', 'Tool C']}
+  impact="[One sentence on the business outcome]"
+/>
+
+<p className="cs-lead">
+  [2–3 sentences on the situation and what changed. Write for someone who doesn't know the company.]
+</p>
+
+<div className="cs-metric-grid">
+  <div className="cs-metric">
+    <span className="cs-metric-value">X%</span>
+    <span className="cs-metric-label">Outcome label</span>
+  </div>
+  <div className="cs-metric">
+    <span className="cs-metric-value">Xk+</span>
+    <span className="cs-metric-label">Scale metric</span>
+  </div>
+  <div className="cs-metric">
+    <span className="cs-metric-value">Xms</span>
+    <span className="cs-metric-label">Performance metric</span>
+  </div>
+</div>
+
+---
+
+<span className="cs-section-tag">Context</span>
+
+## The Situation
+
+[What was true before you arrived or before this initiative. What was the organization doing instead?
+Be specific about scale, team size, frequency of pain. Avoid jargon — describe the lived experience.]
+
+---
+
+<span className="cs-section-tag">Architecture</span>
+
+## System Design
+
+```mermaid
+graph LR
+  A["Component A"] --> B["Component B"]
+  B --> C["Component C"]
+  C --> D["Output / Consumer"]
+```
+
+---
+
+<span className="cs-section-tag">The Problem</span>
+
+## What Was Breaking
+
+[Technical + business framing. What was the failure mode? What did it cost — in time, reliability,
+developer experience, or revenue? Quantify wherever possible.]
+
+---
+
+<span className="cs-section-tag">Constraints</span>
+
+## What I Couldn't Do
+
+[What you were NOT allowed to do — budget ceilings, team size, timeline pressure, migration risk,
+political constraints. This section signals maturity. It shows you operated in the real world,
+not a greenfield.]
+
+---
+
+<span className="cs-section-tag">Strategic Solution</span>
+
+## The Decision
+
+[Your architectural choice. What alternatives did you consider? Why did you reject them?
+What made your approach correct for this specific context?]
+
+---
+
+<span className="cs-section-tag">Execution</span>
+
+## Implementation
+
+[Key milestones and phases. Technical decisions made during execution. What surprised you?
+What had to change mid-flight?]
+
+---
+
+<span className="cs-section-tag">Outcomes</span>
+
+## Results
+
+<div className="cs-metric-grid">
+  <div className="cs-metric">
+    <span className="cs-metric-value">X%</span>
+    <span className="cs-metric-label">Primary outcome metric</span>
+  </div>
+  <div className="cs-metric">
+    <span className="cs-metric-value">X</span>
+    <span className="cs-metric-label">Secondary metric</span>
+  </div>
+</div>
+
+[Narrative on results — what changed for teams, customers, or the business? What's different now?]
+
+---
+
+<span className="cs-section-tag">Retrospective</span>
+
+## What I'd Do Differently
+
+[Honest reflection. What would you change? What did you learn that you didn't know at the start?
+This section is often what separates a principal-level portfolio from a senior one.]

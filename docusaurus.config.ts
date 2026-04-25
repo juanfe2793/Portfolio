@@ -12,9 +12,23 @@ const config: Config = {
 
   stylesheets: [
     {
-      href: 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=JetBrains+Mono:wght@400;500&display=swap',
+      href: 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;600;700&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap',
       type: 'text/css',
     },
+  ],
+
+  scripts: [
+    {
+      src: 'https://plausible.io/js/script.js',
+      defer: true,
+      'data-domain': 'juanfe2793.github.io',
+    },
+  ],
+
+  headTags: [
+    { tagName: 'meta', attributes: { name: 'author', content: 'Juan Felipe Gómez Manzanares' } },
+    { tagName: 'meta', attributes: { name: 'twitter:card', content: 'summary_large_image' } },
+    { tagName: 'meta', attributes: { name: 'twitter:creator', content: '@juanfe2793' } },
   ],
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -104,8 +118,17 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
+    metadata: [
+      { name: 'og:title', content: 'Juan Felipe Gómez — Staff Platform Engineer' },
+      { name: 'og:description', content: 'Platform infrastructure at organizational scale. 3M+ RPS, 99.999% availability, AI-native systems.' },
+      { name: 'og:image', content: 'https://juanfe2793.github.io/Portfolio/img/docusaurus-social-card.jpg' },
+      { name: 'og:type', content: 'website' },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: 'Juan Felipe Gómez — Staff Platform Engineer' },
+      { name: 'twitter:description', content: 'Platform infrastructure at organizational scale. 3M+ RPS, 99.999% availability, AI-native systems.' },
+      { name: 'twitter:image', content: 'https://juanfe2793.github.io/Portfolio/img/docusaurus-social-card.jpg' },
+    ],
     colorMode: {
       defaultMode: 'dark',
     },
