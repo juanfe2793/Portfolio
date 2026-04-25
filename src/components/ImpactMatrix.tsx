@@ -1,7 +1,4 @@
 import React from 'react';
-import CountUp from 'react-countup';
-import { useInView } from 'react-intersection-observer';
-import useIsBrowser from '@docusaurus/useIsBrowser';
 import Link from '@docusaurus/Link';
 import styles from './ImpactMatrix.module.css';
 
@@ -55,33 +52,18 @@ const metrics: MetricItem[] = [
 ];
 
 export default function ImpactMatrix() {
-  const isBrowser = useIsBrowser();
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
   return (
-    <div className={styles.matrixContainer} ref={ref}>
+    <div className={styles.matrixContainer}>
       <div className={styles.bentoGrid}>
         {metrics.map((metric, idx) => {
+          const value = metric.decimals
+            ? metric.value.toFixed(metric.decimals)
+            : metric.value;
           const inner = (
             <>
               <span className={styles.label}>{metric.label}</span>
               <div className={styles.value}>
-                {isBrowser && inView ? (
-                  <CountUp
-                    start={0}
-                    end={metric.value}
-                    duration={2.5}
-                    decimals={metric.decimals || 0}
-                    prefix={metric.prefix || ''}
-                    suffix={metric.suffix || ''}
-                    separator=","
-                  />
-                ) : (
-                  `${metric.prefix || ''}${metric.value}${metric.suffix || ''}`
-                )}
+                {metric.prefix || ''}{value}{metric.suffix || ''}
               </div>
               <p className={styles.description}>{metric.description}</p>
             </>

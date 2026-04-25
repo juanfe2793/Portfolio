@@ -19,11 +19,11 @@ function HeroSection() {
       <div className={styles.heroGrid}>
         <div className={styles.heroLeft}>
           <Heading as="h1" className={styles.heroName}>
-            Building Platform Infrastructure<br />at Organizational Scale
+            Building Platform Infrastructure<br />for Global-Scale, High-Throughput Systems
           </Heading>
-          <div className={styles.heroSubtitle}>Principal Platform Engineer · Cloud & AI Infrastructure</div>
+          <div className={styles.heroSubtitle}>Staff Software & Platform Engineer · Cloud & AI Infrastructure</div>
           <p className={styles.heroTagline}>
-            I build platform infrastructure at organizational scale — reliability engineering, toil elimination, and AI-native systems. 10+ years. 3M+ RPS.
+            10+ years experience Engineer, I architect and build platform infrastructure at the intersection of <strong>reliability, security, scalability, AI</strong>.
           </p>
           <div className={styles.heroActions}>
             <Link className={styles.heroCta} to="/docs/case-studies">
@@ -39,8 +39,11 @@ function HeroSection() {
         </div>
         <div className={styles.heroRight}>
           <figure className={styles.avatarFigure}>
-            <img src={avatarSrc} alt="Juan Felipe Gómez" />
-            <figcaption>Executive Profile — 2026</figcaption>
+            <img src={avatarSrc} alt="Juan Felipe Gómez Manzanares" />
+            <figcaption>
+              <span className={styles.avatarName}>Juan Felipe Gómez Manzanares</span>
+              <span className={styles.avatarCaption}>Executive Profile — 2026</span>
+            </figcaption>
           </figure>
         </div>
       </div>
@@ -57,15 +60,14 @@ function AboutSection() {
       <div className={styles.aboutContent}>
         <div className={styles.proseSection}>
           <p>
-            I design platform infrastructure that makes <strong>reliability a product feature</strong>, not an afterthought.
-            At Twilio, that meant scaling an API gateway to 3M+ RPS, eliminating entire on-call rotations through automation,
-            and building the DNS backbone that underpins 100+ enterprise customer environments across multiple regions.
+            I architect and build platforms that make <strong>reliability a product feature</strong>, not an afterthought.
+            At Twilio, that meant scaling an API gateway to 3M+ RPS, reducing on-call toil and burnout, and delivering 99.999% availability.
             Now I'm applying that same systems thinking to <strong>AI-native infrastructure</strong> — turning operational
             runbooks into autonomous agents and making cognitive overhead the next frontier of toil elimination.
           </p>
         </div>
         <div className={styles.aboutQuote}>
-          "The highest-leverage platform work makes every team faster without them knowing you exist."
+          "The highest-leverage platform work makes every team faster and more reliable without them ever knowing you exist."
         </div>
       </div>
     </section>
@@ -75,7 +77,7 @@ function AboutSection() {
 const principles = [
   {
     number: '01',
-    title: 'Reliability is a feature',
+    title: 'Reliability is a MUST',
     body: 'Five-nines SLAs are not aspirations — they are engineering deliverables. Every architectural decision is evaluated against its impact on availability and fault tolerance.',
   },
   {
@@ -125,10 +127,10 @@ function CtaSection() {
           Let's build something resilient.
         </h2>
         <p className={styles.ctaContext}>
-          Currently at Twilio · Open to senior platform advisory roles
+          Currently at Twilio
         </p>
-        <a href="mailto:juanfe.2793@gmail.com" className={styles.ctaEmail}>
-          juanfe.2793@gmail.com
+        <a href="mailto:hello@felipegomez.me" className={styles.ctaEmail}>
+          hello@felipegomez.me
         </a>
         <div className={styles.ctaSocial}>
           <SocialLinks />
@@ -141,21 +143,11 @@ function CtaSection() {
 export default function Home(): ReactNode {
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => entries.forEach((e) => e.target.classList.toggle('visible', e.isIntersecting)),
+      (entries) => entries.forEach((e) => e.target.classList.toggle(styles.visible, e.isIntersecting)),
       { threshold: 0.08 }
     );
     document.querySelectorAll(`.${styles.fadeUp}`).forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const updateScrollProgress = () => {
-      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-      const scrolled = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
-      document.documentElement.style.setProperty('--scroll-progress', String(scrolled));
-    };
-    window.addEventListener('scroll', updateScrollProgress, { passive: true });
-    return () => window.removeEventListener('scroll', updateScrollProgress);
   }, []);
 
   return (
@@ -164,7 +156,7 @@ export default function Home(): ReactNode {
       description="Personal portfolio and technical blog of Juan Felipe Gómez Manzanares — Principal Platform Engineer designing resilient systems at organizational scale.">
       <HeroSection />
       <main>
-        <div className={clsx('container', styles.fadeUp)}><ImpactMatrix /></div>
+        <div className="container"><ImpactMatrix /></div>
         <AboutSection />
         <AIVision />
         <FeaturedProjects />
