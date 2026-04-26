@@ -69,7 +69,7 @@ export default function ImpactMatrix() {
             </>
           );
           return metric.href ? (
-            <Link key={idx} to={metric.href} className={`${styles.glassPanel} ${styles.glassPanelLink}`}>
+            <Link key={idx} to={metric.href} className={`${styles.glassPanel} ${styles.glassPanelLink}`} aria-label={`${metric.label}: ${metric.prefix || ''}${value}${metric.suffix || ''} - ${metric.description}`}>
               {inner}
             </Link>
           ) : (

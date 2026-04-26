@@ -365,3 +365,118 @@ time[itemProp="datePublished"] {
   z-index: -1;
 }
 
+
+/* Accessibility Overrides */
+
+/* Ensure hero titles have sufficient contrast */
+.hero__title {
+  color: var(--ink) !important;
+}
+
+html[data-theme='dark'] .hero {
+  --ifm-hero-background-color: var(--paper-deep);
+  --ifm-hero-text-color: var(--ink);
+}
+
+html[data-theme='light'] .hero {
+  --ifm-hero-background-color: var(--paper-deep);
+  --ifm-hero-text-color: var(--ink);
+}
+
+.hero__subtitle {
+  color: var(--ink-soft) !important;
+}
+
+/* Ensure code comments have sufficient contrast against dark background (WCAG AA 4.5:1) */
+[data-theme='dark'] .prism-code .token.comment,
+[data-theme='dark'] .prism-code .token.prolog,
+[data-theme='dark'] .prism-code .token.cdata {
+  color: #8A93A5 !important; /* Lighter shade for contrast against #282A36 background */
+}
+
+/* Ensure code comments have sufficient contrast against light background */
+[data-theme='light'] .prism-code .token.comment,
+[data-theme='light'] .prism-code .token.prolog,
+[data-theme='light'] .prism-code .token.cdata {
+  color: #5C6370 !important;
+}
+
+/* Ensure inline links in prose are distinguishable from regular text without relying solely on color */
+.theme-doc-markdown a:not(.hash-link),
+.blog-post-page a:not(.hash-link),
+p > a:not(.hash-link) {
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+/* Fix for SkillBadge */
+[data-theme='dark'] .beginner,
+[data-theme='dark'] .intermediate,
+[data-theme='dark'] .advanced,
+[data-theme='dark'] .expert,
+[data-theme='dark'] .tag {
+  color: var(--ink) !important;
+}
+
+[data-theme='light'] .beginner,
+[data-theme='light'] .intermediate,
+[data-theme='light'] .advanced,
+[data-theme='light'] .expert,
+[data-theme='light'] .tag {
+  color: #141414 !important;
+}
+
+/* Force color overrides for specific span elements if needed */
+.badge > .name,
+[class*='badge'] > span,
+.cs-metric-label {
+  color: var(--ink) !important;
+}
+
+/* Fix for case study content */
+.cs-metric-label {
+  color: #5C6370 !important;
+}
+[data-theme='dark'] .cs-metric-label {
+  color: #8A93A5 !important;
+}
+
+/* Fix for mermaid text contrast */
+[data-theme='dark'] .edgeLabel,
+[data-theme='dark'] .label,
+[data-theme='dark'] .cluster-label {
+  color: #141414 !important;
+  background-color: transparent !important;
+}
+[data-theme='dark'] p {
+  color: var(--ink);
+}
+
+/* Enhance Keyboard Navigation (T8.2.3) */
+/* Apply a global, highly visible focus ring for keyboard navigation */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 2px;
+  transition: outline-offset 0.1s ease;
+}
+
+/* Ensure skip links are visible when focused */
+[class^="skipToContent"] {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  padding: 10px;
+  background-color: var(--accent);
+  color: var(--paper);
+  z-index: 9999;
+  font-weight: bold;
+}
+
+[class^="skipToContent"]:focus,
+[class^="skipToContent"]:focus-visible {
+  top: 0;
+  outline: 3px solid var(--ink);
+  outline-offset: 2px;
+}
