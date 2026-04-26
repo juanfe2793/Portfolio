@@ -1,0 +1,71 @@
+.seriesNavContainer {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+  padding: 1.5rem;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background-color: var(--paper-deep);
+}
+
+.seriesNavHeader {
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
+.seriesNavLinks {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.seriesNavLink {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1.25rem;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  text-decoration: none;
+  background-color: var(--paper);
+  transition: border-color 150ms ease-out, background 150ms ease-out;
+}
+
+.seriesNavLink:hover {
+  border-color: var(--accent);
+  text-decoration: none;
+}
+
+.seriesNavLinkPlaceholder {
+  flex: 1;
+}
+
+.seriesNavLabel {
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.seriesNavTitle {
+  font-size: 1rem;
+  color: var(--ink);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.seriesNavLink:hover .seriesNavTitle {
+  color: var(--accent);
+}
+
+@media screen and (max-width: 600px) {
+  .seriesNavLinks {
+    flex-direction: column;
+  }
+}

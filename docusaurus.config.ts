@@ -96,7 +96,7 @@ const config: Config = {
         blog: {
           path: 'blog',
           showReadingTime: true,
-          truncateMarker: /<!--\s*(truncate)\s*-->/,
+          truncateMarker: /(<!--\s*(truncate)\s*-->|{\/\*\s*(truncate)\s*\*\/})/,
           feedOptions: {
             type: ['rss', 'atom'],
             xslt: true,

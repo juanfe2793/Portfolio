@@ -7,3 +7,17 @@ career:
   label: Career
   permalink: /career
   description: Career development and professional growth
+sre:
+  label: SRE
+  permalink: /sre
+  description: Site Reliability Engineering topics
+
+platform-engineering:
+  label: Platform Engineering
+  permalink: /platform-engineering
+  description: Platform Engineering topics
+
+leadership:
+  label: Leadership
+  permalink: /leadership
+  description: Engineering leadership topics

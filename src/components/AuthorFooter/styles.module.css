@@ -1,0 +1,68 @@
+.authorFooterContainer {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule);
+}
+
+.authorFooterHeader {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+  margin-bottom: 1.5rem;
+}
+
+.authorList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.authorCard {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.25rem;
+  background: var(--paper-deep);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+}
+
+.authorImage {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--paper);
+  box-shadow: 0 0 0 1px var(--rule);
+}
+
+.authorInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.authorName {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+.authorNameLink {
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 150ms ease-out;
+}
+
+.authorNameLink:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.authorTitle {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
