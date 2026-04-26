@@ -1,0 +1,54 @@
+---
+title: "Your Blog Post Title"
+slug: your-blog-post-slug
+date: 2026-04-25T10:00:00
+authors: [juanfe]
+tags: [tag1, tag2]
+# Optional series frontmatter for custom series navigation component:
+# series: "Platform Engineering"
+# prev_series_slug: "/blog/previous-post-slug"
+# prev_series_title: "Previous Post Title"
+# next_series_slug: "/blog/next-post-slug"
+# next_series_title: "Next Post Title"
+---
+
+A short, engaging introduction to your blog post. This part appears in the blog post list view.
+
+{/* truncate */}
+
+The rest of your content goes here.
+
+## Reusable Components Examples
+
+### Callout Boxes (Admonitions)
+
+:::tip Pro Tip
+This is a tip admonition. You can also use `:::note`, `:::info`, `:::warning`, and `:::danger`.
+:::
+
+### Code Tabs
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+  <TabItem value="apple" label="Apple" default>
+    This is an apple 🍎
+  </TabItem>
+  <TabItem value="orange" label="Orange">
+    This is an orange 🍊
+  </TabItem>
+  <TabItem value="banana" label="Banana">
+    This is a banana 🍌
+  </TabItem>
+</Tabs>
+
+### Architecture Diagrams (Mermaid)
+
+```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
