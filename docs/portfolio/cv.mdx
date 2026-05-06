@@ -29,30 +29,6 @@ Expert in scaling cloud-native infrastructure, high-throughput API gateways, and
 
 ---
 
-<div className="eyebrow">02 — SELECTED IMPACT</div>
-
-### Kong Domain/API Gateway Platform (2025–2026)
-
-Designed, implemented, and delivered the Twilio Cloud-Native Domain (CND) API gateway from 0 to production on ECS/AWS. The reusable Terraform module provisions a self-contained gateway — autoscaling ECS cluster, Network Load Balancer with TLS/gRPC, S3-backed configuration management, VPC PrivateLink connectivity, self-healing, multiple deployment strategies (Rolling Update, Blue-Green, Canary) and an OpenTelemetry sidecar exporting metrics to Grafana. Validated at **3.39M aggregate RPS** under stress testing (3–4× peak production load per domain). Now the standard onboarding path for new Twilio product domains: adopted in production by multiple Twilio domains including Twilio's next-generation AI-powered SaaS, the Edge team, and the Data Platform team.
-
-### twilioinfra.com DNS Modernization
-
-Architected a domain-scoped DNS hierarchy (`<svc>.<region>.<env>.<domain>.<twilio-internal>.com`) that is platform-agnostic across Twilio's three runtime environments: Twilio Kubernetes Platform (EKS), Classic Twilio Platform (ASG), and Cloud Native Domains (ECS/EKS/ASG). Each product domain owns and operates its own Route 53 hosted zone, providing blast-radius isolation — a DNS failure in one domain cannot cascade to others. Removed the central platform-team dependency for DNS onboarding; domain teams self-serve everything under their subdomain. Adopted as the default discoverability and naming convention for Twilio product domains. Led the build of the automations and tools that make it possible for domain owners to self-operate their DNS hosted zones, delegation, and protections.
-
-### OTK → ABBA Reliability Hardening
-
-After a couple of production incidents traced to EC2 instance failures in the Classic Twilio Platform Ingress Gateways, led root-cause investigation and implemented NLB, TargetGroups, ASG, and Envoy configuration hardening — enabled connection draining, tuned deregistration delay, and configured active health checks for faster failover. Improved success rate on the Twilio Kubernetes Platform → Twilio Classic Platform inter-service path from **96.33% → 99.90%** at 1.74M avg RPS, with fast in-band recovery on unexpected instance failures. Eliminated a class of cascading failures on a critical communication path handling production traffic.
-
-### Kong Custom Plugin Platform
-
-Designed the end-to-end lifecycle for custom Kong plugins at Twilio: repository structure, CI/CD pipeline (build → ECR push), ECS runtime loading, metrics emission over Prometheus endpoint, and the operational runbook. The `kong-monorepo-platform` GitHub repository is the standard for all teams building Kong-based gateways at Twilio. Shipped two initial production plugins — authentication and cell-routing — enabling Twilio-specific request authentication and traffic routing policies. Plugin framework now adopted by 3+ domain teams.
-
-### On-Demand Performance Testing
-
-Built `twilio-ondemand-tests`, a k6 + Helm framework that lets any engineer run smoke, average, spike, soak, stress, or breaking-point tests against Application Connectivity mesh systems with two commands (`make install-test`, `make execute-test`). Results are exported to Datadog dashboards, letting any engineer at Twilio verify the reliability of the Twilio Service Mesh systems (Istio, Envoy, Kong, AWS network, NLB, ALB). Thanks to the framework we identified and mitigated risk in the service mesh ~2 months before services reached production.
-
----
-
 <div className="eyebrow">03 — PROFESSIONAL EXPERIENCE</div>
 
 <Timeline
@@ -87,9 +63,8 @@ Built `twilio-ondemand-tests`, a k6 + Helm framework that lets any engineer run 
                 runtimes with blast-radius isolation per domain.
               </li>
               <li>
-                <strong>Reliability:</strong> Drove OTK→ABBA inter-service
-                success rate from <strong>96.33% → 99.90%</strong> at 1.74M avg
-                RPS.
+                <strong>Reliability:</strong> Drove inter-service success rate
+                from <strong>96.33% → 99.90%</strong> at 1.74M avg RPS.
               </li>
             </ul>
           </div>
@@ -136,7 +111,7 @@ Built `twilio-ondemand-tests`, a k6 + Helm framework that lets any engineer run 
           <ul style={{ margin: "0.25rem 0 0.75rem 0", paddingLeft: "1.25rem" }}>
             <li>
               Led NLB configuration hardening after production incidents;
-              improved OTK→ABBA success rate 96.33% → 99.90%.
+              improved TwilioKubernetesPlatform -> ClassicTwilioPlatform success rate 96.33% → 99.90%.
             </li>
             <li>
               Implemented Kong observability via OpenTelemetry sidecar exporting
