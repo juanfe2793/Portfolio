@@ -33,7 +33,9 @@
   border-radius: 6px;
   text-decoration: none;
   background-color: var(--paper);
-  transition: border-color 150ms ease-out, background 150ms ease-out;
+  transition:
+    border-color 150ms ease-out,
+    background 150ms ease-out;
 }
 
 .seriesNavLink:hover {

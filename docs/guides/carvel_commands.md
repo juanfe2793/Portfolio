@@ -4,7 +4,6 @@ Useful commands for tools associated with carvel, like imgpkg
 
 ### imgpkg
 
-
 ```bash
 # Local dev
 imgpkg push -f bundle -b kind-registry.local:5000/internal/cluster-issuer:0.0.1

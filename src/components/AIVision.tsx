@@ -15,12 +15,14 @@ export default function AIVision() {
               Turning Runbooks into Autonomous Agents
             </Heading>
             <p className={styles.text}>
-              The next tier of platform engineering eliminates cognitive overhead the way the last tier eliminated manual ops.
-              I build custom Claude skills and MCP integrations that automate cloud architecture decisions — diagnosing incidents,
-              generating Terraform from intent, and running self-healing Kubernetes workflows without human escalation.
+              The next tier of platform engineering eliminates cognitive overhead the way the last
+              tier eliminated manual ops. I build custom Claude skills and MCP integrations that
+              automate cloud architecture decisions — diagnosing incidents, generating Terraform
+              from intent, and running self-healing Kubernetes workflows without human escalation.
             </p>
             <p className={styles.text}>
-              Cognitive load is toil in disguise. The goal is a platform where the on-call runbook has no steps left to execute.
+              Cognitive load is toil in disguise. The goal is a platform where the on-call runbook
+              has no steps left to execute.
             </p>
           </div>
           <div className={styles.sideBlocks}>

@@ -3,20 +3,20 @@
 this is useful .bash_profile or .zshrc
 
 ```bash
-# interactive shell commands 
+# interactive shell commands
 
-# pyenv 
+# pyenv
 eval "$(pyenv init --path)"
-eval "$(pyenv virtualenv-init -)"# interactive shell commands 
+eval "$(pyenv virtualenv-init -)"# interactive shell commands
 
 # Kubeconfig
 export KUBECONFIG="${KUBECONFIG}:${HOME}/.kube/config"
 for f in $(ls $HOME/.kube/clusters); do export KUBECONFIG="${KUBECONFIG}:$HOME/.kube/clusters/$f" ; done
 
-# Krew 
+# Krew
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
-# pyenv 
+# pyenv
 eval "$(pyenv init --path)"
 eval "$(pyenv virtualenv-init -)"
 

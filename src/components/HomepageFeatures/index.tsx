@@ -1,4 +1,4 @@
-import type {ReactNode} from 'react';
+import type { ReactNode } from 'react';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
 
@@ -35,7 +35,7 @@ const ExpertiseList: ExpertiseItem[] = [
   },
 ];
 
-function Expertise({title, description, index}: ExpertiseItem & { index: number }) {
+function Expertise({ title, description, index }: ExpertiseItem & { index: number }) {
   return (
     <div className={styles.expertiseRow}>
       <div className={styles.expertiseIndex}>0{index + 1}</div>

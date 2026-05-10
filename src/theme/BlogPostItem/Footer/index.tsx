@@ -1,7 +1,7 @@
-import React, {type ReactNode} from 'react';
+import React, { type ReactNode } from 'react';
 import clsx from 'clsx';
-import {useBlogPost} from '@docusaurus/plugin-content-blog/client';
-import {ThemeClassNames} from '@docusaurus/theme-common';
+import { useBlogPost } from '@docusaurus/plugin-content-blog/client';
+import { ThemeClassNames } from '@docusaurus/theme-common';
 import EditMetaRow from '@theme/EditMetaRow';
 import TagsListInline from '@theme/TagsListInline';
 import ReadMoreLink from '@theme/BlogPostItem/Footer/ReadMoreLink';
@@ -9,7 +9,7 @@ import SeriesNavigation from '@site/src/components/SeriesNavigation';
 import AuthorFooter from '@site/src/components/AuthorFooter';
 
 export default function BlogPostItemFooter(): ReactNode {
-  const {metadata, isBlogPostPage} = useBlogPost();
+  const { metadata, isBlogPostPage } = useBlogPost();
   const {
     tags,
     title,
@@ -50,11 +50,8 @@ export default function BlogPostItemFooter(): ReactNode {
 
         {tagsExists && (
           <div
-            className={clsx(
-              'row',
-              'margin-top--sm',
-              ThemeClassNames.blog.blogFooterEditMetaRow,
-            )}>
+            className={clsx('row', 'margin-top--sm', ThemeClassNames.blog.blogFooterEditMetaRow)}
+          >
             <div className="col">
               <TagsListInline tags={tags} />
             </div>
@@ -65,10 +62,7 @@ export default function BlogPostItemFooter(): ReactNode {
 
         {canDisplayEditMetaRow && (
           <EditMetaRow
-            className={clsx(
-              'margin-top--sm',
-              ThemeClassNames.blog.blogFooterEditMetaRow,
-            )}
+            className={clsx('margin-top--sm', ThemeClassNames.blog.blogFooterEditMetaRow)}
             editUrl={editUrl}
             lastUpdatedAt={lastUpdatedAt}
             lastUpdatedBy={lastUpdatedBy}
@@ -88,7 +82,7 @@ export default function BlogPostItemFooter(): ReactNode {
   return (
     <footer className="row docusaurus-mt-lg">
       {tagsExists && (
-        <div className={clsx('col', {'col--9': truncatedPost})}>
+        <div className={clsx('col', { 'col--9': truncatedPost })}>
           <TagsListInline tags={tags} />
         </div>
       )}
@@ -96,7 +90,8 @@ export default function BlogPostItemFooter(): ReactNode {
         <div
           className={clsx('col text--right', {
             'col--3': tagsExists,
-          })}>
+          })}
+        >
           <ReadMoreLink blogPostTitle={title} to={metadata.permalink} />
         </div>
       )}

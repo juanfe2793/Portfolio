@@ -18,12 +18,18 @@ export default function AuthorFooter({ authors }: AuthorFooterProps) {
 
   return (
     <div className={styles.authorFooterContainer}>
-      <div className={styles.authorFooterHeader}>About the Author{authors.length > 1 ? 's' : ''}</div>
+      <div className={styles.authorFooterHeader}>
+        About the Author{authors.length > 1 ? 's' : ''}
+      </div>
       <div className={styles.authorList}>
         {authors.map((author, index) => (
           <div key={index} className={styles.authorCard}>
             {author.imageURL && (
-              <img src={author.imageURL} alt={author.name || 'Author'} className={styles.authorImage} />
+              <img
+                src={author.imageURL}
+                alt={author.name || 'Author'}
+                className={styles.authorImage}
+              />
             )}
             <div className={styles.authorInfo}>
               {author.url ? (

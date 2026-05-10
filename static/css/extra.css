@@ -12,7 +12,7 @@
   --glow-color: rgba(13, 148, 136, 0.25);
 }
 
-[data-md-color-scheme="default"] {
+[data-md-color-scheme='default'] {
   --hero-gradient-start: #e0f2f1;
   --hero-gradient-mid: #b2dfdb;
   --hero-gradient-end: #ffffff;
@@ -22,7 +22,12 @@
 
 /* ---------- Hero Section ---------- */
 .hero {
-  background: linear-gradient(135deg, var(--hero-gradient-start), var(--hero-gradient-mid), var(--hero-gradient-end));
+  background: linear-gradient(
+    135deg,
+    var(--hero-gradient-start),
+    var(--hero-gradient-mid),
+    var(--hero-gradient-end)
+  );
   border-radius: 16px;
   padding: 3rem 2.5rem;
   margin-bottom: 2rem;
@@ -33,7 +38,7 @@
 }
 
 .hero::before {
-  content: "";
+  content: '';
   position: absolute;
   top: -40%;
   right: -20%;
@@ -101,7 +106,9 @@
   border-radius: 50%;
   background: rgba(13, 148, 136, 0.15);
   margin-right: 10px;
-  transition: background 0.3s ease, transform 0.3s ease;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
 }
 
 .hero .hero-social a:hover {
@@ -137,7 +144,9 @@
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   animation: cardFadeUp 0.6s ease-out both;
 }
 
@@ -209,14 +218,24 @@
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
   animation: cardFadeUp 0.5s ease-out both;
 }
 
-.expertise-item:nth-child(2) { animation-delay: 0.06s; }
-.expertise-item:nth-child(3) { animation-delay: 0.12s; }
-.expertise-item:nth-child(4) { animation-delay: 0.18s; }
-.expertise-item:nth-child(5) { animation-delay: 0.24s; }
+.expertise-item:nth-child(2) {
+  animation-delay: 0.06s;
+}
+.expertise-item:nth-child(3) {
+  animation-delay: 0.12s;
+}
+.expertise-item:nth-child(4) {
+  animation-delay: 0.18s;
+}
+.expertise-item:nth-child(5) {
+  animation-delay: 0.24s;
+}
 
 .expertise-item:hover {
   transform: translateY(-3px);
@@ -264,7 +283,9 @@
   font-weight: 600;
   font-size: 1rem;
   text-decoration: none !important;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   box-shadow: 0 4px 15px rgba(13, 148, 136, 0.3);
 }
 

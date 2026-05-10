@@ -31,14 +31,14 @@ aws eks --region us-east-1 update-kubeconfig --name cluster --alias cluster
 ```bash
 
 # describe where the pods are running
-kubectl get pods -o wide -n kube-system 
+kubectl get pods -o wide -n kube-system
 
 #Get pods running in a specific node
-kubectl get pods -n kube-system -o wide --field-selector spec.nodeName=<nodeid> 
+kubectl get pods -n kube-system -o wide --field-selector spec.nodeName=<nodeid>
 
 # Interactive shell
-kubectl exec --stdin --tty <pod-name> -n kube-system -- /bin/sh 
-kubectl exec --stdin --tty <pod-name> -n kube-system -- /bin/bash 
+kubectl exec --stdin --tty <pod-name> -n kube-system -- /bin/sh
+kubectl exec --stdin --tty <pod-name> -n kube-system -- /bin/bash
 
 # Copy files from a pod
 kubectl cp <some-namespace>/<some-pod>:/tmp/foo /tmp/bar
@@ -51,7 +51,7 @@ kubectl cp <some-namespace>/<some-pod>:/tmp/foo /tmp/bar
 kubectl get nodes -o jsonpath="{range .items[*]}{.metadata.name} {.spec.taints[?(@.effect=='NoSchedule')].effect}{\"\n\"}{end}"
 
 #Filter by Label. The -L filters by label key and displays the label values at each node.
-kubectl get nodes -L eks.amazonaws.com/capacityType 
+kubectl get nodes -L eks.amazonaws.com/capacityType
 
 ```
 
@@ -72,7 +72,7 @@ kubectl get pods -o json | jq '.items[].spec.containers[].env[]?.valueFrom.secre
 ```bash
 
 # List Events sorted by timestamp
-kubectl get events --sort-by=.metadata.creationTimestamp 
+kubectl get events --sort-by=.metadata.creationTimestamp
 kubectl get events --sort-by=".lastTimestamp"
 
 ```

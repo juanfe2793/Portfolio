@@ -24,7 +24,11 @@ export default function SocialLinks() {
       <a href="https://github.com/juanfe2793" className={styles.socialLink} aria-label="GitHub">
         <GitHubIcon />
       </a>
-      <a href="https://linkedin.com/in/juangomez27" className={styles.socialLink} aria-label="LinkedIn">
+      <a
+        href="https://linkedin.com/in/juangomez27"
+        className={styles.socialLink}
+        aria-label="LinkedIn"
+      >
         <LinkedInIcon />
       </a>
       <a href="mailto:hello@felipegomez.me" className={styles.socialLink} aria-label="Email">

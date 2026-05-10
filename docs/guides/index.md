@@ -9,7 +9,8 @@ slug: /guides
 
 # The Staff's Playbook
 
-Organizational standards and operational runbooks — the paved road for high-scale cloud infrastructure management.
+Organizational standards and operational runbooks — the paved road for high-scale cloud
+infrastructure management.
 
 ---
 
@@ -42,8 +43,10 @@ Organizational standards and operational runbooks — the paved road for high-sc
 
 ## Operational Runbooks
 
-*Detailed command references for immediate operational response.*
+_Detailed command references for immediate operational response._
 
-- **Core Orchestration**: [Kubectl](kubectl_commands.md) · [Helm](helm_commands.md) · [Carvel](carvel_commands.md)
+- **Core Orchestration**: [Kubectl](kubectl_commands.md) · [Helm](helm_commands.md) ·
+  [Carvel](carvel_commands.md)
 - **Cloud Foundation**: [AWS CLI](aws_cli_commands.md) · [SaltStack](saltstack_commands.md)
-- **System Fundamentals**: [Linux](linux_commands.md) · [Bash Profile](bash_profile.md) · [Git](git_commands.md)
+- **System Fundamentals**: [Linux](linux_commands.md) · [Bash Profile](bash_profile.md) ·
+  [Git](git_commands.md)

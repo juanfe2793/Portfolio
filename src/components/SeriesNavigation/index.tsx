@@ -10,7 +10,13 @@ interface SeriesNavigationProps {
   nextTitle?: string;
 }
 
-export default function SeriesNavigation({ seriesName, prevLink, prevTitle, nextLink, nextTitle }: SeriesNavigationProps) {
+export default function SeriesNavigation({
+  seriesName,
+  prevLink,
+  prevTitle,
+  nextLink,
+  nextTitle,
+}: SeriesNavigationProps) {
   if (!seriesName) return null;
 
   return (
@@ -27,7 +33,7 @@ export default function SeriesNavigation({ seriesName, prevLink, prevTitle, next
         )}
 
         {nextLink ? (
-          <Link to={nextLink} className={styles.seriesNavLink} style={{textAlign: 'right'}}>
+          <Link to={nextLink} className={styles.seriesNavLink} style={{ textAlign: 'right' }}>
             <span className={styles.seriesNavLabel}>Next &rarr;</span>
             <span className={styles.seriesNavTitle}>{nextTitle || 'Next Post'}</span>
           </Link>

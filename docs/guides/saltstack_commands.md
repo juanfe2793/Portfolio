@@ -19,6 +19,7 @@ salt --versions-report
 tail /var/log/salt/master
 
 ```
+
 ### Salt Minion
 
 ```bash

@@ -1,11 +1,17 @@
 # Describe VPC Endpoint
 
-This script retrieve information about VPC Endpoints in all regions. Here's a brief overview of what the script does:
+This script retrieve information about VPC Endpoints in all regions. Here's a brief overview of what
+the script does:
 
-* Defines a function called `describe_vpc_endpoint_by_region` that takes a single argument, region_name. This function uses the boto3 library to create a client for the EC2 service in the specified region, and then uses the `describe_dhcp` method to retrieve information about all VPC Endpoints in that region.
-* The function then prints out the total number of instances found in the region, and loops through each instance to print out its name, ID, and instance type.
-* If an error occurs while trying to retrieve the instance information, the function catches the exception and prints out an error message.
-* Finally, the function returns a summary of the total number of instances in all the regions.
+- Defines a function called `describe_vpc_endpoint_by_region` that takes a single argument,
+  region_name. This function uses the boto3 library to create a client for the EC2 service in the
+  specified region, and then uses the `describe_dhcp` method to retrieve information about all VPC
+  Endpoints in that region.
+- The function then prints out the total number of instances found in the region, and loops through
+  each instance to print out its name, ID, and instance type.
+- If an error occurs while trying to retrieve the instance information, the function catches the
+  exception and prints out an error message.
+- Finally, the function returns a summary of the total number of instances in all the regions.
 
 ## Example output
 

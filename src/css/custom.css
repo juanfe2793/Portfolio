@@ -14,14 +14,14 @@
   --ifm-code-font-size: 90%;
 
   /* Light Palette (Maintained for accessibility, but not default) */
-  --paper: #F9FAFB;
-  --paper-deep: #F0F2F5;
+  --paper: #f9fafb;
+  --paper-deep: #f0f2f5;
   --ink: #141414;
-  --ink-soft: #4A4A58;
-  --rule: #1F1F2E1A;
-  --accent: #4338CA;
+  --ink-soft: #4a4a58;
+  --rule: #1f1f2e1a;
+  --accent: #4338ca;
   --accent-soft: rgba(67, 56, 202, 0.08);
-  --accent-deep: #3730A3;
+  --accent-deep: #3730a3;
 
   /* Infima Variable Mapping */
   --ifm-background-color: var(--paper);
@@ -52,14 +52,14 @@
 
 [data-theme='dark'] {
   /* Obsidian Palette */
-  --paper: #000000;          /* OLED Black */
-  --paper-deep: #0A0B10;     /* Deep Navy */
-  --ink: #FFFFFF;            /* Pure White */
-  --ink-soft: #A1A1AA;       /* Muted Silver */
+  --paper: #000000; /* OLED Black */
+  --paper-deep: #0a0b10; /* Deep Navy */
+  --ink: #ffffff; /* Pure White */
+  --ink-soft: #a1a1aa; /* Muted Silver */
   --rule: rgba(255, 255, 255, 0.1);
-  --accent: #60A5FA;         /* Soft Sky Blue */
+  --accent: #60a5fa; /* Soft Sky Blue */
   --accent-soft: rgba(96, 165, 250, 0.1);
-  --accent-deep: #3B82F6;
+  --accent-deep: #3b82f6;
 
   /* Infima Variable Mapping Overrides */
   --ifm-background-color: var(--paper);
@@ -78,14 +78,18 @@ body {
   line-height: 1.6;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: var(--font-display);
   letter-spacing: -0.02em;
   color: var(--ink);
   font-weight: 600;
 }
 
-h4, h5, h6 {
+h4,
+h5,
+h6 {
   font-family: var(--ifm-heading-font-family);
   color: var(--ink);
   font-weight: 600;
@@ -238,22 +242,24 @@ pre {
 }
 
 /* Blog post excerpt cards */
-article[itemProp="blogPost"],
+article[itemProp='blogPost'],
 .col article {
   border: 1px solid var(--rule);
   border-radius: 2px;
   padding: 1.5rem;
-  transition: border-color 150ms ease-out, background 150ms ease-out;
+  transition:
+    border-color 150ms ease-out,
+    background 150ms ease-out;
 }
 
-article[itemProp="blogPost"]:hover,
+article[itemProp='blogPost']:hover,
 .col article:hover {
   border-color: var(--accent);
   background: var(--paper-deep);
 }
 
 /* Blog post title */
-article[itemProp="blogPost"] h2 a,
+article[itemProp='blogPost'] h2 a,
 .col article h2 a {
   color: var(--ink);
   font-weight: 600;
@@ -261,14 +267,14 @@ article[itemProp="blogPost"] h2 a,
   transition: color 150ms ease-out;
 }
 
-article[itemProp="blogPost"] h2 a:hover,
+article[itemProp='blogPost'] h2 a:hover,
 .col article h2 a:hover {
   color: var(--accent);
 }
 
 /* Blog metadata (date, author) */
 .blog-post-date,
-time[itemProp="datePublished"] {
+time[itemProp='datePublished'] {
   font-family: var(--ifm-font-family-monospace);
   font-size: 0.7rem;
   text-transform: uppercase;
@@ -278,7 +284,7 @@ time[itemProp="datePublished"] {
 
 /* Blog tags */
 .blog-tags a,
-[class*="blogPostTags"] a {
+[class*='blogPostTags'] a {
   font-family: var(--ifm-font-family-monospace);
   font-size: 0.65rem;
   text-transform: uppercase;
@@ -288,17 +294,19 @@ time[itemProp="datePublished"] {
   padding: 0.15rem 0.5rem;
   color: var(--ink-soft);
   text-decoration: none;
-  transition: border-color 150ms ease-out, color 150ms ease-out;
+  transition:
+    border-color 150ms ease-out,
+    color 150ms ease-out;
 }
 
 .blog-tags a:hover,
-[class*="blogPostTags"] a:hover {
+[class*='blogPostTags'] a:hover {
   border-color: var(--accent);
   color: var(--accent);
 }
 
 /* Blog "Read more" / truncate footer */
-[class*="readMore"] a,
+[class*='readMore'] a,
 .blog-read-more a {
   font-family: var(--ifm-font-family-monospace);
   font-size: 0.75rem;
@@ -308,18 +316,18 @@ time[itemProp="datePublished"] {
   text-decoration: none;
 }
 
-[class*="readMore"] a:hover,
+[class*='readMore'] a:hover,
 .blog-read-more a:hover {
   color: var(--accent-deep);
 }
 
 /* Blog sidebar — recent posts */
-[class*="blogSidebar"] {
+[class*='blogSidebar'] {
   border-left: 1px solid var(--rule);
   padding-left: 1.5rem;
 }
 
-[class*="blogSidebarTitle"] {
+[class*='blogSidebarTitle'] {
   font-family: var(--ifm-font-family-monospace);
   font-size: 0.7rem;
   text-transform: uppercase;
@@ -365,7 +373,6 @@ time[itemProp="datePublished"] {
   z-index: -1;
 }
 
-
 /* Accessibility Overrides */
 
 /* Ensure hero titles have sufficient contrast */
@@ -391,14 +398,14 @@ html[data-theme='light'] .hero {
 [data-theme='dark'] .prism-code .token.comment,
 [data-theme='dark'] .prism-code .token.prolog,
 [data-theme='dark'] .prism-code .token.cdata {
-  color: #8A93A5 !important; /* Lighter shade for contrast against #282A36 background */
+  color: #8a93a5 !important; /* Lighter shade for contrast against #282A36 background */
 }
 
 /* Ensure code comments have sufficient contrast against light background */
 [data-theme='light'] .prism-code .token.comment,
 [data-theme='light'] .prism-code .token.prolog,
 [data-theme='light'] .prism-code .token.cdata {
-  color: #5C6370 !important;
+  color: #5c6370 !important;
 }
 
 /* Ensure inline links in prose are distinguishable from regular text without relying solely on color */
@@ -436,10 +443,10 @@ p > a:not(.hash-link) {
 
 /* Fix for case study content */
 .cs-metric-label {
-  color: #5C6370 !important;
+  color: #5c6370 !important;
 }
 [data-theme='dark'] .cs-metric-label {
-  color: #8A93A5 !important;
+  color: #8a93a5 !important;
 }
 
 /* Fix for mermaid text contrast */
@@ -463,7 +470,7 @@ p > a:not(.hash-link) {
 }
 
 /* Ensure skip links are visible when focused */
-[class^="skipToContent"] {
+[class^='skipToContent'] {
   position: absolute;
   top: -100px;
   left: 0;
@@ -474,8 +481,8 @@ p > a:not(.hash-link) {
   font-weight: bold;
 }
 
-[class^="skipToContent"]:focus,
-[class^="skipToContent"]:focus-visible {
+[class^='skipToContent']:focus,
+[class^='skipToContent']:focus-visible {
   top: 0;
   outline: 3px solid var(--ink);
   outline-offset: 2px;

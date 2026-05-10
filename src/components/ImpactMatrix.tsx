@@ -56,20 +56,25 @@ export default function ImpactMatrix() {
     <div className={styles.matrixContainer}>
       <div className={styles.bentoGrid}>
         {metrics.map((metric, idx) => {
-          const value = metric.decimals
-            ? metric.value.toFixed(metric.decimals)
-            : metric.value;
+          const value = metric.decimals ? metric.value.toFixed(metric.decimals) : metric.value;
           const inner = (
             <>
               <span className={styles.label}>{metric.label}</span>
               <div className={styles.value}>
-                {metric.prefix || ''}{value}{metric.suffix || ''}
+                {metric.prefix || ''}
+                {value}
+                {metric.suffix || ''}
               </div>
               <p className={styles.description}>{metric.description}</p>
             </>
           );
           return metric.href ? (
-            <Link key={idx} to={metric.href} className={`${styles.glassPanel} ${styles.glassPanelLink}`} aria-label={`${metric.label}: ${metric.prefix || ''}${value}${metric.suffix || ''} - ${metric.description}`}>
+            <Link
+              key={idx}
+              to={metric.href}
+              className={`${styles.glassPanel} ${styles.glassPanelLink}`}
+              aria-label={`${metric.label}: ${metric.prefix || ''}${value}${metric.suffix || ''} - ${metric.description}`}
+            >
               {inner}
             </Link>
           ) : (

@@ -11,7 +11,11 @@ function SystemDiagram({ nodes, label }: { nodes: string[]; label: string }) {
         {nodes.map((node, i) => (
           <React.Fragment key={node}>
             <span className={styles.diagNode}>{node}</span>
-            {i < nodes.length - 1 && <span className={styles.diagArrow} aria-hidden="true">→</span>}
+            {i < nodes.length - 1 && (
+              <span className={styles.diagArrow} aria-hidden="true">
+                →
+              </span>
+            )}
           </React.Fragment>
         ))}
       </div>
@@ -45,12 +49,14 @@ export default function ProjectCard({ project }: { project: Project }) {
 
         <div className={styles.metrics}>
           {project.metrics.map((metric) => (
-            <span key={metric} className={styles.metricItem}>{metric}</span>
+            <span key={metric} className={styles.metricItem}>
+              {metric}
+            </span>
           ))}
         </div>
 
         <div className={styles.tags}>
-          {project.tags.map(tag => (
+          {project.tags.map((tag) => (
             <SkillBadge key={tag} name={tag} variant="tag" />
           ))}
         </div>

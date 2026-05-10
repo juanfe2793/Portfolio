@@ -7,9 +7,9 @@ hide_table_of_contents: false
 custom_edit_url: null
 ---
 
-import Timeline from "@site/src/components/Timeline";
-import SkillBadge from "@site/src/components/SkillBadge";
-import SocialLinks from "@site/src/components/SocialLinks";
+import Timeline from '@site/src/components/Timeline';
+import SkillBadge from '@site/src/components/SkillBadge';
+import SocialLinks from '@site/src/components/SocialLinks';
 
 # Curriculum Vitae
 
@@ -17,7 +17,8 @@ import SocialLinks from "@site/src/components/SocialLinks";
 
 **Staff Software Engineer | Platform Infrastructure & SRE**
 
-Expert in scaling cloud-native infrastructure, high-throughput API gateways, and resilient platform services.
+Expert in scaling cloud-native infrastructure, high-throughput API gateways, and resilient platform
+services.
 
 <SocialLinks />
 
@@ -25,7 +26,13 @@ Expert in scaling cloud-native infrastructure, high-throughput API gateways, and
 
 <div className="eyebrow">01 — ABOUT</div>
 
-10+ years experience Platform & Infrastructure Software Engineer that architect and deliver reliable systems for global and high-throughput scale products — API gateways, service mesh connectivity, DNS architecture, Public Ingress/Egress and the observability tooling that makes reliability measurable across distributed systems. Over four years at Twilio I led the zero-to-production delivery of the Cloud-Native Domain (CND) gateway platform, validated at **3.39M aggregate RPS** under stress testing, and drove TwilioKubernetesPlatform ↔ ClassicTwilioPlatform inter-service reliability from **96.33% to 99.99%**, building the baseline for Twilio Customer Trust.
+10+ years experience Platform & Infrastructure Software Engineer that architect and deliver reliable
+systems for global and high-throughput scale products — API gateways, service mesh connectivity, DNS
+architecture, Public Ingress/Egress and the observability tooling that makes reliability measurable
+across distributed systems. Over four years at Twilio I led the zero-to-production delivery of the
+Cloud-Native Domain (CND) gateway platform, validated at **3.39M aggregate RPS** under stress
+testing, and drove TwilioKubernetesPlatform ↔ ClassicTwilioPlatform inter-service reliability from
+**96.33% to 99.99%**, building the baseline for Twilio Customer Trust.
 
 ---
 
@@ -34,218 +41,200 @@ Expert in scaling cloud-native infrastructure, high-throughput API gateways, and
 <Timeline
   entries={[
     {
-      date: "June 2023 – Present",
-      title: "Staff Software Engineer (L4)",
-      org: "Twilio",
+      date: 'June 2023 – Present',
+      title: 'Staff Software Engineer (L4)',
+      org: 'Twilio',
       description: (
         <>
           <div
             style={{
-              background: "var(--ifm-color-success-contrast-background)",
-              border: "1px solid var(--ifm-color-success-dark)",
-              borderRadius: "6px",
-              padding: "0.75rem 1rem",
-              marginBottom: "0.75rem",
+              background: 'var(--ifm-color-success-contrast-background)',
+              border: '1px solid var(--ifm-color-success-dark)',
+              borderRadius: '6px',
+              padding: '0.75rem 1rem',
+              marginBottom: '0.75rem',
             }}
           >
-            <strong style={{ color: "var(--ifm-color-success-darkest)" }}>
-              Key Achievements
-            </strong>
-            <ul style={{ margin: "0.5rem 0 0 0", paddingLeft: "1.25rem" }}>
+            <strong style={{ color: 'var(--ifm-color-success-darkest)' }}>Key Achievements</strong>
+            <ul style={{ margin: '0.5rem 0 0 0', paddingLeft: '1.25rem' }}>
               <li>
-                <strong>API Gateway:</strong> Led the design of CND Domain
-                Gateway Infrastructure using <strong>Kong</strong>, validated at{" "}
-                <strong>3.39M aggregate RPS</strong> under stress testing.
+                <strong>API Gateway:</strong> Led the design of CND Domain Gateway Infrastructure
+                using <strong>Kong</strong>, validated at <strong>3.39M aggregate RPS</strong> under
+                stress testing.
               </li>
               <li>
-                <strong>DNS Modernization:</strong> Designed domain-scoped,
-                platform-agnostic DNS hierarchy across EKS, ASG, and ECS
-                runtimes with blast-radius isolation per domain.
+                <strong>DNS Modernization:</strong> Designed domain-scoped, platform-agnostic DNS
+                hierarchy across EKS, ASG, and ECS runtimes with blast-radius isolation per domain.
               </li>
               <li>
-                <strong>Reliability:</strong> Drove inter-service success rate
-                from <strong>96.33% → 99.90%</strong> at 1.74M avg RPS.
+                <strong>Reliability:</strong> Drove inter-service success rate from{' '}
+                <strong>96.33% → 99.90%</strong> at 1.74M avg RPS.
               </li>
             </ul>
           </div>
           <strong>Platform & Gateway Architecture</strong>
-          <ul style={{ margin: "0.25rem 0 0.75rem 0", paddingLeft: "1.25rem" }}>
+          <ul style={{ margin: '0.25rem 0 0.75rem 0', paddingLeft: '1.25rem' }}>
             <li>
-              Led design, planning, and delivery of the CND Domain Gateway
-              Infrastructure — a reusable Terraform module providing a
-              production-grade Kong API gateway (ECS autoscaling, NLB, TLS/gRPC,
-              S3 config, VPC PrivateLink, OTel observability).
+              Led design, planning, and delivery of the CND Domain Gateway Infrastructure — a
+              reusable Terraform module providing a production-grade Kong API gateway (ECS
+              autoscaling, NLB, TLS/gRPC, S3 config, VPC PrivateLink, OTel observability).
             </li>
             <li>
-              Designed and implemented cross-account VPC PrivateLink Terraform
-              modules (EndpointService + RAM share + client-side SSM parameter
-              discovery); reduced connectivity onboarding to a plug-in module.
+              Designed and implemented cross-account VPC PrivateLink Terraform modules
+              (EndpointService + RAM share + client-side SSM parameter discovery); reduced
+              connectivity onboarding to a plug-in module.
             </li>
             <li>
-              Authored ADRs and architecture documents for Terraform module
-              delivery, Kong plugin lifecycle, and stress/load/performance
-              testing.
+              Authored ADRs and architecture documents for Terraform module delivery, Kong plugin
+              lifecycle, and stress/load/performance testing.
             </li>
           </ul>
           <strong>DNS Infrastructure</strong>
-          <ul style={{ margin: "0.25rem 0 0.75rem 0", paddingLeft: "1.25rem" }}>
+          <ul style={{ margin: '0.25rem 0 0.75rem 0', paddingLeft: '1.25rem' }}>
             <li>
-              Designed and implemented the domain-scoped DNS hierarchy
-              platform-agnostic across Twilio's three runtime environments.
+              Designed and implemented the domain-scoped DNS hierarchy platform-agnostic across
+              Twilio's three runtime environments.
             </li>
             <li>
-              Built the Route 53 hosted-zone Terraform module and DNS delegation
-              chain; hardened records with <code>prevent_destroy</code>{" "}
-              lifecycle rules.
+              Built the Route 53 hosted-zone Terraform module and DNS delegation chain; hardened
+              records with <code>prevent_destroy</code> lifecycle rules.
             </li>
             <li>
-              Implemented guardrails in production accounts to avoid manual
-              manipulation of DNS infrastructure.
+              Implemented guardrails in production accounts to avoid manual manipulation of DNS
+              infrastructure.
             </li>
             <li>
-              Supported Service Catalog DNS sharding design; guided DNS
-              delegation ownership model across platform teams.
+              Supported Service Catalog DNS sharding design; guided DNS delegation ownership model
+              across platform teams.
             </li>
           </ul>
           <strong>Reliability & Observability</strong>
-          <ul style={{ margin: "0.25rem 0 0.75rem 0", paddingLeft: "1.25rem" }}>
+          <ul style={{ margin: '0.25rem 0 0.75rem 0', paddingLeft: '1.25rem' }}>
             <li>
-              Led NLB configuration hardening after production incidents;
-              improved TwilioKubernetesPlatform &rarr; ClassicTwilioPlatform success rate 96.33% → 99.90%.
+              Led NLB configuration hardening after production incidents; improved
+              TwilioKubernetesPlatform &rarr; ClassicTwilioPlatform success rate 96.33% → 99.90%.
             </li>
             <li>
-              Implemented Kong observability via OpenTelemetry sidecar exporting
-              Prometheus metrics to Twilio's Springer/Grafana platform — first
-              OTel integration for ECS-based Kong at Twilio.
+              Implemented Kong observability via OpenTelemetry sidecar exporting Prometheus metrics
+              to Twilio's Springer/Grafana platform — first OTel integration for ECS-based Kong at
+              Twilio.
             </li>
+            <li>Built Grafana dashboard templates for Kong health and ECS metrics.</li>
             <li>
-              Built Grafana dashboard templates for Kong health and ECS metrics.
-            </li>
-            <li>
-              Executed chaos/failure injection on Kong to validate gateway
-              resilience and document recovery behavior.
+              Executed chaos/failure injection on Kong to validate gateway resilience and document
+              recovery behavior.
             </li>
           </ul>
           <strong>Testing & Developer Experience</strong>
-          <ul style={{ margin: "0.25rem 0 0.75rem 0", paddingLeft: "1.25rem" }}>
+          <ul style={{ margin: '0.25rem 0 0.75rem 0', paddingLeft: '1.25rem' }}>
             <li>
-              Built the on-demand performance testing framework (k6 + Helm +
-              Datadog); adopted by multiple engineering teams.
+              Built the on-demand performance testing framework (k6 + Helm + Datadog); adopted by
+              multiple engineering teams.
             </li>
             <li>
-              Added ECS circuit breaker and rollback configuration to the API
-              gateway Terraform module; enabled safe progressive delivery.
+              Added ECS circuit breaker and rollback configuration to the API gateway Terraform
+              module; enabled safe progressive delivery.
             </li>
             <li>
-              Drove contributor documentation for the platform; wrote the CND
-              DGW runbook and led the Domain Gateway Gameday.
+              Drove contributor documentation for the platform; wrote the CND DGW runbook and led
+              the Domain Gateway Gameday.
             </li>
           </ul>
           <strong>Mentoring & Cross-Team Influence</strong>
-          <ul style={{ margin: "0.25rem 0 0 0", paddingLeft: "1.25rem" }}>
+          <ul style={{ margin: '0.25rem 0 0 0', paddingLeft: '1.25rem' }}>
             <li>
-              Provided technical guidance and pair programming for Twilio
-              Classic Ingress Gateway sharding rollout, Service Catalog DNS
-              sharding design, and Shuffle Sharding verification — mentoring
-              multiple engineers across workstreams.
+              Provided technical guidance and pair programming for Twilio Classic Ingress Gateway
+              sharding rollout, Service Catalog DNS sharding design, and Shuffle Sharding
+              verification — mentoring multiple engineers across workstreams.
             </li>
             <li>
-              Led knowledge transfer sessions on Domain Gateway architecture
-              fundamentals for the broader team.
+              Led knowledge transfer sessions on Domain Gateway architecture fundamentals for the
+              broader team.
             </li>
-            <li>
-              Supported Data Platform team onboarding to the relay Kong gateway.
-            </li>
+            <li>Supported Data Platform team onboarding to the relay Kong gateway.</li>
           </ul>
         </>
       ),
       tags: [
-        "Kong",
-        "ECS",
-        "EKS",
-        "Terraform",
-        "AWS",
-        "OpenTelemetry",
-        "Prometheus",
-        "Grafana",
-        "k6",
-        "Istio",
-        "Go",
-        "Python",
-        "Lua",
+        'Kong',
+        'ECS',
+        'EKS',
+        'Terraform',
+        'AWS',
+        'OpenTelemetry',
+        'Prometheus',
+        'Grafana',
+        'k6',
+        'Istio',
+        'Go',
+        'Python',
+        'Lua',
       ],
     },
     {
-      date: "November 2021 – June 2023",
-      title: "Sr. Software Engineer, Kubernetes Platform (L3)",
-      org: "Twilio",
+      date: 'November 2021 – June 2023',
+      title: 'Sr. Software Engineer, Kubernetes Platform (L3)',
+      org: 'Twilio',
       description:
         "Operated and scaled Twilio's Kubernetes-based API platform (OTK) across 50+ EKS clusters in multiple AWS regions. Implemented Datadog monitoring and alerting for cluster and workload health. Managed GitOps progressive delivery via Argo CD, enabling zero-downtime rollouts across production clusters. Authored Terraform modules for cluster lifecycle management and contributed to multi-region capacity planning and reliability improvements.",
+      tags: ['Kubernetes (EKS)', 'Argo CD', 'Datadog', 'Terraform', 'Helm', 'AWS'],
+    },
+    {
+      date: 'June 2020 – November 2021',
+      title: 'Site Reliability Engineer / DevOps',
+      org: 'Adyton PBC',
+      description:
+        'Implemented infrastructure-as-code on AWS GovCloud for U.S. Department of Defense services using Terraform and SaltStack. Managed EKS clusters and ELK Stack monitoring. Built CI/CD systems with Bazel, GitLab Pipelines, Argo CD, and Jenkins.',
       tags: [
-        "Kubernetes (EKS)",
-        "Argo CD",
-        "Datadog",
-        "Terraform",
-        "Helm",
-        "AWS",
+        'AWS GovCloud',
+        'Terraform',
+        'SaltStack',
+        'Bazel',
+        'EKS',
+        'ELK Stack',
+        'GitLab CI',
+        'Jenkins',
       ],
     },
     {
-      date: "June 2020 – November 2021",
-      title: "Site Reliability Engineer / DevOps",
-      org: "Adyton PBC",
+      date: 'March 2020 – June 2020',
+      title: 'Software DevOps Engineer',
+      org: 'Addi',
       description:
-        "Implemented infrastructure-as-code on AWS GovCloud for U.S. Department of Defense services using Terraform and SaltStack. Managed EKS clusters and ELK Stack monitoring. Built CI/CD systems with Bazel, GitLab Pipelines, Argo CD, and Jenkins.",
-      tags: [
-        "AWS GovCloud",
-        "Terraform",
-        "SaltStack",
-        "Bazel",
-        "EKS",
-        "ELK Stack",
-        "GitLab CI",
-        "Jenkins",
-      ],
+        'Implemented SonarQube on Kubernetes clusters for automated integration test execution on new commits from product teams. Worked with development teams on the initial migration of workloads to Kubernetes.',
+      tags: ['Terraform', 'SonarQube', 'Kubernetes', 'Convox', 'Weave'],
     },
     {
-      date: "March 2020 – June 2020",
-      title: "Software DevOps Engineer",
-      org: "Addi",
+      date: 'August 2016 – December 2020',
+      title: 'Professor',
+      org: 'Universidad Icesi',
       description:
-        "Implemented SonarQube on Kubernetes clusters for automated integration test execution on new commits from product teams. Worked with development teams on the initial migration of workloads to Kubernetes.",
-      tags: ["Terraform", "SonarQube", "Kubernetes", "Convox", "Weave"],
+        'Taught Operating Systems, Computer Networks II, and Infrastructure Automation. Developed Cloud Computing labs on AWS. Continued in parallel with industry roles through 2020.',
+      tags: ['Education', 'AWS', 'Networking'],
     },
     {
-      date: "August 2016 – December 2020",
-      title: "Professor",
-      org: "Universidad Icesi",
+      date: 'January 2018 – December 2019',
+      title: 'Research Assistant',
+      org: 'Universidad Icesi',
       description:
-        "Taught Operating Systems, Computer Networks II, and Infrastructure Automation. Developed Cloud Computing labs on AWS. Continued in parallel with industry roles through 2020.",
-      tags: ["Education", "AWS", "Networking"],
+        'Published research on Quality of Service in Software-Defined Networks (SDN) on IEEEXplore.',
+      tags: ['SDN', 'Research', 'IEEEXplore'],
     },
     {
-      date: "January 2018 – December 2019",
-      title: "Research Assistant",
-      org: "Universidad Icesi",
+      date: 'January 2020 – February 2020',
+      title: 'Cloud and DevOps Engineer',
+      org: 'IPINNOVATECH',
       description:
-        "Published research on Quality of Service in Software-Defined Networks (SDN) on IEEEXplore.",
-      tags: ["SDN", "Research", "IEEEXplore"],
+        'Implemented centralized AWS infrastructure management using SSM and CloudWatch.',
+      tags: ['AWS SSM', 'CloudWatch'],
     },
     {
-      date: "January 2020 – February 2020",
-      title: "Cloud and DevOps Engineer",
-      org: "IPINNOVATECH",
+      date: 'December 2014 – December 2016',
+      title: 'Network Engineer',
+      org: 'Global Networks Solutions',
       description:
-        "Implemented centralized AWS infrastructure management using SSM and CloudWatch.",
-      tags: ["AWS SSM", "CloudWatch"],
-    },
-    {
-      date: "December 2014 – December 2016",
-      title: "Network Engineer",
-      org: "Global Networks Solutions",
-      description:
-        "Designed network infrastructure (127 Cisco devices) for government ministry facilities.",
-      tags: ["Cisco", "Network Design"],
+        'Designed network infrastructure (127 Cisco devices) for government ministry facilities.',
+      tags: ['Cisco', 'Network Design'],
     },
   ]}
 />
@@ -258,10 +247,10 @@ Expert in scaling cloud-native infrastructure, high-throughput API gateways, and
 
 <div
   style={{
-    display: "flex",
-    gap: "8px",
-    flexWrap: "wrap",
-    marginBottom: "1.5rem",
+    display: 'flex',
+    gap: '8px',
+    flexWrap: 'wrap',
+    marginBottom: '1.5rem',
   }}
 >
   <SkillBadge name="Kong API Gateway" level="expert" />
@@ -276,10 +265,10 @@ Expert in scaling cloud-native infrastructure, high-throughput API gateways, and
 
 <div
   style={{
-    display: "flex",
-    gap: "8px",
-    flexWrap: "wrap",
-    marginBottom: "1.5rem",
+    display: 'flex',
+    gap: '8px',
+    flexWrap: 'wrap',
+    marginBottom: '1.5rem',
   }}
 >
   <SkillBadge
@@ -296,10 +285,10 @@ Expert in scaling cloud-native infrastructure, high-throughput API gateways, and
 
 <div
   style={{
-    display: "flex",
-    gap: "8px",
-    flexWrap: "wrap",
-    marginBottom: "1.5rem",
+    display: 'flex',
+    gap: '8px',
+    flexWrap: 'wrap',
+    marginBottom: '1.5rem',
   }}
 >
   <SkillBadge name="OpenTelemetry" level="advanced" />
@@ -314,10 +303,10 @@ Expert in scaling cloud-native infrastructure, high-throughput API gateways, and
 
 <div
   style={{
-    display: "flex",
-    gap: "8px",
-    flexWrap: "wrap",
-    marginBottom: "1.5rem",
+    display: 'flex',
+    gap: '8px',
+    flexWrap: 'wrap',
+    marginBottom: '1.5rem',
   }}
 >
   <SkillBadge name="Go" level="intermediate" />
@@ -330,10 +319,10 @@ Expert in scaling cloud-native infrastructure, high-throughput API gateways, and
 
 <div
   style={{
-    display: "flex",
-    gap: "8px",
-    flexWrap: "wrap",
-    marginBottom: "1.5rem",
+    display: 'flex',
+    gap: '8px',
+    flexWrap: 'wrap',
+    marginBottom: '1.5rem',
   }}
 >
   <SkillBadge name="Infrastructure-as-Code" level="expert" />

@@ -1,11 +1,17 @@
 # Describe launch templates
 
-This script retrieve information about launch templates across all regions. Here's a brief overview of what the script does:
+This script retrieve information about launch templates across all regions. Here's a brief overview
+of what the script does:
 
-* Defines a function called `describe_launch_templates_by_region` that takes a single argument, `region_name`. This function uses the `boto3` library to create a client for the EC2 service in the specified region, and then uses the `describe_launch_templates` method to retrieve information about all launch templates in that region.
-* The function then loops through each Launch Template and retrieves additional information about the launc template. It then adds the Launch Template information to a list.
-* If an error occurs while trying to retrieve the Launch Template information, the function catches the exception and prints out an error message.
-* Finally, the function returns a summary of the total number of instances in all the regions.
+- Defines a function called `describe_launch_templates_by_region` that takes a single argument,
+  `region_name`. This function uses the `boto3` library to create a client for the EC2 service in
+  the specified region, and then uses the `describe_launch_templates` method to retrieve information
+  about all launch templates in that region.
+- The function then loops through each Launch Template and retrieves additional information about
+  the launc template. It then adds the Launch Template information to a list.
+- If an error occurs while trying to retrieve the Launch Template information, the function catches
+  the exception and prints out an error message.
+- Finally, the function returns a summary of the total number of instances in all the regions.
 
 ## Example output
 

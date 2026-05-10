@@ -27,13 +27,14 @@ export default function SkillBadge({
   const isTag = variant === 'tag';
   return (
     <span
-      className={clsx(
-        styles.badge,
-        isTag ? styles.tag : level && styles[level],
-      )}
+      className={clsx(styles.badge, isTag ? styles.tag : level && styles[level])}
       aria-label={level ? `${name} — ${LEVEL_LABEL[level]}` : name}
     >
-      {icon && <span className={styles.icon} aria-hidden="true">{icon}</span>}
+      {icon && (
+        <span className={styles.icon} aria-hidden="true">
+          {icon}
+        </span>
+      )}
       <span className={styles.name}>{name}</span>
     </span>
   );

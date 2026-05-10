@@ -1,5 +1,5 @@
-import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
+import { themes as prismThemes } from 'prism-react-renderer';
+import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import type * as ClientRedirects from '@docusaurus/plugin-client-redirects';
 
@@ -74,7 +74,10 @@ const config: Config = {
           { from: '/guides/bash_profile/', to: '/docs/guides/bash_profile/' },
           { from: '/guides/aws_cli_commands/', to: '/docs/guides/aws_cli_commands/' },
           { from: '/guides/linux_commands/', to: '/docs/guides/linux_commands/' },
-          { from: '/guides/docker_containerd_commands/', to: '/docs/guides/docker_containerd_commands/' },
+          {
+            from: '/guides/docker_containerd_commands/',
+            to: '/docs/guides/docker_containerd_commands/',
+          },
           { from: '/guides/git_commands/', to: '/docs/guides/git_commands/' },
           { from: '/guides/carvel_commands/', to: '/docs/guides/carvel_commands/' },
           { from: '/guides/saltstack_commands/', to: '/docs/guides/saltstack_commands/' },
@@ -92,11 +95,12 @@ const config: Config = {
           path: 'docs',
           sidebarPath: './sidebars.ts',
           editUrl: 'https://github.com/juanfe2793/Portfolio/tree/main/',
+          showLastUpdateTime: true,
+          showLastUpdateAuthor: true,
         },
         blog: {
           path: 'blog',
           showReadingTime: true,
-          truncateMarker: /(<!--\s*(truncate)\s*-->|{\/\*\s*(truncate)\s*\*\/})/,
           feedOptions: {
             type: ['rss', 'atom'],
             xslt: true,
@@ -121,13 +125,27 @@ const config: Config = {
     image: 'img/docusaurus-social-card.jpg',
     metadata: [
       { name: 'og:title', content: 'Juan Felipe Gómez — Staff Platform Engineer' },
-      { name: 'og:description', content: 'Platform infrastructure at organizational scale. 3M+ RPS, 99.999% availability, AI-native systems.' },
-      { name: 'og:image', content: 'https://juanfe2793.github.io/Portfolio/img/docusaurus-social-card.jpg' },
+      {
+        name: 'og:description',
+        content:
+          'Platform infrastructure at organizational scale. 3M+ RPS, 99.999% availability, AI-native systems.',
+      },
+      {
+        name: 'og:image',
+        content: 'https://juanfe2793.github.io/Portfolio/img/docusaurus-social-card.jpg',
+      },
       { name: 'og:type', content: 'website' },
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:title', content: 'Juan Felipe Gómez — Staff Platform Engineer' },
-      { name: 'twitter:description', content: 'Platform infrastructure at organizational scale. 3M+ RPS, 99.999% availability, AI-native systems.' },
-      { name: 'twitter:image', content: 'https://juanfe2793.github.io/Portfolio/img/docusaurus-social-card.jpg' },
+      {
+        name: 'twitter:description',
+        content:
+          'Platform infrastructure at organizational scale. 3M+ RPS, 99.999% availability, AI-native systems.',
+      },
+      {
+        name: 'twitter:image',
+        content: 'https://juanfe2793.github.io/Portfolio/img/docusaurus-social-card.jpg',
+      },
     ],
     colorMode: {
       defaultMode: 'dark',

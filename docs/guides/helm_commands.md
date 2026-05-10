@@ -5,7 +5,7 @@ some useful helm commands
 ```bash
 
 # Show the status of a helm release
-helm status 
+helm status
 
 # List all the Helm releases
 helm list --all
@@ -16,7 +16,7 @@ helm rollback <release-name> 0
 
 # Push chart to S3 bucket
 
-HELM_S3_MODE=3 helm s3 push $chart $repo 
+HELM_S3_MODE=3 helm s3 push $chart $repo
 HELM_S3_MODE=3 helm s3 push grafana adyton
 
 # Pull chart
