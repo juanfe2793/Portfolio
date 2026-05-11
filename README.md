@@ -1,8 +1,6 @@
 # Juan Felipe Gómez Manzanares | Professional Portfolio & Technical Blog
 
-Personal portfolio and technical blog for a **Staff Software Engineer** specializing in cloud-native
-infrastructure, API gateways, Kubernetes, and SRE. Built with **Docusaurus v3** (React 19 /
-TypeScript), deployed to GitHub Pages.
+Personal portfolio and technical blog for a **Staff Software Engineer** specializing in cloud-native infrastructure, API gateways, Kubernetes, and SRE. Built with **Docusaurus v3** (React 19 / TypeScript), deployed to GitHub Pages.
 
 **Live site:** [https://juanfe2793.github.io/Portfolio/](https://juanfe2793.github.io/Portfolio/)
 
@@ -47,9 +45,7 @@ docker compose --profile prod up   # Production build on :3000
 
 ## Deployment
 
-Automatically deployed to GitHub Pages on push to `main` via GitHub Actions
-(`.github/workflows/ci.yml`). PRs and pushes to `main` also run a build + typecheck CI check
-(`.github/workflows/test-ci.yml`).
+Automatically deployed to GitHub Pages on push to `main` via GitHub Actions (`.github/workflows/ci.yml`). PRs and pushes to `main` also run a build + typecheck CI check (`.github/workflows/test-ci.yml`).
 
 ---
 

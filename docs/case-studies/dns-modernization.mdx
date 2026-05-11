@@ -1,7 +1,6 @@
 ---
 title: Twilio-wide DNS Modernization
-description:
-  Centralizing DNS boundaries for a multi-region Kubernetes platform, eliminating manual operations.
+description: Centralizing DNS boundaries for a multi-region Kubernetes platform, eliminating manual operations.
 sidebar_label: 02 — DNS Modernization
 sidebar_position: 2
 ---
@@ -51,18 +50,18 @@ import CaseStudyHeader from '@site/src/components/CaseStudyHeader';
 
 ## DNS as an Organizational Bottleneck
 
-The platform unification initiative aimed to unify hundreds of services under a common Kubernetes
-platform. DNS was the hidden blocker. The existing state:
+The platform unification initiative aimed to unify hundreds of services under a common Kubernetes platform.
+DNS was the hidden blocker. The existing state:
 
-- **Manual record management** — every new service, cluster migration, or region expansion required
-  a ticket and human intervention.
-- **Brittle multi-cluster discovery** — services in `us-east-1` couldn't reliably resolve services
-  in `us-west-2` without custom, error-prone workarounds.
+- **Manual record management** — every new service, cluster migration, or region expansion
+  required a ticket and human intervention.
+- **Brittle multi-cluster discovery** — services in `us-east-1` couldn't reliably resolve
+  services in `us-west-2` without custom, error-prone workarounds.
 - **No namespace isolation** — DNS changes in one domain could silently break another.
 - **Audit impossibility** — no code-of-record for what DNS state _should_ be, only what it _was_.
 
-The on-call rotation was spending a disproportionate amount of time on DNS incidents. The root cause
-was structural: DNS was treated as an operational task, not a platform capability.
+The on-call rotation was spending a disproportionate amount of time on DNS incidents.
+The root cause was structural: DNS was treated as an operational task, not a platform capability.
 
 ---
 
@@ -101,21 +100,22 @@ graph TB
 
 ## Decoupling Service Discovery from Cluster Identity
 
-The architectural principle was **agnosticism**: the DNS boundary should not know or care which
-specific cluster a service lives in. This enabled cluster migrations and regional failovers without
-any DNS changes on the client side.
+The architectural principle was **agnosticism**: the DNS boundary should not know or care
+which specific cluster a service lives in. This enabled cluster migrations and regional
+failovers without any DNS changes on the client side.
 
-**The ExternalDNS controller** was configured with organizational conventions so that a Kubernetes
-`Service` or `Ingress` with the right annotations would automatically create, update, and delete its
-own DNS records across all relevant hosted zones. No tickets. No manual steps.
+**The ExternalDNS controller** was configured with organizational conventions so that
+a Kubernetes `Service` or `Ingress` with the right annotations would automatically
+create, update, and delete its own DNS records across all relevant hosted zones.
+No tickets. No manual steps.
 
-**Terraform zone architecture** defined the hosted zone structure, delegation chains, and IAM
-governance as code — giving the platform team full auditability and the ability to evolve the DNS
-topology through pull requests, not support requests.
+**Terraform zone architecture** defined the hosted zone structure, delegation chains,
+and IAM governance as code — giving the platform team full auditability and the ability
+to evolve the DNS topology through pull requests, not support requests.
 
-**Namespace-scoped permissions** ensured that domain teams could manage their own records within
-their allocated zones, but could not affect records belonging to other domains. Self-service without
-blast radius.
+**Namespace-scoped permissions** ensured that domain teams could manage their own records
+within their allocated zones, but could not affect records belonging to other domains.
+Self-service without blast radius.
 
 ---
 
@@ -130,9 +130,9 @@ blast radius.
 | Multi-region expansion | Manual replication per region | Single controller, all regions   |
 | On-call DNS incidents  | Weekly occurrence             | Near-zero                        |
 
-The **80% reduction in operational burnout** was measured through on-call incident frequency before
-and after the rollout. Engineers reclaimed time previously spent on DNS firefighting and redirected
-it to platform improvements.
+The **80% reduction in operational burnout** was measured through on-call incident
+frequency before and after the rollout. Engineers reclaimed time previously spent
+on DNS firefighting and redirected it to platform improvements.
 
 ---
 

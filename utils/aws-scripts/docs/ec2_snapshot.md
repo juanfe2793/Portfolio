@@ -1,16 +1,10 @@
 # Describe EC2 snapshot
 
-This script retrieve information about EC2 snapshots in all regions. Here's a brief overview of what
-the script does:
+This script retrieve information about EC2 snapshots in all regions. Here's a brief overview of what the script does:
 
-- Defines a function called `describe_ec2_snapshots_by_region` that takes a single argument,
-  region_name. This function uses the boto3 library to create a client for the EC2 service in the
-  specified region, and then uses the `describe_snapshots` method to retrieve information about all
-  EC2 snapshots in that region.
-- The function then prints out the total number of snapshots found in the region, and loops through
-  each snapshot to print out its name, ID, and snapshot type.
-- If an error occurs while trying to retrieve the snapshot information, the function catches the
-  exception and prints out an error message.
+- Defines a function called `describe_ec2_snapshots_by_region` that takes a single argument, region_name. This function uses the boto3 library to create a client for the EC2 service in the specified region, and then uses the `describe_snapshots` method to retrieve information about all EC2 snapshots in that region.
+- The function then prints out the total number of snapshots found in the region, and loops through each snapshot to print out its name, ID, and snapshot type.
+- If an error occurs while trying to retrieve the snapshot information, the function catches the exception and prints out an error message.
 - Finally, the function returns a summary of the total number of snapshots in all the regions.
 
 ## Example output

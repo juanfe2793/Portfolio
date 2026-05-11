@@ -1,7 +1,6 @@
 ---
 title: Automated Observability & Load Testing
-description:
-  Shifting platform performance engineering left with OpenTelemetry and k6 as CI/CD gates.
+description: Shifting platform performance engineering left with OpenTelemetry and k6 as CI/CD gates.
 sidebar_label: 03 — Observability & Load Testing
 sidebar_position: 3
 ---
@@ -51,15 +50,15 @@ import CaseStudyHeader from '@site/src/components/CaseStudyHeader';
 
 ## Blind Spots at Scale
 
-Observability across the Twilio Kubernetes platform was fragmented by design — or rather, by the
-absence of one. The consequences were predictable:
+Observability across the Twilio Kubernetes platform was fragmented by design — or rather,
+by the absence of one. The consequences were predictable:
 
-- **Heterogeneous monitoring** — some teams used Prometheus, others proprietary APM tools, others
-  nothing at all. Cross-service incident correlation was nearly impossible.
-- **Load testing as an event** — performance tests happened once, manually, days before a major
-  release. Regressions introduced between releases went undetected until production.
-- **Reactive incident response** — without consistent telemetry, on-call engineers were debugging by
-  intuition rather than data.
+- **Heterogeneous monitoring** — some teams used Prometheus, others proprietary APM tools,
+  others nothing at all. Cross-service incident correlation was nearly impossible.
+- **Load testing as an event** — performance tests happened once, manually, days before a
+  major release. Regressions introduced between releases went undetected until production.
+- **Reactive incident response** — without consistent telemetry, on-call engineers were
+  debugging by intuition rather than data.
 - **No shared baseline** — SLO definitions varied by team, making platform-wide reliability
   reporting meaningless.
 
@@ -106,8 +105,8 @@ graph LR
 
 **Pillar 1: Unified Instrumentation via OpenTelemetry**
 
-The key decision was adopting OTel as a _sidecar_, not as a library teams had to integrate. By
-delivering observability via Helm charts, we removed the per-team instrumentation burden entirely.
+The key decision was adopting OTel as a _sidecar_, not as a library teams had to integrate.
+By delivering observability via Helm charts, we removed the per-team instrumentation burden entirely.
 Every service running the sidecar automatically exported:
 
 - **Metrics** — request rate, error rate, latency (RED) via OTel Collector → Prometheus
@@ -118,15 +117,15 @@ No code changes required from application teams.
 
 **Pillar 2: Shift-Left Performance with k6**
 
-Performance tests were redesigned as _gates_ in the CI/CD pipeline, not post-deployment checks. Each
-service's delivery pipeline included:
+Performance tests were redesigned as _gates_ in the CI/CD pipeline, not post-deployment checks.
+Each service's delivery pipeline included:
 
 1. A baseline load test that ran on every PR merge to the main branch.
 2. Threshold assertions (p95 latency, error rate, throughput) that blocked deployment if breached.
 3. Trend reporting into the same Prometheus/Grafana stack for longitudinal analysis.
 
-The cultural shift: performance regressions were now caught by the engineer who introduced them, not
-by the on-call engineer three weeks later.
+The cultural shift: performance regressions were now caught by the engineer who introduced them,
+not by the on-call engineer three weeks later.
 
 ---
 
@@ -142,8 +141,8 @@ by the on-call engineer three weeks later.
 | Cross-service correlation    | Manual, slow                 | Automated via trace context   |
 | SLO visibility               | Per-team silos               | Unified Grafana platform view |
 
-The transition from reactive to proactive performance engineering measurably reduced incident
-frequency and mean-time-to-detection across the platform.
+The transition from reactive to proactive performance engineering measurably reduced
+incident frequency and mean-time-to-detection across the platform.
 
 ---
 

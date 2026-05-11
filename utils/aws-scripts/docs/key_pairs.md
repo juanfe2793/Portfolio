@@ -1,16 +1,10 @@
 # Describe key_pairs instance
 
-This script retrieve information about key_pairs instances in all regions. Here's a brief overview
-of what the script does:
+This script retrieve information about key_pairs instances in all regions. Here's a brief overview of what the script does:
 
-- Defines a function called `describe_key_pairs_instances_by_region` that takes a single argument,
-  region_name. This function uses the boto3 library to create a client for the key_pairs service in
-  the specified region, and then uses the `describe_key_pairs` method to retrieve information about
-  all key_pairs instances in that region.
-- The function then prints out the total number of instances found in the region, and loops through
-  each instance to print out its name, ID, and region.
-- If an error occurs while trying to retrieve the instance information, the function catches the
-  exception and prints out an error message.
+- Defines a function called `describe_key_pairs_instances_by_region` that takes a single argument, region_name. This function uses the boto3 library to create a client for the key_pairs service in the specified region, and then uses the `describe_key_pairs` method to retrieve information about all key_pairs instances in that region.
+- The function then prints out the total number of instances found in the region, and loops through each instance to print out its name, ID, and region.
+- If an error occurs while trying to retrieve the instance information, the function catches the exception and prints out an error message.
 - Finally, the function returns a summary of the total number of key_pairs in all the regions.
 
 ## Example output

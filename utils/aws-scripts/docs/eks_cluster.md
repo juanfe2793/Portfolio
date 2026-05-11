@@ -1,16 +1,10 @@
 # Describe Elastic IPs
 
-This script retrieve information about EKS clusterss across all regions. Here's a brief overview of
-what the script does:
+This script retrieve information about EKS clusterss across all regions. Here's a brief overview of what the script does:
 
-- Defines a function called `list_eks_clusters` that takes a single argument, `region_name`. This
-  function uses the `boto3` library to create a client for the EKS service in the specified region,
-  and then uses the `list_eks_clusters_by_region` method to retrieve information about all Elastic
-  IPs in that region.
-- The function then loops through each EKS cluster and retrieves additional information about the
-  cluster (if there is one). It then adds the EKS cluster basic information to a list.
-- If an error occurs while trying to retrieve the EKS cluster information, the function catches the
-  exception and prints out an error message.
+- Defines a function called `list_eks_clusters` that takes a single argument, `region_name`. This function uses the `boto3` library to create a client for the EKS service in the specified region, and then uses the `list_eks_clusters_by_region` method to retrieve information about all Elastic IPs in that region.
+- The function then loops through each EKS cluster and retrieves additional information about the cluster (if there is one). It then adds the EKS cluster basic information to a list.
+- If an error occurs while trying to retrieve the EKS cluster information, the function catches the exception and prints out an error message.
 - Finally, the function returns a summary of the total number of EKS clusters in all the regions.
 
 ## Example output
