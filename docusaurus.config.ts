@@ -100,6 +100,9 @@ const config: Config = {
           feedOptions: {
             type: ['rss', 'atom'],
             xslt: true,
+            description: 'Dispatches from the Platform Layer - Juan Felipe Gomez Blog',
+            copyright: `Copyright © ${new Date().getFullYear()} Juan Felipe Gómez Manzanares.`,
+            language: 'en',
           },
           editUrl: 'https://github.com/juanfe2793/Portfolio/tree/main/',
           onInlineTags: 'warn',
