@@ -8,7 +8,7 @@ Personal portfolio and technical blog for Juan Felipe Gómez Manzanares (Staff S
 
 ## Build & Development Commands
 
-> Requires Node.js >=20 and pnpm >=9
+> Requires Node.js >=22 and pnpm >=9
 
 ```bash
 pnpm install               # Install Node dependencies

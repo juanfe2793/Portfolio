@@ -23,7 +23,7 @@ Personal portfolio and technical blog for a **Staff Software Engineer** speciali
 
 ## Local Development
 
-Requires **Node.js >=20** and **pnpm >=9** (`npm install -g pnpm` or via [corepack](https://nodejs.org/api/corepack.html)).
+Requires **Node.js >=22** and **pnpm >=9** (`npm install -g pnpm` or via [corepack](https://nodejs.org/api/corepack.html)).
 
 ```bash
 pnpm install         # Install dependencies
