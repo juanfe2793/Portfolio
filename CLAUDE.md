@@ -8,15 +8,15 @@ Personal portfolio and technical blog for Juan Felipe Gómez Manzanares (Staff S
 
 ## Build & Development Commands
 
-> Requires Node.js >=20
+> Requires Node.js >=20 and pnpm >=9
 
 ```bash
-npm install                # Install Node dependencies
-npm start                  # Local dev server
-npm run build              # Production build
-npm run typecheck          # TypeScript type checking (tsc)
-npm run serve              # Serve the production build locally
-npm run clear              # Clear Docusaurus cache (use when builds behave unexpectedly)
+pnpm install               # Install Node dependencies
+pnpm start                 # Local dev server
+pnpm run build             # Production build
+pnpm run typecheck         # TypeScript type checking (tsc)
+pnpm run serve             # Serve the production build locally
+pnpm run clear             # Clear Docusaurus cache (use when builds behave unexpectedly)
 ```
 
 ### Docker

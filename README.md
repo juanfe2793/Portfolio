@@ -23,15 +23,15 @@ Personal portfolio and technical blog for a **Staff Software Engineer** speciali
 
 ## Local Development
 
-Requires **Node.js >=20**.
+Requires **Node.js >=20** and **pnpm >=9** (`npm install -g pnpm` or via [corepack](https://nodejs.org/api/corepack.html)).
 
 ```bash
-npm install          # Install dependencies
-npm start            # Dev server at http://localhost:3000
-npm run build        # Production build
-npm run typecheck    # TypeScript type check
-npm run serve        # Serve production build locally
-npm run clear        # Clear Docusaurus cache
+pnpm install         # Install dependencies
+pnpm start           # Dev server at http://localhost:3000
+pnpm run build       # Production build
+pnpm run typecheck   # TypeScript type check
+pnpm run serve       # Serve production build locally
+pnpm run clear       # Clear Docusaurus cache
 ```
 
 ### Docker
