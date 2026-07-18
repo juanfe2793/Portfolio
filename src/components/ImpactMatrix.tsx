@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
+import CountUp from 'react-countup';
 import styles from './ImpactMatrix.module.css';
 
 type MetricItem = {
@@ -52,6 +53,9 @@ const metrics: MetricItem[] = [
 ];
 
 export default function ImpactMatrix() {
+  const prefersReducedMotion =
+    typeof window !== 'undefined' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   return (
     <div className={styles.matrixContainer}>
       <div className={styles.bentoGrid}>
@@ -63,7 +67,20 @@ export default function ImpactMatrix() {
             <>
               <span className={styles.label}>{metric.label}</span>
               <div className={styles.value}>
-                {metric.prefix || ''}{value}{metric.suffix || ''}
+                <CountUp
+                  start={0}
+                  end={metric.value}
+                  decimals={metric.decimals || 0}
+                  duration={prefersReducedMotion ? 0 : 1.8}
+                  prefix={metric.prefix || ''}
+                  suffix={metric.suffix || ''}
+                  enableScrollSpy
+                  scrollSpyOnce
+                >
+                  {({ countUpRef }) => (
+                    <span ref={countUpRef}>{metric.prefix || ''}{value}{metric.suffix || ''}</span>
+                  )}
+                </CountUp>
               </div>
               <p className={styles.description}>{metric.description}</p>
             </>

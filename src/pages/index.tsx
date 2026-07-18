@@ -18,19 +18,24 @@ function HeroSection() {
     <section className={clsx(styles.hero, 'container')}>
       <div className={styles.heroGrid}>
         <div className={styles.heroLeft}>
+          <div className={styles.heroStatus}>
+            <span className={styles.statusDot} aria-hidden="true" />
+            Staff Software & Platform Engineer · Currently @ Twilio
+          </div>
           <Heading as="h1" className={styles.heroName}>
-            Building Platform Infrastructure<br />for Global-Scale, High-Throughput Systems
+            Building platform infrastructure for{' '}
+            <span className={styles.heroAccent}>global-scale, high-throughput</span> systems
           </Heading>
-          <div className={styles.heroSubtitle}>Staff Software & Platform Engineer · Cloud & AI Infrastructure</div>
           <p className={styles.heroTagline}>
-            10+ years experience Engineer, I architect and build platform infrastructure at the intersection of <strong>reliability, security, scalability, AI</strong>.
+            With 10+ years in cloud infrastructure, I architect and build platforms at the
+            intersection of <strong>reliability, security, scalability, and AI</strong>.
           </p>
           <div className={styles.heroActions}>
             <Link className={styles.heroCta} to="/docs/case-studies">
-              [ Explore Case Studies → ]
+              Explore Case Studies <span className={styles.heroCtaArrow} aria-hidden="true">→</span>
             </Link>
             <Link className={styles.heroCtaSecondary} to="/docs/portfolio/cv">
-              [ View CV ]
+              View CV / Resume
             </Link>
           </div>
           <div className={styles.heroSocial}>
@@ -39,7 +44,13 @@ function HeroSection() {
         </div>
         <div className={styles.heroRight}>
           <figure className={styles.avatarFigure}>
-            <img src={avatarSrc} alt="Juan Felipe Gómez Manzanares" />
+            <img
+              src={avatarSrc}
+              alt="Juan Felipe Gómez Manzanares"
+              width={268}
+              height={268}
+              fetchPriority="high"
+            />
             <figcaption>
               <span className={styles.avatarName}>Juan Felipe Gómez Manzanares</span>
               <span className={styles.avatarCaption}>Executive Profile — 2026</span>
@@ -142,8 +153,16 @@ function CtaSection() {
 
 export default function Home(): ReactNode {
   useEffect(() => {
+    // Reveal once and stop observing — toggling on exit re-hides sections
+    // mid-scroll and leaves them invisible for anyone landing past them.
     const observer = new IntersectionObserver(
-      (entries) => entries.forEach((e) => e.target.classList.toggle(styles.visible, e.isIntersecting)),
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add(styles.visible);
+            observer.unobserve(e.target);
+          }
+        }),
       { threshold: 0.08 }
     );
     document.querySelectorAll(`.${styles.fadeUp}`).forEach((el) => observer.observe(el));
