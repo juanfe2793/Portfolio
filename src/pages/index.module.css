@@ -43,74 +43,144 @@
   letter-spacing: 0.1em;
 }
 
-.heroName {
-  font-size: clamp(3rem, 8vw, 5rem);
-  line-height: 0.9;
-  margin: 0;
-  letter-spacing: -0.02em;
+.heroStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  align-self: flex-start;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  background: var(--accent-soft);
 }
 
-.heroSubtitle {
-  font-family: var(--ifm-font-family-monospace);
-  font-size: 1.1rem;
-  color: var(--ink-soft);
+.statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #34D399;
+  box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.55);
+  animation: statusPulse 2.4s ease-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes statusPulse {
+  0% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.55); }
+  70% { box-shadow: 0 0 0 7px rgba(52, 211, 153, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
+}
+
+.heroName {
+  font-size: clamp(2.5rem, 5.5vw, 4rem);
+  line-height: 1.05;
+  margin: 0;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.heroAccent {
+  background: linear-gradient(90deg, var(--accent), var(--accent-deep));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--accent); /* fallback for browsers without background-clip: text */
 }
 
 .heroTagline {
-  font-family: var(--ifm-heading-font-family);
-  font-style: italic;
-  font-size: 1.5rem;
-  max-width: 500px;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 54ch;
   margin: 0;
+}
+
+.heroTagline strong {
+  color: var(--ink);
 }
 
 .heroActions {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
   margin-top: 1.5rem;
 }
 
-
-.ctaSecondary {
-  font-size: 0.875rem;
-}
-
-.heroCtaSecondary {
+.heroCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 48px;
+  padding: 0 1.75rem;
   font-family: var(--ifm-font-family-monospace);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--paper);
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 6px;
   text-decoration: none;
-  letter-spacing: 0.05em;
-  border-bottom: 1px solid var(--accent);
-  padding-bottom: 2px;
-  transition: color 0.2s ease;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .heroCta:hover {
-  color: var(--accent);
+  color: var(--paper);
+  background: var(--accent-deep);
+  border-color: var(--accent-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--accent-soft);
   text-decoration: none;
 }
 
-.ctaSecondary {
-  font-size: 0.875rem;
+.heroCtaArrow {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.heroCta:hover .heroCtaArrow {
+  transform: translateX(4px);
 }
 
 .heroCtaSecondary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 1.75rem;
   font-family: var(--ifm-font-family-monospace);
-  color: var(--ink-soft);
-  text-decoration: none;
+  font-size: 0.85rem;
   font-weight: 600;
-  border-bottom: 1px solid var(--rule);
-  padding-bottom: 2px;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  text-decoration: none;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
 }
 
 .heroCtaSecondary:hover {
-  color: var(--ink);
-  border-bottom-color: var(--accent);
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  transform: translateY(-2px);
   text-decoration: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .statusDot {
+    animation: none;
+  }
+  .heroCta:hover,
+  .heroCtaSecondary:hover {
+    transform: none;
+  }
 }
 
 .heroSocial {
@@ -321,13 +391,15 @@
 
 .principleCard {
   border: 1px solid var(--rule);
+  border-radius: 8px;
   padding: 2rem;
   position: relative;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease, background 0.2s ease;
 }
 
 .principleCard:hover {
   border-color: var(--accent);
+  background: var(--accent-soft);
 }
 
 .principleNumber {
@@ -388,6 +460,11 @@
   .heroActions {
     flex-wrap: wrap;
     gap: 1rem;
+  }
+  .heroCta,
+  .heroCtaSecondary {
+    width: 100%;
+    justify-content: center;
   }
   .aboutContent {
     grid-template-columns: 1fr;

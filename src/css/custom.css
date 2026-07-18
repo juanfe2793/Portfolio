@@ -72,10 +72,27 @@
 }
 
 /* Base Element Styling */
+html {
+  scroll-behavior: smooth;
+  /* Keep anchored headings clear of the sticky navbar */
+  scroll-padding-top: calc(var(--ifm-navbar-height, 60px) + 1rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   color: var(--ink);
   background-color: var(--paper);
   line-height: 1.6;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--paper);
 }
 
 h1, h2, h3 {
@@ -83,6 +100,16 @@ h1, h2, h3 {
   letter-spacing: -0.02em;
   color: var(--ink);
   font-weight: 600;
+  text-wrap: balance;
+}
+
+/* Translucent, blurred sticky navbar */
+.navbar {
+  background: color-mix(in srgb, var(--paper) 82%, transparent);
+  backdrop-filter: blur(12px) saturate(1.4);
+  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  border-bottom: 1px solid var(--rule);
+  box-shadow: none;
 }
 
 h4, h5, h6 {

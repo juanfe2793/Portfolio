@@ -68,11 +68,11 @@ The theme is called **"Obsidian Command Center"** — dark-first, high-contrast.
 
 | Token | Light | Dark |
 |---|---|---|
-| `--paper` | `#FAF7F0` | `#000000` (OLED) |
+| `--paper` | `#F9FAFB` | `#000000` (OLED) |
 | `--ink` | `#141414` | `#FFFFFF` |
-| `--ink-soft` | `#4A4A48` | `#A1A1AA` |
-| `--accent` | `#B43A0B` (burnt orange) | `#00D1FF` (electric blue) |
-| `--accent-deep` | `#7C2D12` | `#00A3C7` |
+| `--ink-soft` | `#4A4A58` | `#A1A1AA` |
+| `--accent` | `#4338CA` (indigo) | `#60A5FA` (soft sky blue) |
+| `--accent-deep` | `#3730A3` | `#3B82F6` |
 
 Default color mode is **dark**. Always use these tokens rather than hard-coded colors. Infima variables (`--ifm-color-primary`, etc.) are mapped to these tokens — do not set Infima variables directly.
 

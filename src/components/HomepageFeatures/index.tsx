@@ -1,5 +1,5 @@
 import type {ReactNode} from 'react';
-import Heading from '@theme/Heading';
+import clsx from 'clsx';
 import styles from './styles.module.css';
 
 type ExpertiseItem = {
@@ -61,6 +61,3 @@ export default function HomepageFeatures(): ReactNode {
     </section>
   );
 }
-
-// Note: clsx import needed if using it, or just use string template
-import clsx from 'clsx';
