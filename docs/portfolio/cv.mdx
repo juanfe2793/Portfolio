@@ -1,0 +1,360 @@
+---
+title: Curriculum Vitae
+sidebar_label: CV / Resume
+sidebar_position: 1
+displayed_sidebar: null
+hide_table_of_contents: false
+custom_edit_url: null
+---
+
+import Timeline from "@site/src/components/Timeline";
+import SkillBadge from "@site/src/components/SkillBadge";
+import SocialLinks from "@site/src/components/SocialLinks";
+
+# Curriculum Vitae
+
+## **Juan Felipe Gómez Manzanares**
+
+**Staff Software Engineer | Platform Infrastructure & SRE**
+
+Expert in scaling cloud-native infrastructure, high-throughput API gateways, and resilient platform services.
+
+<SocialLinks />
+
+---
+
+<div className="eyebrow">01 — ABOUT</div>
+
+10+ years experience Platform & Infrastructure Software Engineer that architect and deliver reliable systems for global and high-throughput scale products — API gateways, service mesh connectivity, DNS architecture, Public Ingress/Egress and the observability tooling that makes reliability measurable across distributed systems. Over four years at Twilio I led the zero-to-production delivery of a cloud-native domain gateway platform, validated at **multi-million RPS** under stress testing, and drove inter-platform service reliability to a **five-nines target**, building the baseline for customer trust.
+
+---
+
+<div className="eyebrow">03 — PROFESSIONAL EXPERIENCE</div>
+
+<Timeline
+  entries={[
+    {
+      date: "June 2023 – Present",
+      title: "Staff Software Engineer",
+      org: "Twilio",
+      description: (
+        <>
+          <div
+            style={{
+              background: "var(--ifm-color-success-contrast-background)",
+              border: "1px solid var(--ifm-color-success-dark)",
+              borderRadius: "6px",
+              padding: "0.75rem 1rem",
+              marginBottom: "0.75rem",
+            }}
+          >
+            <strong style={{ color: "var(--ifm-color-success-darkest)" }}>
+              Key Achievements
+            </strong>
+            <ul style={{ margin: "0.5rem 0 0 0", paddingLeft: "1.25rem" }}>
+              <li>
+                <strong>API Gateway:</strong> Led the design of the domain
+                gateway infrastructure using <strong>Kong</strong>, validated at{" "}
+                <strong>multi-million RPS</strong> under stress testing.
+              </li>
+              <li>
+                <strong>DNS Modernization:</strong> Designed domain-scoped,
+                platform-agnostic DNS hierarchy across Kubernetes, VM, and
+                serverless container runtimes with blast-radius isolation per
+                domain.
+              </li>
+              <li>
+                <strong>Reliability:</strong> Drove inter-service success rate
+                to a <strong>five-nines target</strong> at very high sustained
+                throughput.
+              </li>
+            </ul>
+          </div>
+          <strong>Platform & Gateway Architecture</strong>
+          <ul style={{ margin: "0.25rem 0 0.75rem 0", paddingLeft: "1.25rem" }}>
+            <li>
+              Led design, planning, and delivery of the domain gateway
+              infrastructure — a reusable Terraform module providing a
+              production-grade Kong API gateway (ECS autoscaling, NLB, TLS/gRPC,
+              S3 config, VPC PrivateLink, OTel observability).
+            </li>
+            <li>
+              Designed and implemented cross-account VPC PrivateLink Terraform
+              modules (EndpointService + RAM share + client-side SSM parameter
+              discovery); reduced connectivity onboarding to a plug-in module.
+            </li>
+            <li>
+              Authored ADRs and architecture documents for Terraform module
+              delivery, Kong plugin lifecycle, and stress/load/performance
+              testing.
+            </li>
+          </ul>
+          <strong>DNS Infrastructure</strong>
+          <ul style={{ margin: "0.25rem 0 0.75rem 0", paddingLeft: "1.25rem" }}>
+            <li>
+              Designed and implemented the domain-scoped DNS hierarchy
+              platform-agnostic across the company's runtime environments.
+            </li>
+            <li>
+              Built the Route 53 hosted-zone Terraform module and DNS delegation
+              chain; hardened records with <code>prevent_destroy</code>{" "}
+              lifecycle rules.
+            </li>
+            <li>
+              Implemented guardrails in production accounts to avoid manual
+              manipulation of DNS infrastructure.
+            </li>
+            <li>
+              Supported DNS sharding design; guided DNS delegation ownership
+              model across platform teams.
+            </li>
+          </ul>
+          <strong>Reliability & Observability</strong>
+          <ul style={{ margin: "0.25rem 0 0.75rem 0", paddingLeft: "1.25rem" }}>
+            <li>
+              Led load-balancer configuration hardening based on production
+              learnings; raised inter-platform success rate to a five-nines
+              target.
+            </li>
+            <li>
+              Implemented Kong observability via OpenTelemetry sidecar exporting
+              Prometheus metrics to the internal Grafana platform — first
+              OTel integration for container-based Kong at the company.
+            </li>
+            <li>
+              Built Grafana dashboard templates for Kong health and ECS metrics.
+            </li>
+            <li>
+              Executed chaos/failure injection on Kong to validate gateway
+              resilience and document recovery behavior.
+            </li>
+          </ul>
+          <strong>Testing & Developer Experience</strong>
+          <ul style={{ margin: "0.25rem 0 0.75rem 0", paddingLeft: "1.25rem" }}>
+            <li>
+              Built the on-demand performance testing framework (k6 + Helm +
+              Datadog); adopted by multiple engineering teams.
+            </li>
+            <li>
+              Added ECS circuit breaker and rollback configuration to the API
+              gateway Terraform module; enabled safe progressive delivery.
+            </li>
+            <li>
+              Drove contributor documentation for the platform; wrote the
+              gateway runbook and led a resilience gameday.
+            </li>
+          </ul>
+          <strong>Mentoring & Cross-Team Influence</strong>
+          <ul style={{ margin: "0.25rem 0 0 0", paddingLeft: "1.25rem" }}>
+            <li>
+              Provided technical guidance and pair programming for ingress
+              sharding rollout, DNS sharding design, and sharding verification
+              — mentoring multiple engineers across workstreams.
+            </li>
+            <li>
+              Led knowledge transfer sessions on Domain Gateway architecture
+              fundamentals for the broader team.
+            </li>
+            <li>
+              Supported onboarding of additional teams to the gateway platform.
+            </li>
+          </ul>
+        </>
+      ),
+      tags: [
+        "Kong",
+        "ECS",
+        "EKS",
+        "Terraform",
+        "AWS",
+        "OpenTelemetry",
+        "Prometheus",
+        "Grafana",
+        "k6",
+        "Istio",
+        "Go",
+        "Python",
+        "Lua",
+      ],
+    },
+    {
+      date: "November 2021 – June 2023",
+      title: "Senior Software Engineer, Kubernetes Platform",
+      org: "Twilio",
+      description:
+        "Operated and scaled a Kubernetes-based API platform across dozens of EKS clusters in multiple AWS regions. Implemented Datadog monitoring and alerting for cluster and workload health. Managed GitOps progressive delivery via Argo CD, enabling zero-downtime rollouts across production clusters. Authored Terraform modules for cluster lifecycle management and contributed to multi-region capacity planning and reliability improvements.",
+      tags: [
+        "Kubernetes (EKS)",
+        "Argo CD",
+        "Datadog",
+        "Terraform",
+        "Helm",
+        "AWS",
+      ],
+    },
+    {
+      date: "June 2020 – November 2021",
+      title: "Site Reliability Engineer / DevOps",
+      org: "Adyton PBC",
+      description:
+        "Implemented infrastructure-as-code on AWS GovCloud for U.S. Department of Defense services using Terraform and SaltStack. Managed EKS clusters and ELK Stack monitoring. Built CI/CD systems with Bazel, GitLab Pipelines, Argo CD, and Jenkins.",
+      tags: [
+        "AWS GovCloud",
+        "Terraform",
+        "SaltStack",
+        "Bazel",
+        "EKS",
+        "ELK Stack",
+        "GitLab CI",
+        "Jenkins",
+      ],
+    },
+    {
+      date: "March 2020 – June 2020",
+      title: "Software DevOps Engineer",
+      org: "Addi",
+      description:
+        "Implemented SonarQube on Kubernetes clusters for automated integration test execution on new commits from product teams. Worked with development teams on the initial migration of workloads to Kubernetes.",
+      tags: ["Terraform", "SonarQube", "Kubernetes", "Convox", "Weave"],
+    },
+    {
+      date: "August 2016 – December 2020",
+      title: "Professor",
+      org: "Universidad Icesi",
+      description:
+        "Taught Operating Systems, Computer Networks II, and Infrastructure Automation. Developed Cloud Computing labs on AWS. Continued in parallel with industry roles through 2020.",
+      tags: ["Education", "AWS", "Networking"],
+    },
+    {
+      date: "January 2018 – December 2019",
+      title: "Research Assistant",
+      org: "Universidad Icesi",
+      description:
+        "Published research on Quality of Service in Software-Defined Networks (SDN) on IEEEXplore.",
+      tags: ["SDN", "Research", "IEEEXplore"],
+    },
+    {
+      date: "January 2020 – February 2020",
+      title: "Cloud and DevOps Engineer",
+      org: "IPINNOVATECH",
+      description:
+        "Implemented centralized AWS infrastructure management using SSM and CloudWatch.",
+      tags: ["AWS SSM", "CloudWatch"],
+    },
+    {
+      date: "December 2014 – December 2016",
+      title: "Network Engineer",
+      org: "Global Networks Solutions",
+      description:
+        "Designed network infrastructure (127 Cisco devices) for government ministry facilities.",
+      tags: ["Cisco", "Network Design"],
+    },
+  ]}
+/>
+
+---
+
+<div className="eyebrow">04 — TECHNICAL SKILLS</div>
+
+### API Gateway & Service Mesh
+
+<div
+  style={{
+    display: "flex",
+    gap: "8px",
+    flexWrap: "wrap",
+    marginBottom: "1.5rem",
+  }}
+>
+  <SkillBadge name="Kong API Gateway" level="expert" />
+  <SkillBadge name="Istio" level="advanced" />
+  <SkillBadge name="Envoy" level="advanced" />
+  <SkillBadge name="AWS ALB/NLB" level="expert" />
+  <SkillBadge name="cert-manager" level="advanced" />
+  <SkillBadge name="external-dns" level="advanced" />
+</div>
+
+### Cloud & Infrastructure
+
+<div
+  style={{
+    display: "flex",
+    gap: "8px",
+    flexWrap: "wrap",
+    marginBottom: "1.5rem",
+  }}
+>
+  <SkillBadge
+    name="AWS (ECS, EKS, Route 53, ACM, SSM, ECR, PrivateLink, RAM, IAM)"
+    level="expert"
+  />
+  <SkillBadge name="Terraform" level="expert" />
+  <SkillBadge name="Helm" level="expert" />
+  <SkillBadge name="Argo CD" level="advanced" />
+  <SkillBadge name="Kubernetes" level="expert" />
+</div>
+
+### Observability & Performance
+
+<div
+  style={{
+    display: "flex",
+    gap: "8px",
+    flexWrap: "wrap",
+    marginBottom: "1.5rem",
+  }}
+>
+  <SkillBadge name="OpenTelemetry" level="advanced" />
+  <SkillBadge name="Prometheus" level="advanced" />
+  <SkillBadge name="Grafana" level="advanced" />
+  <SkillBadge name="Datadog" level="expert" />
+  <SkillBadge name="k6" level="expert" />
+  <SkillBadge name="AWS EMF" level="advanced" />
+</div>
+
+### Languages
+
+<div
+  style={{
+    display: "flex",
+    gap: "8px",
+    flexWrap: "wrap",
+    marginBottom: "1.5rem",
+  }}
+>
+  <SkillBadge name="Go" level="intermediate" />
+  <SkillBadge name="Python" level="advanced" />
+  <SkillBadge name="Bash" level="expert" />
+  <SkillBadge name="Lua (Kong plugins)" level="advanced" />
+</div>
+
+### Practices
+
+<div
+  style={{
+    display: "flex",
+    gap: "8px",
+    flexWrap: "wrap",
+    marginBottom: "1.5rem",
+  }}
+>
+  <SkillBadge name="Infrastructure-as-Code" level="expert" />
+  <SkillBadge name="GitOps" level="expert" />
+  <SkillBadge name="Chaos Engineering" level="advanced" />
+  <SkillBadge name="ADR-driven Architecture" level="expert" />
+  <SkillBadge name="Progressive Delivery" level="expert" />
+</div>
+
+---
+
+<div className="eyebrow">APPENDIX</div>
+
+## Education
+
+- **Master in Informatics and Telecommunications** | Universidad ICESI (2018 – 2020)
+- **Professional in Telematics Engineering** | Universidad ICESI (2010 – 2016)
+
+## Certifications & Publications
+
+- **Certification:** LFS 265 — Software Defined Networking Fundamentals (Linux Foundation)
+- **Publication:** _"Performance of QoS policies in Software-Defined Networks"_ (IEEEXplore)

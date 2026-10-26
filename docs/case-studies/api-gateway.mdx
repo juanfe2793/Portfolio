@@ -1,0 +1,265 @@
+---
+title: Cloud Native API Gateway
+description: Architecting a Kong-based domain gateway platform for multi-million RPS and a five-nines availability target.
+sidebar_label: 01 — API Gateway
+sidebar_position: 1
+---
+
+import CaseStudyHeader from "@site/src/components/CaseStudyHeader";
+
+<span className="eyebrow">CASE STUDY — 01</span>
+
+# Cloud Native API Gateway
+
+<CaseStudyHeader
+  number="01 / 03"
+  role="Staff Software Engineer — Platform Lead"
+  duration="2025 – Present"
+  stack={['Kong', 'Terraform', 'AWS EKS', 'Istio', 'Envoy', 'GitHub Actions']}
+  impact="Became the organizational standard for cross-domain connectivity at a large-scale cloud communications platform, validated at multi-million RPS with a five-nines availability target."
+/>
+
+<p className="cs-lead">How a Kong-based domain gateway became the foundational communication layer for a platform's core service domains — running DB-less on a serverless container runtime, exposed through AWS PrivateLink, and consumed as a self-service Terraform module.</p>
+
+<div className="cs-metric-grid">
+  <div className="cs-metric">
+    <span className="cs-metric-value">Millions</span>
+    <span className="cs-metric-label">Requests / Second Validated</span>
+  </div>
+  <div className="cs-metric">
+    <span className="cs-metric-value">Billions</span>
+    <span className="cs-metric-label">Requests In Load Testing</span>
+  </div>
+  <div className="cs-metric">
+    <span className="cs-metric-value">5-nines</span>
+    <span className="cs-metric-label">Availability Target</span>
+  </div>
+  <div className="cs-metric">
+    <span className="cs-metric-value">Minutes</span>
+    <span className="cs-metric-label">To Onboard New Gateway</span>
+  </div>
+</div>
+
+A large-scale cloud communications platform required a standardized, high-performance API
+gateway to enable secure cross-domain communication across its core service domains. I led the
+design, planning, and implementation of a Kong-based domain gateway infrastructure that now serves
+as the foundational communication layer for those domains. The system was validated at **multi-million
+requests per second** under stress, processed **billions of requests** in comprehensive performance
+testing, and moved endpoint reliability to a **five-nines target** following load-balancer layer
+hardening. Built on a serverless container runtime in DB-less mode, the infrastructure is exposed through
+AWS PrivateLink for secure, private cross-account connectivity.
+
+---
+
+<span className="cs-section-tag">The Challenge</span>
+
+## Cross-Domain Communication at Scale
+
+As the platform expanded, its core service domains required a reliable, low-latency mechanism to
+communicate with each other and with external edge services. Without a unified gateway layer, each
+domain team was independently solving routing, TLS termination, and service discovery — leading to
+fragmented approaches, inconsistent reliability, and operational overhead that scaled linearly with
+the number of domains.
+
+The system needed to handle millions of requests per second while maintaining sub-second recovery
+times during infrastructure failures. Any downtime or degradation in cross-domain communication had
+a direct impact on customer-facing products.
+
+### Legacy Integration Constraints
+
+The infrastructure landscape was mixed. Communication paths spanned cloud-native workloads and
+non-cloud-native platforms, including a Kubernetes-based platform and a legacy VM-based platform. A
+gateway solution had to bridge these worlds without requiring wholesale migration of legacy systems.
+Production incident reviews underscored the urgency: the existing architecture lacked the resilience
+to absorb single-instance failures gracefully, which is exactly the property a shared gateway layer
+has to guarantee.
+
+### Operational Requirements
+
+Beyond raw performance, operational concerns shaped the requirements. Domain teams needed a
+self-service model for deploying and configuring gateways without deep infrastructure expertise.
+Performance testing required dedicated tooling: previously, each engineer had to write custom test
+code and provision infrastructure independently, creating a high barrier to validation. DNS
+management across multiple platforms introduced blast radius concerns, where a single
+misconfiguration could cascade across unrelated services.
+
+---
+
+<span className="cs-section-tag">Architecture</span>
+
+## System Design
+
+The deployment follows a provider-consumer model across two AWS accounts. The consumer account
+resolves a private DNS name and connects over PrivateLink to the provider account, where a Network
+Load Balancer fronts Kong running as a serverless container workload. Kong routes requests to the
+appropriate backend services.
+
+```mermaid
+flowchart TB
+    DNS["Private DNS"]
+
+    subgraph Consumer["Consumer Account"]
+        Client("Client")
+        VPCE["VPC Endpoint"]
+    end
+
+    subgraph Provider["Provider Account"]
+        VPCES["VPC Endpoint Service"]
+        NLB["Network Load Balancer<br/>(TLS termination)"]
+        Kong["Kong Gateway<br/>Serverless containers · DB-less"]
+        Config["Declarative config<br/>(object storage)"]
+    end
+
+    Backend["Backend Services<br/>1..N"]
+
+    Client -->|DNS lookup| DNS
+    Client -->|request| VPCE
+    VPCE -->|PrivateLink| VPCES
+    VPCES --> NLB
+    NLB --> Kong
+    Config -.->|config at startup| Kong
+    Kong --> Backend
+```
+
+### Design Principles
+
+The architecture was governed by four principles derived directly from the challenges above:
+
+1. **Mesh-less simplicity** — Avoid the operational complexity of a full service mesh by deploying
+   Kong as a lightweight, per-domain gateway.
+2. **Platform-agnostic connectivity** — Design DNS and networking to work across legacy VM-based,
+   Kubernetes, and cloud-native platforms without coupling to any single infrastructure model.
+3. **Self-service consumption** — Publish the gateway as a Terraform module that domain teams
+   consume with minimal configuration.
+4. **Defense in depth** — Layer security controls from network isolation (PrivateLink) through TLS
+   termination to least-privilege IAM.
+
+### Key Components
+
+**Kong Gateway** operates in DB-less mode, eliminating the need for a database cluster and the
+operational burden that comes with it. Declarative YAML configuration lives in object storage and
+is fetched at startup by an init container, ensuring that each task boots with a consistent,
+versioned configuration.
+
+**Init Container Pattern** separates concerns at startup. One container retrieves the gateway
+configuration and writes it to a shared volume. An optional second container loads custom Lua and Go
+plugins from a governed registry. The orchestrator mounts these volumes into the Kong container at
+launch, enabling zero-downtime configuration updates through task replacement.
+
+**Observability Stack** includes an OpenTelemetry collector sidecar that scrapes Prometheus metrics
+from Kong and exports them over OTLP to Grafana. Container logs are shipped to the cloud provider's
+log service, and health checks provide liveness and readiness signals to the load balancer.
+
+---
+
+<span className="cs-section-tag">Strategic Solution</span>
+
+## The Terraform Paved Road
+
+The entire gateway stack is implemented as a reusable Terraform module consumed by domain teams.
+The module enforces the organization's operational excellence standards. Each domain deploys its own
+isolated gateway instance by referencing the module and providing domain-specific configuration —
+giving domain teams ownership of their gateway lifecycle while enforcing consistent infrastructure
+patterns across the organization.
+
+Network ingress follows a strict allow-list model, continuous health-check traffic lets the load
+balancer evacuate failing tasks quickly, and workloads authenticate with strong workload identity.
+Any other inbound traffic is denied. IAM roles follow least-privilege principles, granting only the
+access the gateway needs to read its own configuration.
+
+### Deployment and Resilience
+
+The module supports four deployment strategies — Rolling (default), Blue/Green, Linear, and Canary —
+giving domain teams flexibility to match their risk tolerance. A circuit breaker with automatic
+rollback is enabled by default, ensuring that failed deployments are reverted without manual
+intervention.
+
+Auto-scaling adjusts the number of running tasks based on CPU and memory utilization, with higher
+minimums in production than in non-production environments. Cooldown periods are asymmetric: scale
+out quickly during traffic spikes, scale in conservatively to avoid reacting to short-lived dips.
+The gateway is deployed across multiple availability zones so that the loss of any single zone
+does not take it down.
+
+### DNS and Connectivity
+
+A platform-agnostic DNS infrastructure was designed under a dedicated internal namespace with a
+structured, predictable naming convention. DNS delegation occurs at the domain level rather than at
+the zone apex, reducing the blast radius of DNS failures to a single domain rather than the entire
+namespace.
+
+Cross-account connectivity uses AWS PrivateLink through VPC Endpoint Services. Dedicated Terraform
+modules manage the private links with a resource-sharing approach and parameter-store discovery on
+the consumer side. This design keeps traffic on the AWS backbone, avoids internet traversal, and
+provides network-level isolation between consumer and provider accounts.
+
+TLS termination occurs at the load balancer, with traffic forwarded to Kong inside the private
+network. gRPC support was enabled through coordination between domain owners and the edge team,
+extending the gateway's protocol coverage beyond HTTP/REST.
+
+### Performance Validation
+
+The team built an on-demand performance testing tool based on k6 and Helm. Previously, each team
+member had to write custom test code and stand up dedicated infrastructure for performance
+validation. With the new tool, anyone can execute comprehensive load tests with two standard
+commands. It was later adopted by the edge team for their own proxy testing, broadening its impact
+beyond the original gateway project.
+
+---
+
+<span className="cs-section-tag">Organizational Impact</span>
+
+## What Changed
+
+Stress testing demonstrated that the system can absorb peak traffic well beyond current production
+requirements. Comprehensive performance testing processed **billions of HTTP requests** without
+degradation in error rate or latency, confirming the stability of the DB-less Kong configuration,
+the auto-scaling policy, and the underlying serverless container infrastructure.
+
+| Dimension              | Before                      | After                                   |
+| ---------------------- | --------------------------- | --------------------------------------- |
+| Gateway onboarding     | Weeks of custom development | Minutes via `terraform apply`           |
+| Endpoint reliability   | Vulnerable to instance loss | Five-nines target after LB hardening    |
+| Performance validation | Days of custom development  | Two commands, minutes of execution      |
+| Operational visibility | Fragmented per gateway      | Unified via OpenTelemetry pipeline      |
+| Config drift           | Frequent snowflakes         | Zero — module is the source of truth    |
+
+The self-service Terraform module eliminated the need for domain teams to build and maintain bespoke
+gateway infrastructure. A governed Kong plugin monorepo established a controlled workflow for custom
+plugin development, enabling teams to extend gateway functionality through Lua and Go plugins without
+risking the stability of the shared platform. A domain-level DNS delegation model, combined with a
+platform-agnostic internal namespace, created a connectivity model that works uniformly across
+legacy VM-based, Kubernetes, and cloud-native platforms — resolving the fragmentation that previously
+required per-platform integration work.
+
+---
+
+<span className="cs-section-tag">Key Technical Decisions</span>
+
+## Why It Was Built This Way
+
+| Decision                                       | Rationale                                                                                                                                      |
+| ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| Kong DB-less mode with object-storage config   | Eliminates database operational overhead; declarative config enables versioning, rollback, and GitOps workflows                                |
+| Serverless containers over self-managed hosts  | Removes host management burden; aligns with a serverless-first container strategy                                                              |
+| AWS PrivateLink for cross-account connectivity | Keeps traffic on the AWS backbone; provides network-level isolation without VPC peering complexity                                             |
+| Init container pattern for config and plugins  | Separates boot-time concerns from runtime; enables independent update cycles for config and plugins                                            |
+| NLB with TLS termination over ALB              | Layer 4 performance with TLS/ALPN negotiation for gRPC; required as PrivateLink target (ALB is not supported as a VPC Endpoint Service target) |
+| Asymmetric auto-scaling cooldowns              | Prioritizes fast response to traffic spikes while preventing flapping during transient load dips                                               |
+| Domain-level DNS delegation                    | Reduces blast radius of DNS misconfigurations to a single domain rather than the entire organization                                           |
+| Circuit breaker with automatic rollback        | Prevents bad deployments from fully propagating; reduces mean time to recovery without human intervention                                      |
+| Platform-agnostic DNS namespace                | Decouples service discovery from infrastructure platform; supports migration across legacy VM-based, Kubernetes, and cloud-native platforms    |
+| Reusable Terraform module                      | Enables self-service gateway deployment while enforcing consistent security and operational patterns                                           |
+
+---
+
+<span className="cs-section-tag">Technical Implementation</span>
+
+## Stack
+
+- **Core Engine** — Kong Gateway, DB-less mode on serverless containers (AWS)
+- **Edge & Connectivity** — AWS PrivateLink (VPC Endpoint Services), Network Load Balancer with TLS termination
+- **IaC** — Reusable Terraform modules (gateway, private links, DNS)
+- **Config & Plugins** — Declarative YAML in object storage, init-container pattern, governed Lua/Go plugin monorepo
+- **Protocols** — HTTPS/REST and gRPC over PrivateLink
+- **Observability** — OpenTelemetry Collector → Prometheus/Grafana, centralized logs
+- **Performance** — On-demand k6 + Helm load-testing tool

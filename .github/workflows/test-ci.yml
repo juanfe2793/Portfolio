@@ -1,0 +1,64 @@
+name: Verify Site Build
+
+on:
+  push:
+    branches-ignore:
+      - main
+  pull_request:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Typecheck, build & smoke test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.1.2
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Type check
+        run: pnpm run typecheck
+
+      - name: Build site
+        run: pnpm run build
+
+      - name: Smoke test — verify key pages respond 200
+        run: |
+          npx docusaurus serve --port 3000 &
+          SERVER_PID=$!
+
+          for i in $(seq 1 15); do
+            curl -sf http://localhost:3000/Portfolio/ > /dev/null && break
+            sleep 2
+          done
+
+          check() {
+            curl -sf "$1" > /dev/null || { echo "FAIL: $1"; kill $SERVER_PID; exit 1; }
+            echo "OK:   $1"
+          }
+
+          check http://localhost:3000/Portfolio/
+          check http://localhost:3000/Portfolio/docs/portfolio/cv/
+          check http://localhost:3000/Portfolio/docs/case-studies/
+          check http://localhost:3000/Portfolio/docs/guides/
+          check http://localhost:3000/Portfolio/blog/
+
+          kill $SERVER_PID
